@@ -14,7 +14,7 @@ Pour installer Aero, suivez ces étapes simples :
 
 Aero comprend les fonctionnalités suivantes :
 
-//ToDo:
+ToDo:
 - Une interface utilisateur intuitive et conviviale
 - Des temps de chargement de page rapides
 - La possibilité d'ouvrir plusieurs onglets simultanément
