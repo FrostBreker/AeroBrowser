@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import dayjs from 'dayjs';
 
 export default function Home() {
-    const [date, setDate] = useState(dayjs());
+    // const [date, setDate] = useState(dayjs());
 
-    useEffect(() => {
-        setDate(dayjs());
-    }, []);
+    // useEffect(() => {
+    //     setDate(dayjs());
+    // }, []);
 
     return (
         <div className='home'>
@@ -25,7 +24,7 @@ export default function Home() {
                 </div>
 
                 <div className="right-panel">
-                    <h1 className='time'>{date.format("hh:mm:ss")}</h1>
+                    {/* <h1 className='time'>{date.format("hh:mm:ss")}</h1> */}
                 </div>
             </div>
         </div>

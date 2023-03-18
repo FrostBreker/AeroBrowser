@@ -1,4 +1,7 @@
-const { app, BrowserWindow, ipcMain, Menu } = require('electron');
+const { app, BrowserWindow, ipcMain, Menu, autoUpdater, dialog, protocol } = require('electron');
+const isDev = require('electron-is-dev');
+const url = require('url');
+const path = require('path');
 
 let mainWindow = null;
 function createWindow() {
@@ -18,9 +21,16 @@ function createWindow() {
   });
 
   mainWindow.removeMenu();
-  mainWindow.loadURL('http://127.0.0.1:3000');
 
-  mainWindow.webContents.openDevTools();
+  const appURL = app.isPackaged
+    ? url.format({
+      pathname: path.join(__dirname, "index.html"),
+      protocol: "file:",
+      slashes: true,
+    })
+    : "http://127.0.0.1:3000";
+  mainWindow.loadURL(appURL);
+
   const mainWebContents = mainWindow.webContents;
 
   const template = [
@@ -113,10 +123,51 @@ function createWindow() {
   Menu.setApplicationMenu(menu);
 }
 
+function setupLocalFilesNormalizerProxy() {
+  protocol.registerHttpProtocol(
+    "file",
+    (request, callback) => {
+      const url = request.url.substr(8);
+      callback({ path: path.normalize(`${__dirname}/${url}`) });
+    },
+    (error) => {
+      if (error) console.error("Failed to register protocol");
+    }
+  );
+}
+
 app.whenReady().then(() => {
   createWindow();
-  const mainFocusedWindow = BrowserWindow.getFocusedWindow();
+  setupLocalFilesNormalizerProxy();
   const mainWebContents = mainWindow.webContents;
+
+  if (!isDev) {
+    const server = 'https://aero-mymeiy532-frostbreker.vercel.app/'
+    const url = `${server}/update/${process.platform}/${app.getVersion()}`;
+    autoUpdater.setFeedURL({ url })
+    autoUpdater.checkForUpdates()
+
+    const UPDATE_CHECK_INTERVAL = 60 * 1000
+    setInterval(() => {
+      autoUpdater.checkForUpdates()
+    }, UPDATE_CHECK_INTERVAL)
+
+    autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+      const dialogOpts = {
+        type: 'info',
+        buttons: ['Restart', 'Later'],
+        title: 'Application Update',
+        message: process.platform === 'win32' ? releaseNotes : releaseName,
+        detail: 'A new version has been downloaded. Restart the application to apply the updates.'
+      }
+      dialog.showMessageBox(dialogOpts).then((returnValue) => {
+        if (returnValue.response === 0) autoUpdater.quitAndInstall()
+      })
+    })
+  } else {
+    console.log("Running in development mode");
+    mainWindow.webContents.openDevTools();
+  }
 
   ipcMain.on("minimizeApp", () => {
     mainWindow?.minimize();
