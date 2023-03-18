@@ -4,11 +4,13 @@
   "private": true,
   "main": "public/main.js",
   "homepage": "./",
+  "author": "FrostBreker",
+  "description": "Aero is a simple and lightweight web browser for Windows, Mac and Linux. It is built with Electron, React and Redux.",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "dayjs": "^1.11.7",
+    "electron-is-dev": "^2.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^8.0.5",
@@ -16,14 +18,38 @@
     "redux": "^4.2.1",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.2",
-    "sass": "^1.58.3"
+    "sass": "^1.58.3",
+    "update-electron-app": "^2.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "electron": "electron ."
+    "electron": "electron .",
+    "electron:package:mac": "npm run build && electron-builder -m -c.extraMetadata.main=build/main.js",
+    "electron:package:win": "npm run build && electron-builder -w -c.extraMetadata.main=build/main.js",
+    "electron:package:linux": "npm run build && electron-builder -l -c.extraMetadata.main=build/main.js"
+  },
+  "build": {
+    "appId": "fr.frostbreker.aero",
+    "productName": "Aero",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "public"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "deb"
+    }
   },
   "eslintConfig": {
     "extends": [
@@ -33,17 +59,14 @@
   },
   "browserslist": {
     "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+      "last 1 electron version"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 electron version"
     ]
   },
   "devDependencies": {
-    "electron": "^23.1.2"
+    "electron": "^23.1.2",
+    "electron-builder": "^23.6.0"
   }
 }

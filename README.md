@@ -1,39 +1,37 @@
 # Aero Browser
 
-Aero est un navigateur web rapide et léger qui vous permet de naviguer sur Internet en toute simplicité.
+Aero is a fast and lightweight web browser that allows you to navigate the Internet with ease.
 
 <!-- ## Installation
 
-Pour installer Aero, suivez ces étapes simples :
+To install Aero, follow these simple steps:
 
-1. Téléchargez le fichier d'installation dans l'onglet release.
-2. Exécutez le fichier d'installation et suivez les instructions à l'écran.
-3. Une fois l'installation terminée, lancez Aero et commencez à naviguer ! -->
+1. Download the installation file from the release tab.
+2. Run the installation file and follow the on-screen instructions.
+3. Once the installation is complete, launch Aero and start browsing! -->
+## Features
 
-## Fonctionnalités
+Aero includes the following features:
 
-Aero comprend les fonctionnalités suivantes :
+ToDo:
 
-//ToDo:
-- Une interface utilisateur intuitive et conviviale
-- Des temps de chargement de page rapides
-- La possibilité d'ouvrir plusieurs onglets simultanément
-- Une fonction de recherche intégrée pour trouver rapidement ce que vous cherchez
-- Une compatibilité avec la plupart des sites web
-- Une fonction de navigation privée pour naviguer en toute sécurité
-- Une fonction de téléchargement de fichiers
-- Une fonction de favoris pour accéder facilement aux sites web que vous visitez le plus souvent
-- Une fonction de sauvegarde et de restauration des onglets ouverts
-- Une fonction de synchronisation des favoris et des onglets ouverts entre différents appareils
-- Une fonction de personnalisation de l'interface utilisateur avec des thèmes personnalisés crée par la comunauté
-- Une fonction de personnalisation des raccourcis clavier
-- Une fonction de personnalisation des moteurs de recherche
-
+- An intuitive and user-friendly interface
+- Fast page loading times
+- An integrated search function to quickly find what you're looking for
+- Compatibility with most websites
+- A private browsing function for safe browsing
+- A file download function
+- A favorites function for easy access to frequently visited websites
+- A function to save and restore open tabs
+- A function to synchronize favorites and open tabs across different devices
+- A function to customize the user interface with community-created custom themes
+- A function to customize keyboard shortcuts
+- A function to customize search engines
 
 ## Contribution
 
-Nous accueillons les contributions de la communauté open source pour améliorer Aero. Si vous souhaitez contribuer, veuillez consulter notre guide de contribution pour savoir comment vous pouvez aider.
+We welcome contributions from the open source community to improve Aero. If you would like to contribute, please refer to our contribution guide to learn how you can help.
 
-## Licence
+## License
 
-Aero est sous licence MIT. Veuillez consulter le fichier LICENCE pour plus d'informations.
+Aero is licensed under the MIT license. Please refer to the LICENSE file for more information.
