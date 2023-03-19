@@ -5,8 +5,8 @@ import WebView from '../Webview/Webview';
 import TabBar from './TabBar';
 import TabSystem from './TabSystem';
 import { isEmpty } from "../utils";
+import BookmarkManager from '../Bookmark/BookmarkManager';
 
-const { ipcRenderer } = window.require('electron');
 
 const TabManager = () => {
     const dispatch = useDispatch();
@@ -16,17 +16,9 @@ const TabManager = () => {
     useEffect(() => {
 
         if (!isEmpty(tabs)) {
-            // ipcRenderer.send('get-tabs');
-            // ipcRenderer.on('get-tabs-reply', (event, tabs) => {
-            //     tabs.forEach((tab) => {
-            //         dispatch(setupTabs(tab));
-            //         setNextTabId(nextTabId + 1);
-            //     });
-            //     setIsLoaded(true);
-            // });
             setIsLoaded(true);
         } else {
-            dispatch(setupTabs("https://www.google.com/"))
+            dispatch(setupTabs())
         }
     }, [tabs, dispatch]);
 
@@ -62,19 +54,32 @@ const TabManager = () => {
                             </button>
                             <div className='drag'></div>
                             <div className="utilsButtons">
-                                <button className="minimizeBTN" onClick={() => ipcRenderer.send('minimizeApp')}>
+                                <button className="minimizeBTN" onClick={window.api.minimizeApp}>
                                     <img src='./img/icons/utils/windowsMinimize.svg' alt='minizebutton' />
                                 </button>
-                                <button className="maximizeBTN" onClick={() => ipcRenderer.send('maximizeApp')}>
+                                <button className="maximizeBTN" onClick={window.api.maximizeApp}>
                                     <img src='./img/icons/utils/windowsMaximize.svg' alt='minizebutton' />
                                 </button>
-                                <button className="closeBTN" onClick={() => ipcRenderer.send('closeApp')}>
+                                <button className="closeBTN" onClick={window.api.closeApp}>
                                     <img src='./img/icons/utils/windowsClose.svg' alt='minizebutton' />
                                 </button>
                             </div>
                         </div>
                         <div>
-                            <TabSystem tabId={tabs.find((tab) => tab.isActive).id} key={tabs.find((tab) => tab.isActive).id} />
+                            {
+                                tabs.map((tab) => (
+                                    <div
+                                        key={tab.id}
+                                        style={{
+                                            display: tab.isActive ? 'block' : 'none'
+                                        }}
+                                    >
+                                        <TabSystem tabId={tab.id} key={`${tab.id}-tabSystem`} />
+                                    </div>
+                                ))
+
+                            }
+                            <BookmarkManager />
                             {tabs.map((tab) => (
                                 <div
                                     key={tab.id}

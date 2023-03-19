@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { removeTab, addTab } from './actions/tabs.actions';
 import TabManager from './components/Tab/TabManager';
 
-const { ipcRenderer } = window.require('electron');
-
 function App() {
   const html = document.querySelector('html');
   html.dataset.theme = `theme-dark`;
@@ -13,51 +11,51 @@ function App() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
+    const api = window.api;
+    const revokeApi = window.revokeApi;
     if (tabs.length !== 0 && webviews.length !== 0) {
       const currentTab = tabs.find(tab => tab.isActive)
       const currentWebview = webviews.find(webview => webview.tabId === currentTab.id)
       if (currentWebview) {
         const view = currentWebview.webView.current;
-
-        ipcRenderer.on("reload-tab", () => {
+        api.onReloadTab(() => {
           view.reload();
         });
 
-        ipcRenderer.on("back-in-tab", () => {
+        api.onBackInTab(() => {
           view.goBack();
         });
 
-        ipcRenderer.on("previous-in-tab", () => {
+        api.onPreviousInTab(() => {
           view.goForward();
         });
 
-        ipcRenderer.on("search-in-tab", () => {
+        api.onSearchInTab(() => {
           view.openFindWindow();
         });
 
-        ipcRenderer.on("open-devtools", () => {
+        api.onOpenDevtools(() => {
           view.openDevTools();
         });
 
-        ipcRenderer.on("close-tab", () => {
+        api.onCloseTab(() => {
           dispatch(removeTab(currentTab.id))
         });
 
-        ipcRenderer.on('open-url-in-new-tab', (event, dt) => {
-          dispatch(addTab(dt.url, dt.active))
+        api.onOpenUrlInNewTab((_event, value) => {
+          dispatch(addTab(value.url ? value.url : undefined, value.active))
         });
-
       }
     }
 
     return () => {
-      ipcRenderer.removeAllListeners('reload-tab');
-      ipcRenderer.removeAllListeners('back-in-tab');
-      ipcRenderer.removeAllListeners('previous-in-tab');
-      ipcRenderer.removeAllListeners('search-in-tab');
-      ipcRenderer.removeAllListeners('open-devtools');
-      ipcRenderer.removeAllListeners('close-tab');
-      ipcRenderer.removeAllListeners('open-url-in-new-tab');
+      revokeApi.onReloadTab();
+      revokeApi.onBackInTab();
+      revokeApi.onPreviousInTab();
+      revokeApi.onSearchInTab();
+      revokeApi.onOpenDevtools();
+      revokeApi.onCloseTab();
+      revokeApi.onOpenUrlInNewTab();
     }
   }, [tabs, webviews, dispatch])
 

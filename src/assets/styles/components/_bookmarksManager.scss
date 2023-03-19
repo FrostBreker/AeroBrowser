@@ -1,0 +1,52 @@
+.bookmarksManager {
+  background-color: #303443;
+  width: 100%;
+  z-index: 999;
+  padding: 5px;
+  color: white;
+  user-select: none;
+  position: fixed;
+  top: 70px;
+}
+
+// .boomarks {
+//   display: flex;
+//   margin-left: -5px;
+//   // margin-top: 20px;
+//   justify-content: space-between;
+
+//   .bookmark {
+//     display: flex;
+//     padding: 5px;
+//     width: 100px;
+//     justify-content: space-around;
+
+//     .bookmarkBTN {
+//       background-color: transparent;
+//       cursor: pointer;
+//       width: 30px;
+//       height: 30px;
+
+//       img {
+//         width: 20px;
+//       }
+
+//       transition: .2s;
+//       &:hover {
+//         background-color: #5b5b62;
+//         border-radius: 5px;
+//       }
+//     }
+
+//     .bookmarkBTN:disabled,
+//     .bookmarkBTN[disabled] {
+//       border-radius: 0px;
+//       background-color: transparent;
+//       cursor: default;
+
+//       img {
+//         opacity: 0.5;
+//       }
+//     }
+//   }
+// }
