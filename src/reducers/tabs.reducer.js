@@ -1,5 +1,4 @@
 import { GET_TABS, ADD_TAB, TAB_CLICK, REMOVE_TAB, UPDATE_NEW_TAB_PARAMETER } from "../actions/tabs.actions.js";
-const { ipcRenderer } = window.require('electron');
 
 const initialState = [];
 
@@ -21,7 +20,7 @@ export default function tabsReducer(state = initialState, action) {
         data[data.length - 1].isActive = true;
         return [...data];
       } else {
-        return ipcRenderer.send('closeApp');
+        return window.api.closeApp();
       }
     case UPDATE_NEW_TAB_PARAMETER:
       state.find((tab) => tab.id === action.payload.tabId).isNewTab = action.payload.isNewTab;

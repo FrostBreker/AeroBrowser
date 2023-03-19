@@ -1,34 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { isEmpty } from '../utils'
 
 export default function TabSystem({ tabId }) {
     const [canGoBack, setCanGoBack] = useState(false)
     const [canGoForward, setCanGoForward] = useState(false)
+    const [isNewTab, setIsNewTab] = useState(true)
 
     const [searchValue, setSearchValue] = useState("")
 
     const webviews = useSelector(state => state.webviewReducer)
     const [ref, setWebViewRef] = useState(null)
-    const tabs = useSelector((state) => state.tabsReducer);
+
 
     useEffect(() => {
         const webViewRef = webviews.find(webview => webview.tabId === tabId)
-        const tab = tabs.find((tab) => tab.id === tabId);
-        if (!isEmpty(tab)) {
-            if (tab.isNewTab) {
-                const input = document.getElementById("searchInput");
-                input.focus();
-                input.select();
-            }
-            const input = document.getElementById("searchInput");
-            document.getElementById("searchInput").addEventListener('click', () => {
-                if (!input.onfocus) {
-                    input.focus();
-                    input.select();
-                }
-            })
+
+        const input = document.getElementById("searchInput");
+        if (isNewTab) {
+            input.focus();
+            input.select();
+            setIsNewTab(false)
         }
+        input.addEventListener('focusin', () => {
+            input.select();
+        })
 
         if (webViewRef && webViewRef.webView.current) {
             const event = webViewRef.webView.current;
@@ -48,6 +43,7 @@ export default function TabSystem({ tabId }) {
         }
 
         return () => {
+            console.log("unmount");
             if (webViewRef && webViewRef.webView.current) {
                 const event = webViewRef.webView.current;
                 event.removeEventListener('did-navigate-in-page', (e) => {
@@ -57,18 +53,9 @@ export default function TabSystem({ tabId }) {
                     setSearchValue(e.url)
                 })
             }
-
-            if (!isEmpty(tab)) {
-                const input = document.getElementById("searchInput");
-                document.getElementById("searchInput").removeEventListener('click', () => {
-                    if (!input.onfocus) {
-                        input.focus();
-                        input.select();
-                    }
-                })
-            }
+            // const input = document.getElementById("searchInput");
         }
-    }, [webviews, tabId, tabs])
+    }, [webviews, isNewTab, tabId])
 
     const handleGoBack = () => {
         if (ref) {
@@ -131,7 +118,7 @@ export default function TabSystem({ tabId }) {
                     <button className='favoriteBTN'>
                         <img src='./img/icons/favorite.svg' width={20} alt="favorite" />
                     </button>
-                    <input type="text" onKeyDown={handleSearch} onChange={(e) => setSearchValue(e.target.value)} value={searchValue} onClick={(e) => e} id="searchInput" />
+                    <input type="text" onKeyDown={handleSearch} onChange={(e) => setSearchValue(e.target.value)} value={searchValue} id="searchInput" />
                 </div>
                 <div className="utilsButtons">
                     <button className='utilsBTN'>
@@ -145,9 +132,6 @@ export default function TabSystem({ tabId }) {
                     </button>
 
                 </div>
-            </div>
-            <div className="bookmarks">
-                <p>{tabId}</p>
             </div>
         </div>
     )

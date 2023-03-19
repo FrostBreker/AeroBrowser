@@ -1,8 +1,8 @@
 {
   "name": "aero",
-  "version": "0.1.0",
+  "version": "0.1.1-alpha",
   "private": true,
-  "main": "public/main.js",
+  "main": "public/electron.js",
   "homepage": "./",
   "author": "FrostBreker",
   "description": "Aero is a simple and lightweight web browser for Windows, Mac and Linux. It is built with Electron, React and Redux.",
@@ -27,16 +27,20 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "electron": "electron .",
-    "electron:package:mac": "npm run build && electron-builder -m -c.extraMetadata.main=build/main.js",
-    "electron:package:win": "npm run build && electron-builder -w -c.extraMetadata.main=build/main.js",
-    "electron:package:linux": "npm run build && electron-builder -l -c.extraMetadata.main=build/main.js"
+    "electron:package:mac": "npm run build && electron-builder -m -c.extraMetadata.main=build/electron.js",
+    "electron:package:win": "npm run build && electron-builder -w -c.extraMetadata.main=build/electron.js",
+    "electron:package:linux": "npm run build && electron-builder -l -c.extraMetadata.main=build/electron.js"
   },
   "build": {
     "appId": "fr.frostbreker.aero",
     "productName": "Aero",
     "files": [
       "build/**/*",
-      "node_modules/**/*"
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      "widevine/widevinecdm.dll"
     ],
     "directories": {
       "buildResources": "public"
@@ -66,7 +70,7 @@
     ]
   },
   "devDependencies": {
-    "electron": "^23.1.2",
+    "electron": "^23.1.4",
     "electron-builder": "^23.6.0"
   }
 }

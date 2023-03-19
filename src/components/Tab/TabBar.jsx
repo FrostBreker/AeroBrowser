@@ -65,7 +65,6 @@ export default function TabBar({ id, handleTabClick, handleCloseTab }) {
                 }, { once: true });
             }
         }
-
     }, [id, webviews, tabs, dispatch, isNewTab])
 
     return (
