@@ -32,6 +32,13 @@ ToDo:
 
 We welcome contributions from the open source community to improve Aero. If you would like to contribute, please refer to our contribution guide to learn how you can help.
 
+environment variables (.env setup in public folder)
+
+```conf
+SENTRY_DSN=
+```
+
+
 ## License
 
 Aero is licensed under the MIT license. Please refer to the LICENSE file for more information.

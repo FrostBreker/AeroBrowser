@@ -1,18 +1,81 @@
-const { app, BrowserWindow, ipcMain, Menu, autoUpdater, dialog, protocol } = require('electron');
+require("dotenv").config({ path: __dirname + '/.env' });
+const { app, BrowserWindow, ipcMain, Menu, autoUpdater, dialog, protocol, crashReporter } = require('electron');
 const isDev = require('electron-is-dev');
 const url = require('url');
 const path = require('path');
+
 const { channels } = require('./constants');
 
-// app.commandLine.appendSwitch('widevine-cdm-path', '/widevinecdm.dll')
-// // The version of plugin can be got from `chrome://components` page in Chrome.
-// app.commandLine.appendSwitch('widevine-cdm-version', '4.10.2557.0')
+const Store = require('./classes/Store');
 
+const { init } = require('@sentry/electron');
+const { BrowserTracing } = require('@sentry/tracing');
+
+init({
+  dsn: process.env.SENTRY_DSN,
+  debug: false,
+  ipcMode: 'native',
+  integrations: [new BrowserTracing()],
+  tracesSampleRate: 1.0,
+});
+crashReporter.start({
+  companyName: "FrostBreker",
+  productName: "Aero",
+  ignoreSystemCrashHandler: false,
+  submitURL: process.env.SENTRY_DSN,
+});
 let mainWindow = null;
+let mainWebContents = null;
+const userPreference = new Store({
+  configName: 'user-preferences',
+  defaults: {
+    windowBounds: { width: 1024, height: 728 },
+    defaultDownloadPath: app.getPath('downloads'),
+    defaultSearchEngine: 'google',
+    defaultSearchEngineURL: 'https://www.google.com/search?q=',
+    defaultSearchEngineIcon: 'https://www.google.com/favicon.ico',
+    defaultSearchEngineSuggestionURL: 'https://suggestqueries.google.com/complete/search?client=firefox&q=',
+  },
+});
+
+const bookmarks = new Store({
+  configName: 'bookmarks',
+  defaults: {
+    bookmarks: []
+  },
+});
+
+const defaultUserPreference = [
+  { key: 'windowBounds', value: { width: 1024, height: 728 } },
+  { key: 'defaultDownloadPath', value: app.getPath('downloads') },
+  { key: 'defaultSearchEngine', value: 'google' },
+  { key: 'defaultSearchEngineURL', value: 'https://www.google.com/search?q=' },
+  { key: 'defaultSearchEngineIcon', value: 'https://www.google.com/favicon.ico' },
+  { key: 'defaultSearchEngineSuggestionURL', value: 'https://suggestqueries.google.com/complete/search?client=firefox&q=' },
+];
+
+const defaultBookmarks = [
+  { key: 'bookmarks', value: [] },
+];
+
+defaultUserPreference.forEach((preference) => {
+  if (!userPreference.get(preference.key)) {
+    userPreference.set(preference.key, preference.value);
+  }
+});
+
+defaultBookmarks.forEach((bookmark) => {
+  if (!bookmarks.get(bookmark.key)) {
+    bookmarks.set(bookmark.key, bookmark.value);
+  }
+});
+
+
 function createWindow() {
+  let { width, height } = userPreference.get('windowBounds');
   mainWindow = new BrowserWindow({
-    width: 1024,
-    height: 728,
+    width: width,
+    height: height,
     minWidth: 536,
     minHeight: 147,
     webPreferences: {
@@ -21,15 +84,12 @@ function createWindow() {
       enableRemoteModule: true,
       contextIsolation: true,
       webviewTag: true,
-      plugins: true,
-      extraResources: [
-        { "from": "widevine", "to": "widevine" }
-      ]
+      plugins: true
     },
     titleBarOverlay: false,
     titleBarStyle: 'hidden',
   });
-  const mainWebContents = mainWindow.webContents;
+  mainWebContents = mainWindow.webContents;
 
   ipcMain.on(channels.MINIMIZE_APP, () => {
     mainWindow?.minimize();
@@ -44,6 +104,20 @@ function createWindow() {
   ipcMain.on(channels.CLOSE_APP, () => {
     mainWindow?.close();
   });
+  ipcMain.on(channels.OPEN_URL, (_, data) => {
+    mainWebContents.send(channels.OPEN_URL_IN_RENDERER, data);
+  });
+  ipcMain.on(channels.OPEN_URL_IN_NEW_TAB, (_, data) => {
+    mainWebContents.send(channels.OPEN_URL_IN_NEW_TAB, data);
+  });
+  ipcMain.on(channels.ADD_BOOKMARK, (_, data) => {
+    bookmarks.set('bookmarks', [...bookmarks.get('bookmarks'), data]);
+    mainWebContents.send(channels.GET_BOOKMARKS, bookmarks.get('bookmarks'));
+  });
+  ipcMain.on(channels.REMOVE_BOOKMARK, (_, url) => {
+    bookmarks.set('bookmarks', bookmarks.get('bookmarks').filter(bookmark => bookmark.url !== url));
+    mainWebContents.send(channels.GET_BOOKMARKS, bookmarks.get('bookmarks'));
+  })
   mainWindow.webContents.on("did-attach-webview", (_, contents) => {
     contents.setWindowOpenHandler((details) => {
       mainWebContents.send(channels.OPEN_URL_IN_NEW_TAB, {
@@ -63,8 +137,8 @@ function createWindow() {
       slashes: true,
     })
     : "http://127.0.0.1:3000";
-  mainWindow.loadURL(appURL);
 
+  mainWindow.loadURL(appURL);
 
   const template = [
     {
@@ -179,30 +253,39 @@ app.whenReady().then(() => {
   if (!isDev) {
     const server = 'https://aero-mymeiy532-frostbreker.vercel.app/'
     const url = `${server}/update/${process.platform}/${app.getVersion()}`;
-    autoUpdater.setFeedURL({ url })
-    autoUpdater.checkForUpdates()
+    // autoUpdater.setFeedURL({ url })
+    // autoUpdater.checkForUpdates()
 
-    const UPDATE_CHECK_INTERVAL = 10 * 60 * 1000
-    setInterval(() => {
-      autoUpdater.checkForUpdates()
-    }, UPDATE_CHECK_INTERVAL)
+    // const UPDATE_CHECK_INTERVAL = 10 * 60 * 1000
+    // setInterval(() => {
+    //   autoUpdater.checkForUpdates()
+    // }, UPDATE_CHECK_INTERVAL)
 
-    autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
-      const dialogOpts = {
-        type: 'info',
-        buttons: ['Restart', 'Later'],
-        title: 'Application Update',
-        message: process.platform === 'win32' ? releaseNotes : releaseName,
-        detail: 'A new version has been downloaded. Restart the application to apply the updates.'
-      }
-      dialog.showMessageBox(dialogOpts).then((returnValue) => {
-        if (returnValue.response === 0) autoUpdater.quitAndInstall()
-      })
-    })
+    // autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+    //   const dialogOpts = {
+    //     type: 'info',
+    //     buttons: ['Restart', 'Later'],
+    //     title: 'Application Update',
+    //     message: process.platform === 'win32' ? releaseNotes : releaseName,
+    //     detail: 'A new version has been downloaded. Restart the application to apply the updates.'
+    //   }
+    //   dialog.showMessageBox(dialogOpts).then((returnValue) => {
+    //     if (returnValue.response === 0) autoUpdater.quitAndInstall()
+    //   })
+    // })
   } else {
     console.log("Running in development mode");
-    mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools({ mode: 'detach' });
   }
+
+  mainWindow.webContents.on('did-finish-load', () => {
+    mainWindow.webContents.send(channels.GET_USER_PREFERENCES, userPreference.getAll());
+    mainWindow.webContents.send(channels.GET_BOOKMARKS, bookmarks.get('bookmarks'));
+  });
+  mainWindow.on("resize", () => {
+    let { width, height } = mainWindow.getBounds();
+    userPreference.set('windowBounds', { width, height });
+  })
 });
 
 app.on('will-quit', () => {

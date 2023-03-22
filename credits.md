@@ -5,3 +5,4 @@
 - FavoriteIcon: https://icons8.com/icon/104/star
 - AudioIcon: https://icons8.com/icon/2795/audio
 - NoAudioIcon: https://icons8.com/icon/7913/no-audio
+- FolderIcon: https://icons8.com/icon/71186/folder
