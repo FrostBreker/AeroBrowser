@@ -26,6 +26,12 @@ export default function TabBar({ id, handleTabClick, handleCloseTab }) {
             webViewRef.webView.current.addEventListener('media-started-playing', (e) => {
                 if (webViewRef.webView.current.isCurrentlyAudible()) {
                     setIsPlayingSound(true)
+                } else {
+                    setTimeout(() => {
+                        if (webViewRef.webView.current.isCurrentlyAudible()) {
+                            setIsPlayingSound(true)
+                        }
+                    }, 1000)
                 }
             });
 
@@ -41,7 +47,8 @@ export default function TabBar({ id, handleTabClick, handleCloseTab }) {
                 });
 
                 webViewRef.webView.current.addEventListener('media-started-playing', (e) => {
-                    setIsPlayingSound(true)
+                    if (webViewRef.webView.current.isCurrentlyAudible())
+                        setIsPlayingSound(true)
                 });
 
                 webViewRef.webView.current.addEventListener('media-paused', (e) => {

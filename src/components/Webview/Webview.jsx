@@ -30,15 +30,13 @@ const WebView = ({ tabId }) => {
     }, [dispatch, tabId, webviewRef]);
 
     return (
-        <div>
-            <webview
-                ref={webviewRef}
-                src={"https://www.google.com/"}
-                style={{ width: '100%', height: '91.9vh', marginTop: '100px' }}
-                plugins="true"
-                allowpopups="true"
-            ></webview>
-        </div >
+        <webview
+            ref={webviewRef}
+            src={"https://www.google.com/"}
+            style={{ width: '100%', height: '91.9vh', marginTop: '108px' }}
+            plugins="true"
+            allowpopups="true"
+        ></webview>
     );
 };
 

@@ -13,7 +13,7 @@
 /build
 /dist
 
-.env
+public/*.env
 # misc
 .DS_Store
 .env.local

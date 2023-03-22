@@ -17,6 +17,12 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(thunk)),
 );
 
+document.getElementById("root").addEventListener("mousedown", function (event) {
+  if (event.button === 1) {
+    event.preventDefault();
+  }
+});
+
 ReactDOM.render(
   <Provider store={store}>
     <App />

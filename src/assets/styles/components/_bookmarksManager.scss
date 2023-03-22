@@ -7,6 +7,41 @@
   user-select: none;
   position: fixed;
   top: 70px;
+  display: flex;
+
+  .bookmarkFolder,
+  .bookmarkItem {
+    margin-right: 5px;
+    padding: 4px;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    display: flex;
+    align-items: center;
+
+    img {
+      margin-right: 5px;
+      width: 20px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+
+    &:hover {
+      background-color: #5b5b62;
+      border-radius: 5px;
+    }
+  }
+
+  .empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 28px;
+    font-size: 14px;
+  }
 }
 
 // .boomarks {
