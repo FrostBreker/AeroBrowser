@@ -14,7 +14,6 @@ const TabManager = () => {
     const tabs = useSelector((state) => state.tabsReducer);
 
     useEffect(() => {
-
         if (!isEmpty(tabs)) {
             setIsLoaded(true);
         } else {
@@ -60,7 +59,7 @@ const TabManager = () => {
                                 <button className="maximizeBTN" onClick={window.api.maximizeApp}>
                                     <img src='./img/icons/utils/windowsMaximize.svg' alt='minizebutton' />
                                 </button>
-                                <button className="closeBTN" onClick={window.api.closeApp}>
+                                <button className="closeBTN" onClick={() => window.api.closeApp(tabs)}>
                                     <img src='./img/icons/utils/windowsClose.svg' alt='minizebutton' />
                                 </button>
                             </div>

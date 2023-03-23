@@ -1,4 +1,4 @@
-import { GET_TABS, ADD_TAB, TAB_CLICK, REMOVE_TAB, UPDATE_NEW_TAB_PARAMETER } from "../actions/tabs.actions.js";
+import { GET_TABS, ADD_TAB, TAB_CLICK, REMOVE_TAB, UPDATE_NEW_TAB_PARAMETER, UPDATE_URL } from "../actions/tabs.actions.js";
 
 const initialState = [];
 
@@ -20,10 +20,13 @@ export default function tabsReducer(state = initialState, action) {
         data[data.length - 1].isActive = true;
         return [...data];
       } else {
-        return window.api.closeApp();
+        return window.api.closeApp([]);
       }
     case UPDATE_NEW_TAB_PARAMETER:
       state.find((tab) => tab.id === action.payload.tabId).isNewTab = action.payload.isNewTab;
+      return [...state];
+    case UPDATE_URL:
+      state.find((tab) => tab.id === action.payload.tabId).url = action.payload.url;
       return [...state];
     default:
       return state;

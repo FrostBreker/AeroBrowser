@@ -71,6 +71,14 @@ export default function TabBar({ id, handleTabClick, handleCloseTab }) {
                     setIsNewTab(false);
                 }, { once: true });
             }
+
+            if (tab.url !== undefined && isNewTab) {
+                webViewRef.webView.current.addEventListener('dom-ready', () => {
+                    webViewRef.webView.current.loadURL(tab.url)
+                    dispatch(updateNewTabParameter(id, false))
+                    setIsNewTab(false);
+                }, { once: true });
+            }
         }
     }, [id, webviews, tabs, dispatch, isNewTab])
 

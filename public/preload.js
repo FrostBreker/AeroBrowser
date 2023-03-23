@@ -10,7 +10,7 @@ contextBridge.exposeInMainWorld('versions', {
 //General API
 contextBridge.exposeInMainWorld('api', {
     //App Emiters
-    closeApp: () => ipcRenderer.send(channels.CLOSE_APP),
+    closeApp: (tabs) => ipcRenderer.send(channels.CLOSE_APP, tabs),
     minimizeApp: () => ipcRenderer.send(channels.MINIMIZE_APP),
     maximizeApp: () => ipcRenderer.send(channels.MAXIMIZE_APP),
 
@@ -29,7 +29,10 @@ contextBridge.exposeInMainWorld('api', {
     onOpenDevtools: (callback) => ipcRenderer.on(channels.OPEN_DEVTOOLS, callback),
 
     //User Handler
-    onGetUserPreferences: (callback) => ipcRenderer.on(channels.GET_USER_PREFERENCES, callback)
+    onGetUserPreferences: (callback) => ipcRenderer.on(channels.GET_USER_PREFERENCES, callback),
+
+    //Tabs Handlers
+    onGetTabs: (callback) => ipcRenderer.on(channels.GET_TABS, callback)
     // we can also expose variables, not just functions
 })
 
@@ -47,6 +50,9 @@ contextBridge.exposeInMainWorld("revokeApi", {
 
     //User Handler
     onGetUserPreferences: () => ipcRenderer.removeAllListeners(channels.GET_USER_PREFERENCES),
+
+    //Tabs Handlers
+    onGetTabs: () => ipcRenderer.removeAllListeners(channels.GET_TABS),
 })
 
 // Bookmarks API

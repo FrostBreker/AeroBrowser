@@ -21,5 +21,7 @@ module.exports = {
         GET_BOOKMARKS: 'getBookmarks',
         ADD_BOOKMARK: 'addBookmark',
         REMOVE_BOOKMARK: 'removeBookmark',
+        //Tabs
+        GET_TABS: 'getTabs',
     },
 };

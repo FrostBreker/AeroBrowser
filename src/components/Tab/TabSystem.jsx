@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { updateURL } from '../../actions/tabs.actions'
 import Searchbar from '../SearchBar/Searchbar'
 import { isEmpty } from '../utils'
 
@@ -15,6 +16,8 @@ export default function TabSystem({ tabId }) {
     const webviews = useSelector(state => state.webviewReducer)
     const bookmarks = useSelector(state => state.bookmarksReducer)
     const [ref, setWebViewRef] = useState(null)
+
+    const dispatch = useDispatch()
 
 
     useEffect(() => {
@@ -49,6 +52,7 @@ export default function TabSystem({ tabId }) {
 
             webViewRef.webView.current.addEventListener('did-stop-loading', (e) => {
                 setPageLoaded(true)
+                dispatch(updateURL(tabId, webViewRef.webView.current.getURL()))
             });
         }
 

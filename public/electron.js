@@ -45,6 +45,13 @@ const bookmarks = new Store({
   },
 });
 
+const tabs = new Store({
+  configName: 'tabs',
+  defaults: {
+    tabs: []
+  },
+});
+
 const defaultUserPreference = [
   { key: 'windowBounds', value: { width: 1024, height: 728 } },
   { key: 'defaultDownloadPath', value: app.getPath('downloads') },
@@ -56,6 +63,10 @@ const defaultUserPreference = [
 
 const defaultBookmarks = [
   { key: 'bookmarks', value: [] },
+];
+
+const defaultTabs = [
+  { key: 'tabs', value: [] },
 ];
 
 defaultUserPreference.forEach((preference) => {
@@ -70,6 +81,11 @@ defaultBookmarks.forEach((bookmark) => {
   }
 });
 
+defaultTabs.forEach((tab) => {
+  if (!tabs.get(tab.key)) {
+    tabs.set(tab.key, tab.value);
+  }
+});
 
 function createWindow() {
   let { width, height } = userPreference.get('windowBounds');
@@ -101,7 +117,8 @@ function createWindow() {
       mainWindow?.maximize();
     }
   });
-  ipcMain.on(channels.CLOSE_APP, () => {
+  ipcMain.on(channels.CLOSE_APP, (_, data) => {
+    tabs.set('tabs', data);
     mainWindow?.close();
   });
   ipcMain.on(channels.OPEN_URL, (_, data) => {
@@ -281,6 +298,7 @@ app.whenReady().then(() => {
   mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.webContents.send(channels.GET_USER_PREFERENCES, userPreference.getAll());
     mainWindow.webContents.send(channels.GET_BOOKMARKS, bookmarks.get('bookmarks'));
+    mainWindow.webContents.send(channels.GET_TABS, tabs.get('tabs'));
   });
   mainWindow.on("resize", () => {
     let { width, height } = mainWindow.getBounds();

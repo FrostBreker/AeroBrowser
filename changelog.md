@@ -29,3 +29,9 @@
         - SearchBar
         - Setup Sentry for Issues & Performance
         - Setup DSN in env file
+
+## 0.1.3:
+    - Fix:
+        
+    - Add:
+        - Reopen last tabs on startup

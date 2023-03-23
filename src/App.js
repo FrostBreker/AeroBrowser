@@ -17,6 +17,7 @@ function App() {
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [bookmarksIsLoaded, setBookmarksIsLoaded] = useState(false);
+  const [tabsIsLoaded, setTabsIsLoaded] = useState(false);
 
   //UseEffect to handle the ipcRenderer events from webview and tab process
   useEffect(() => {
@@ -28,6 +29,7 @@ function App() {
       const currentWebview = webviews.find(webview => webview.tabId === currentTab.id)
       if (currentWebview) {
         const view = currentWebview.webView.current;
+
         api.onReloadTab(() => {
           view.reload();
         });
@@ -54,7 +56,6 @@ function App() {
         });
 
         api.onOpenUrlInNewTab((_event, value) => {
-          console.log(value);
           dispatch(addTab(value.url ? value.url : undefined, value.active))
         });
 
@@ -95,16 +96,24 @@ function App() {
       setBookmarksIsLoaded(true);
     });
 
+    api.onGetTabs((_event, value) => {
+      setTabsIsLoaded(true);
+      value.forEach(tab => {
+        dispatch(addTab(tab.url, false))
+      })
+    });
+
     return () => {
       revokeApi.onGetUserPreferences();
       revokeBookmarks.onGetBookmarks();
+      revokeApi.onGetTabs();
     }
   }, [dispatch, userData, bookmarks])
 
   return (
     <>
       {
-        isLoaded && bookmarksIsLoaded ? (
+        isLoaded && bookmarksIsLoaded && tabsIsLoaded ? (
           <TabManager />
         ) : (
           <div className="loading">
