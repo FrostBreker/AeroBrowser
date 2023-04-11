@@ -1,8 +1,6 @@
 module.exports = {
     channels: {
         //App
-        MINIMIZE_APP: 'minimizeApp',
-        MAXIMIZE_APP: 'maximizeApp',
         CLOSE_APP: 'closeApp',
         //Tabs
         RELOAD_TAB: 'reloadTab',
