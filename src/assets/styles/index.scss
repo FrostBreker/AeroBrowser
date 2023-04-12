@@ -1,1 +1,8 @@
 @import "./settings.scss";
+
+//Tabs
+@import "./components/tabs/_tabManager.scss";
+@import "./components/tabs/_searchBar.scss";
+
+//LoadingPage
+@import "./pages/_loadingPage.scss";

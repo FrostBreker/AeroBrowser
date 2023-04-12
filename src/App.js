@@ -1,15 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import WebView from './components/Webview/Webview';
 import TabManager from './components/Tab/TabManager';
+import LoadingPage from './components/Utils/LoadingPage';
 
 function App() {
-  const html = document.querySelector('html');
-  html.dataset.theme = `theme-dark`;
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    if (!isLoaded) {
+      const html = document.querySelector('html');
+      html.dataset.theme = `theme`;
+      setTimeout(() => {
+        setIsLoaded(true);
+      }, 5000);
+    }
+  }, [isLoaded])
+
+
 
   return (
-    <TabManager>
-      <WebView />
-    </TabManager>
+    <>
+      {
+        isLoaded ? (
+          <TabManager>
+            <WebView />
+          </TabManager >
+        ) : (
+          <LoadingPage />
+        )
+      }
+    </>
   );
 }
 

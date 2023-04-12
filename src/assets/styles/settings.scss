@@ -1,11 +1,12 @@
 $font-1: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 
-:root[data-theme="theme-light"] {
-  // --image: url("https://s3-alpha-sig.figma.com/img/82ed/da67/50145cd4480ccc293c7540a0a21c6340?Expires=1674432000&Signature=Weq0QHut5QF0Xud00c5IshsStYybLAsfXsl6cP5bj7QHRO-WePF0cVwT6WqT7-zedm4nfQjj8LzOT6Rj9r~i3~0WNrGgf9dWNg-kM6BglPhWLDM~qWnma7vPJ4ek~bBmHCsjTsObTDqkFaeLcN2eM4YpoXCDLM03XHCdo6yi-FQKXYbRbYfahNPO959~wnqgw-PnIKcuoQkt~G7d-HAHIIPd4gTZ4gYL3vPhToFa2o~5lHLlTLLqYXr9K7Hea~9Mp2Uqes-fmhWWHP0g2pLjpSFC7IkOj9eGIjqJM5kDCQ5HJ65t-2VkKrXD~5gKchrVVYwe7P07hrfgvZED9k1nsQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4");
+:root[data-theme="theme"] {
+  --text-color: white;
+  --svg-color: white;
+  --utility-btn-hover-color: #2c2c36;
 
-  --text-color: #000000;
-  --color-1: #f4f7f8;
+  --color-1: #0c0c17;
   --color-2: #d9d9d9;
   --color-3: #7289db;
   --color-4: #c8cee4;
@@ -13,20 +14,6 @@ $font-1: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
 
   --filter: invert(0%);
   --shadow: 5px 5px 10px 1px rgb(216, 216, 216);
-}
-
-:root[data-theme="theme-dark"] {
-  // --image: url("https://s3-alpha-sig.figma.com/img/3e99/fc94/2a2251b69678f4639740e1c809faceaa?Expires=1673827200&Signature=VeUqe~xaMQMtdnsvnDs9sDJ82ctI~JbYmHpiWYdZzIrMmHSiRBC6sg0A5jeyx4~tBZzqAUMXMvq-SQVnOB2KbQS0~AJMFQHY4nQsr-7iIjEbh7wAp5Flra3bK5-GMAK3BIbJ4ksVOrX2sYbE7ejKxDsVjiwuacFFK7HL8tdXm1~PME~uai~vYcrBMyHJwOf3McKrd9yfLEbQcd5ea7eURtN7q6dC1eZTBRCRu3VUhECCtU04R6~DYKvblXi6o4eJMhwHx0bu5ZLjwa2YcejCAjdF8iYiilXp8n0cD-GPZTH4~RtAMPZAh0ycXQ5TCezMkvSa~4wiG0yWyrLX~Uqw3w__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4");
-
-  --text-color: white;
-  --color-1: #323649;
-  --color-2: #4c6bcc;
-  --color-3: #20347d;
-  --color-4: #2f3335;
-  --color-5: #111f52;
-
-  --filter: invert(100%);
-  --shadow: 5px 5px 10px 1px #4c6bcc;
 }
 
 $black: rgb(40, 40, 40);
@@ -58,67 +45,6 @@ body {
   line-height: 1.4rem;
   background: $white;
   width: 100%;
-  // width: 40%;
-  // margin-left: auto;
-  // margin-right: auto;
-  // color: var(--color-3);
-}
-.error {
-  color: red;
-  font-weight: bold;
-}
-.success {
-  color: green;
-  font-weight: bold;
-}
-
-@keyframes spinner {
-  0% {
-    transform: translate3d(-50%, -50%, 0) rotate(0deg);
-  }
-  100% {
-    transform: translate3d(-50%, -50%, 0) rotate(360deg);
-  }
-}
-.spin::before {
-  animation: 1.5s linear infinite spinner;
-  animation-play-state: inherit;
-  border: solid 5px #cfd0d1;
-  border-bottom-color: #1c87c9;
-  border-radius: 50%;
-  content: "";
-  height: 40px;
-  width: 40px;
-  position: absolute;
-  // display: flex;
-  text-align: center;
-  // justify-content: center;
-  // top: 10%;
-  margin-top: -30px;
-  left: 50%;
-  // transform: translate3d(-50%, -50%, 0);
-  // will-change: transform;
-}
-
-.loading {
-  background-image: url("https://s3-alpha-sig.figma.com/img/82ed/da67/50145cd4480ccc293c7540a0a21c6340?Expires=1674432000&Signature=Weq0QHut5QF0Xud00c5IshsStYybLAsfXsl6cP5bj7QHRO-WePF0cVwT6WqT7-zedm4nfQjj8LzOT6Rj9r~i3~0WNrGgf9dWNg-kM6BglPhWLDM~qWnma7vPJ4ek~bBmHCsjTsObTDqkFaeLcN2eM4YpoXCDLM03XHCdo6yi-FQKXYbRbYfahNPO959~wnqgw-PnIKcuoQkt~G7d-HAHIIPd4gTZ4gYL3vPhToFa2o~5lHLlTLLqYXr9K7Hea~9Mp2Uqes-fmhWWHP0g2pLjpSFC7IkOj9eGIjqJM5kDCQ5HJ65t-2VkKrXD~5gKchrVVYwe7P07hrfgvZED9k1nsQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  color: black;
-  box-shadow: 0 0 10px 0 rgb(216, 216, 216);
-  height: 1000px;
-
-  img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  h1 {
-    text-align: center;
-    margin-top: 50px;
-  }
 }
 
 hr {

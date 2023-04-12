@@ -1,0 +1,26 @@
+.searchBar {
+  -webkit-app-region: no-drag;
+  width: 50%;
+  max-width: 800px;
+  min-width: 200px;
+  height: 25px;
+  background-color: var(--color-2);
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+  &:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  }
+  input {
+    width: 100%;
+    max-width: 100%;
+    background: none;
+    text-align: center;
+    color: var(--color-1);
+
+    &::placeholder {
+      color: var(--color-1);
+    }
+    background-color: transparent;
+  }
+}

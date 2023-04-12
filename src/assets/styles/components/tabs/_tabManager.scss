@@ -1,0 +1,51 @@
+.top-bar {
+  height: 39px;
+  -webkit-app-region: drag;
+  user-select: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background-color: var(--color-1);
+  display: flex;
+
+  .top-bar-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    color: var(--svg-color);
+  }
+
+  .top-bar-right {
+    display: flex;
+    align-items: center;
+    margin-right: 136px;
+    margin-left: auto;
+    color: var(--svg-color);
+
+    .showInfoBTN {
+      background: none;
+      border: none;
+      color: var(--svg-color);
+      outline: none;
+      -webkit-app-region: no-drag;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      height: 39px;
+      width: 46px;
+
+      img {
+        width: 18px;
+        justify-content: center;
+        align-items: center;
+      }
+
+      &:hover {
+        background-color: var(--utility-btn-hover-color);
+      }
+    }
+  }
+}
