@@ -35,3 +35,11 @@
         
     - Add:
         - Reopen last tabs on startup
+
+## 0.2.0 (NewAero):    
+    - Add:
+        - NewAero recode
+        - New UI
+        - New SearchBar based on Safari
+        - New TabManager
+        - Bookmark Menu at the left

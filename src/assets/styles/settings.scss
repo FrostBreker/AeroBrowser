@@ -1,16 +1,18 @@
 $font-1: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 
-:root[data-theme="theme"] {
+:root {
   --text-color: white;
+  --text-color-placeholder: #babac6;
+
   --svg-color: white;
   --utility-btn-hover-color: #2c2c36;
 
   --color-1: #0c0c17;
-  --color-2: #d9d9d9;
-  --color-3: #7289db;
-  --color-4: #c8cee4;
-  --color-5: #d9d9d9;
+  --color-2: #2f2c3a;
+  --color-3: #442d44;
+  --color-4: #a6a8cd;
+  --color-5: #babac6;
 
   --filter: invert(0%);
   --shadow: 5px 5px 10px 1px rgb(216, 216, 216);
@@ -45,6 +47,7 @@ body {
   line-height: 1.4rem;
   background: $white;
   width: 100%;
+  background-color: var(--color-1);
 }
 
 hr {

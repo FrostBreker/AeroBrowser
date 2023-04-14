@@ -8,11 +8,11 @@ function App() {
 
   useEffect(() => {
     if (!isLoaded) {
-      const html = document.querySelector('html');
-      html.dataset.theme = `theme`;
+      // const html = document.querySelector('html');
+      // html.dataset.theme = `theme`;
       setTimeout(() => {
         setIsLoaded(true);
-      }, 5000);
+      }, 1000);
     }
   }, [isLoaded])
 

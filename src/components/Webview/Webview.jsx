@@ -7,7 +7,7 @@ const WebView = ({ tabId }) => {
         <webview
             ref={webviewRef}
             src={"https://www.google.com/"}
-            style={{ position: "fixed", top: 39, bottom: 0, left: 0, right: 0 }}
+            className='webview'
             plugins="true"
             allowpopups="true"
         ></webview>
