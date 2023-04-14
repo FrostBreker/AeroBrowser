@@ -6,3 +6,5 @@
 - AudioIcon: https://icons8.com/icon/2795/audio
 - NoAudioIcon: https://icons8.com/icon/7913/no-audio
 - FolderIcon: https://icons8.com/icon/71186/folder
+- BookmarkIcon: https://icons8.com/icon/25157/bookmark
+- BookmarkFilledIcon: https://icons8.com/icon/26083/bookmark
