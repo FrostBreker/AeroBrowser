@@ -43,3 +43,10 @@
         - New SearchBar based on Safari
         - New TabManager
         - Bookmark Menu at the left
+        - Bookmark Menu Button at the right with arrow down
+        - Add Default Themes
+        - Add WebviewController Button Forward, Back, Reload
+        - Add DownoadButton to show download modal
+        - Add Tab Reducer and Actions
+        - Deconstruct The TabManager file to TabBar.jsx, TopBar.jsx and RouterManager.jsx
+        - Add Close button in TopBar

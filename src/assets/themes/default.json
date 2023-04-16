@@ -1,0 +1,72 @@
+{
+    "default": [
+        {
+            "name": "--text-color",
+            "value": "#ffff"
+        },
+        {
+            "name": "--text-color-placeholder",
+            "value": "#babac6"
+        },
+        {
+            "name": "--svg-color",
+            "value": "#ffff"
+        },
+        {
+            "name": "--utility-btn-hover-color",
+            "value": "#2c2c36"
+        },
+        {
+            "name": "--color-1",
+            "value": "#0c0c17"
+        },
+        {
+            "name": "--color-2",
+            "value": "#2f2c3a"
+        },
+        {
+            "name": "--color-3",
+            "value": "#442d44"
+        },
+        {
+            "name": "--color-4",
+            "value": "#a6a8cd"
+        },
+        {
+            "name": "--color-5",
+            "value": "#babac6"
+        },
+        {
+            "name": "--filter",
+            "value": "invert(0%)"
+        },
+        {
+            "name": "--shadow-color-1",
+            "value": "rgba(55, 56, 65, 0.3)"
+        },
+        {
+            "name": "--shadow-color-2",
+            "value": "rgba(55, 56, 65, 0.6)"
+        },
+        {
+            "name": "--shadow-color-3",
+            "value": "rgba(55, 56, 65, 0.7)"
+        },
+        {
+            "name": "--shadow-color-4",
+            "value": "rgba(255, 255, 255, 0.1)"
+        },
+        {
+            "name": "--shadow-1",
+            "value": "0 0 1rem rgba(55, 56, 65, 0.3)"
+        },
+        {
+            "name": "--shadow-2",
+            "value": "0 0 1rem rgba(55, 56, 65, 0.6)"
+        },
+        {
+            "name": "--shadow-3",
+            "value": "0 0 1rem rgba(55, 56, 65, 0.7)"
+        }
+    ]
+}

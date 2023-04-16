@@ -1,23 +1,6 @@
 $font-1: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 
-:root {
-  --text-color: white;
-  --text-color-placeholder: #babac6;
-
-  --svg-color: white;
-  --utility-btn-hover-color: #2c2c36;
-
-  --color-1: #0c0c17;
-  --color-2: #2f2c3a;
-  --color-3: #442d44;
-  --color-4: #a6a8cd;
-  --color-5: #babac6;
-
-  --filter: invert(0%);
-  --shadow: 5px 5px 10px 1px rgb(216, 216, 216);
-}
-
 $black: rgb(40, 40, 40);
 $white: rgb(253, 253, 253);
 
@@ -32,10 +15,6 @@ $minHeight: 90vh;
   outline: none;
   border: none;
   text-decoration: none;
-
-  // &::selection {
-  //   background: var(--color-2);
-  // }
 
   &::-webkit-scrollbar {
     display: none;

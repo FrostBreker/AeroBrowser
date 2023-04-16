@@ -1,20 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import WebView from './components/Webview/Webview';
 import TabManager from './components/Tab/TabManager';
 import LoadingPage from './components/Utils/LoadingPage';
+import defaultTheme from "./assets/themes/default.json"
+import { isEmpty, loadTheme } from './components/utils';
+import { useDispatch, useSelector } from 'react-redux';
+import { addTab } from './actions/tabs.actions';
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
 
+  const tabs = useSelector(state => state.tabsReducer);
+  const dispatch = useDispatch();
   useEffect(() => {
+    const d = defaultTheme.default;
+    loadTheme(d)
     if (!isLoaded) {
-      // const html = document.querySelector('html');
-      // html.dataset.theme = `theme`;
-      setTimeout(() => {
-        setIsLoaded(true);
-      }, 1000);
+      if (!isEmpty(tabs)) {
+        setTimeout(() => {
+          setIsLoaded(true);
+        }, 1000);
+      } else {
+        dispatch(addTab("https://www.google.fr/", true));
+      }
     }
-  }, [isLoaded])
+  }, [isLoaded, tabs, dispatch])
 
 
 
@@ -22,9 +31,7 @@ function App() {
     <>
       {
         isLoaded ? (
-          <TabManager>
-            <WebView />
-          </TabManager >
+          <TabManager />
         ) : (
           <LoadingPage />
         )
