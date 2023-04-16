@@ -3,6 +3,13 @@
 //Tabs
 @import "./components/tabs/_tabManager.scss";
 @import "./components/tabs/_searchBar.scss";
+@import "./components/tabs/_tabBar.scss";
+
+//Buttons
+@import "./components/buttons/_buttons.scss";
+
+//Routers
+@import "./components/_router.scss";
 
 //LoadingPage
 @import "./pages/_loadingPage.scss";

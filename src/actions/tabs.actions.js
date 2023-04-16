@@ -15,25 +15,15 @@ const generateId = () => {
     return res;
 };
 
-export const setupTabs = (url) => {
-    const newTab = { id: generateId(), isActive: true, title: "New Tab", favicon: null, defaultUrl: url, isNewTab: true };
-    return (dispatch) => {
-        dispatch({
-            type: GET_TABS,
-            payload: newTab,
-        });
-    };
-};
-
 export const addTab = (url, isActive) => {
-    const newTab = { id: generateId(), isActive: isActive, title: "New Tab", favicon: null, defaultUrl: url, isNewTab: true };
+    const newTab = { id: generateId(), isActive: isActive, title: "New Tab", favicon: "./favicon.ico", defaultUrl: url, isNewTab: true };
     return (dispatch) => {
         dispatch({
             type: ADD_TAB,
             payload: newTab,
         });
     };
-}
+};
 
 export const tabClick = (tabId) => {
     return (dispatch) => {
@@ -49,24 +39,6 @@ export const removeTab = (tabId) => {
         dispatch({
             type: REMOVE_TAB,
             payload: tabId,
-        });
-    };
-}
-
-export const updateNewTabParameter = (tabId, isNewTab) => {
-    return (dispatch) => {
-        dispatch({
-            type: UPDATE_NEW_TAB_PARAMETER,
-            payload: { tabId, isNewTab },
-        });
-    };
-};
-
-export const updateURL = (tabId, url) => {
-    return (dispatch) => {
-        dispatch({
-            type: UPDATE_URL,
-            payload: { tabId, url },
         });
     };
 };

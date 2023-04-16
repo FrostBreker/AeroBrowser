@@ -40,3 +40,10 @@ export const isEmpty = (value) => {
         (typeof value === "string" && value.trim().length === 0)
     );
 };
+
+export const loadTheme = (d) => {
+    const root_theme = document.querySelector(":root");
+    for (let i = 0; i < d.length; i++) {
+        root_theme.style.setProperty(d[i].name, d[i].value);
+    }
+}

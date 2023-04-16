@@ -8,7 +8,8 @@ export default function tabsReducer(state = initialState, action) {
       return [...state, action.payload];
     case ADD_TAB:
       if (action.payload.isActive)
-        state.find((tab) => tab.isActive).isActive = false;
+        if (state.length > 0)
+          state.find((tab) => tab.isActive).isActive = false;
       return [...state, action.payload];
     case TAB_CLICK:
       state.find((tab) => tab.isActive).isActive = false;

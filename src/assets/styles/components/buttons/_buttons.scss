@@ -1,0 +1,115 @@
+.webviewController {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+
+  .forwardBackward {
+    -webkit-app-region: no-drag;
+    margin-right: 10px;
+
+    .backArrow,
+    .forwardArrow {
+      height: 39px;
+      width: 46px;
+      background-color: transparent;
+
+      &:hover {
+        background-color: var(--utility-btn-hover-color);
+      }
+
+      svg {
+        width: 25px;
+        height: 25px;
+        justify-content: center;
+        align-items: center;
+
+        polyline {
+          stroke: var(--svg-color);
+        }
+      }
+    }
+  }
+}
+
+.downloadButton {
+  -webkit-app-region: no-drag;
+  height: 39px;
+  width: 46px;
+  background-color: transparent;
+
+  &:hover {
+    background-color: var(--utility-btn-hover-color);
+  }
+
+  svg {
+    width: 25px;
+    height: 25px;
+    justify-content: center;
+    align-items: center;
+
+    path {
+      stroke: var(--svg-color);
+    }
+
+    polyline {
+      stroke: var(--svg-color);
+    }
+
+    line {
+      stroke: var(--svg-color);
+    }
+  }
+}
+
+.addTabButton {
+  -webkit-app-region: no-drag;
+  height: 39px;
+  width: 46px;
+  background-color: transparent;
+
+  &:hover {
+    background-color: var(--utility-btn-hover-color);
+  }
+
+  svg {
+    width: 25px;
+    height: 25px;
+    justify-content: center;
+    align-items: center;
+
+    line {
+      stroke: var(--svg-color);
+    }
+  }
+}
+
+.refreshButton,
+.sslProtocol {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  background-color: transparent;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--utility-btn-hover-color);
+  }
+
+  svg {
+    margin-top: 2px;
+    width: 15px;
+    height: 15px;
+
+    line {
+      stroke: var(--svg-color);
+    }
+
+    circle {
+      stroke: var(--svg-color);
+    }
+
+    path {
+      fill: var(--svg-color);
+    }
+  }
+}
