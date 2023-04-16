@@ -38,11 +38,14 @@
 
 ## 0.2.0 (NewAero):    
     - Add:
+        In PR #5
         - NewAero recode
         - New UI
         - New SearchBar based on Safari
         - New TabManager
         - Bookmark Menu at the left
+        
+        In PR #6 
         - Bookmark Menu Button at the right with arrow down
         - Add Default Themes
         - Add WebviewController Button Forward, Back, Reload
@@ -50,3 +53,7 @@
         - Add Tab Reducer and Actions
         - Deconstruct The TabManager file to TabBar.jsx, TopBar.jsx and RouterManager.jsx
         - Add Close button in TopBar
+
+        In PR #7 
+        - Add Icons.jsx
+        <!-- - Add Transition to display the closse button in TabBar -->
