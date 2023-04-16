@@ -17,6 +17,8 @@
     color: var(--tab-color);
     padding: 10px;
 
+    transition: .2s;
+
     &:hover {
       .close {
         display: flex;
@@ -46,6 +48,8 @@
       align-items: center;
       justify-content: center;
       border-radius: 50%;
+
+      transition: .2s;
 
       &:hover {
         background-color: var(--color-2);
