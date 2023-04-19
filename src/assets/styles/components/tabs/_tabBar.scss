@@ -19,12 +19,6 @@
 
     transition: .2s;
 
-    &:hover {
-      .close {
-        display: flex;
-      }
-    }
-
     img {
       width: 20px;
       justify-content: center;
@@ -40,11 +34,38 @@
       max-width: 90%;
     }
 
+    &:hover {
+      .close {
+        animation: focus 0.3s ease forwards;
+        &:hover {
+          background-color: var(--color-2);
+        }
+
+        svg {
+          width: 15px;
+          height: 15px;
+
+          background-color: transparent;
+
+          fill: var(--svg-color);
+        }
+        @keyframes focus {
+          from {
+            display: none;
+          }
+          to {
+            display: flex;
+            transform: scale(1.2);
+          }
+        }
+      }
+    }
+
     .close {
-      display: none;
+      display: flex;
       cursor: pointer;
       background-color: transparent;
-      margin-left: 5px;
+      margin-left: 10px;
       align-items: center;
       justify-content: center;
       border-radius: 50%;
@@ -61,7 +82,7 @@
 
         background-color: transparent;
 
-        fill: var(--text-color);
+        fill: transparent;
       }
     }
 
