@@ -56,4 +56,4 @@
 
         In PR #7 
         - Add Icons.jsx
-        <!-- - Add Transition to display the closse button in TabBar -->
+        - Add Transition to display the closse button in TabBar
