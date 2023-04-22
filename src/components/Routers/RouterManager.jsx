@@ -1,20 +1,17 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Router from './Router'
+import BookmarkMenu from '../Bookmark/BookmarkMenu';
 
 export default function RouterManager({ showBookmarksMenu }) {
     const tabs = useSelector(state => state.tabsReducer);
 
     return (
         <div className='router-manager'>
-            <div className='bookmarksMenu' style={{ display: showBookmarksMenu ? "flex" : "none" }}>
-                <div className="bookmark">
-                    <img src='https://www.google.com/favicon.ico' alt='favicon' />
-                </div>
-            </div>
+            <BookmarkMenu showBookmarksMenu={showBookmarksMenu} />
             {
                 tabs.map(tab => (
-                    <Router tabId={tab.id} isActive={tab.isActive} key={tab.id} />
+                    <Router tabId={tab.id} isActive={tab.isActive} key={tab.id} tab={tab} />
                 ))
             }
         </div>

@@ -1,4 +1,4 @@
-import { GET_TABS, ADD_TAB, TAB_CLICK, REMOVE_TAB, UPDATE_NEW_TAB_PARAMETER, UPDATE_URL } from "../actions/tabs.actions.js";
+import { GET_TABS, ADD_TAB, TAB_CLICK, REMOVE_TAB, UPDATE_NEW_TAB_PARAMETER, UPDATE_URL, TOGGLE_WEBVIEW, ADD_WEBVIEW } from "../actions/tabs.actions.js";
 
 const initialState = [];
 
@@ -28,6 +28,12 @@ export default function tabsReducer(state = initialState, action) {
       return [...state];
     case UPDATE_URL:
       state.find((tab) => tab.id === action.payload.tabId).url = action.payload.url;
+      return [...state];
+    case TOGGLE_WEBVIEW:
+      state.find((tab) => tab.id === action.payload.tabId).isWebview = action.payload.value;
+      return [...state];
+    case ADD_WEBVIEW:
+      state.find((tab) => tab.id === action.payload.tabId).webview = action.payload.webview;
       return [...state];
     default:
       return state;

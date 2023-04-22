@@ -13,6 +13,15 @@
       width: 46px;
       background-color: transparent;
 
+      &:disabled {
+        svg {
+          opacity: 0.5;
+        }
+        &:hover {
+          background-color: transparent;
+        }
+      }
+
       &:hover {
         background-color: var(--utility-btn-hover-color);
       }
@@ -61,6 +70,7 @@
   }
 }
 
+.addBookmarkButton,
 .addTabButton {
   -webkit-app-region: no-drag;
   height: 39px;
@@ -82,6 +92,10 @@
     }
   }
 }
+.addBookmarkButton {
+  height: 46px;
+  cursor: pointer;
+}
 
 .refreshButton,
 .sslProtocol {
@@ -90,15 +104,21 @@
   border-radius: 4px;
   background-color: transparent;
   cursor: pointer;
-
+  transition: .2s;
   &:hover {
     background-color: var(--utility-btn-hover-color);
+  }
+
+  p {
+    color: var(--text-color);
   }
 
   svg {
     margin-top: 2px;
     width: 15px;
     height: 15px;
+
+    fill: var(--svg-color);
 
     line {
       stroke: var(--svg-color);
@@ -110,6 +130,51 @@
 
     path {
       fill: var(--svg-color);
+    }
+  }
+}
+
+.refreshButton {
+  &:hover {
+    svg {
+      animation: close-spin 0.5s ease forwards;
+    }
+
+    @keyframes close-spin {
+      from {
+        rotate: 0deg;
+        transform: scale(1);
+      }
+      to {
+        transform: scale(1.2);
+        rotate: 360deg;
+      }
+    }
+  }
+}
+
+.sound {
+  // width: 20px;
+  // height: 20px;
+  border-radius: 4px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: .2s;
+  margin-right: 10px;
+
+  svg {
+    margin-top: 2px;
+    width: 15px;
+    height: 15px;
+
+    fill: transparent;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    path {
+      fill: transparent;
     }
   }
 }

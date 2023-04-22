@@ -4,6 +4,8 @@ export const TAB_CLICK = "TAB_CLICK";
 export const REMOVE_TAB = "REMOVE_TAB";
 export const UPDATE_NEW_TAB_PARAMETER = "UPDATE_NEW_TAB_PARAMETER";
 export const UPDATE_URL = "UPDATE_URL";
+export const TOGGLE_WEBVIEW = "TOGGLE_WEBVIEW";
+export const ADD_WEBVIEW = "ADD_WEBVIEW";
 
 const generateId = () => {
     const list = "ABCDEFGHIJKLMNPQRSTUVWXYZ123456789";
@@ -15,8 +17,8 @@ const generateId = () => {
     return res;
 };
 
-export const addTab = (url, isActive) => {
-    const newTab = { id: generateId(), isActive: isActive, title: "New Tab", favicon: "./favicon.ico", defaultUrl: url, isNewTab: true };
+export const addTab = (url, isActive, isWebview) => {
+    const newTab = { id: generateId(), isActive: isActive, title: "New Tab", favicon: "./favicon.ico", defaultUrl: url, isNewTab: true, isWebview, webview: null };
     return (dispatch) => {
         dispatch({
             type: ADD_TAB,
@@ -39,6 +41,30 @@ export const removeTab = (tabId) => {
         dispatch({
             type: REMOVE_TAB,
             payload: tabId,
+        });
+    };
+};
+
+export const toggleWebview = (tabId, value) => {
+    return (dispatch) => {
+        dispatch({
+            type: TOGGLE_WEBVIEW,
+            payload: {
+                tabId,
+                value,
+            },
+        });
+    };
+};
+
+export const addWebview = (tabId, webview) => {
+    return (dispatch) => {
+        dispatch({
+            type: ADD_WEBVIEW,
+            payload: {
+                tabId,
+                webview,
+            },
         });
     };
 };
