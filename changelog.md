@@ -56,3 +56,24 @@
         - Add Icons.jsx
         In PR #8
         - Add Transition to display the closse button in TabBar
+        In PR #9
+        - TabBar Close Button spin when hovering
+        - Searchbar refresh button spin when hovering 
+        - Add BookmarkMenu Component
+        - Add AddBookmarkButton in Buttons
+        - Activate Back and Forward Buttons
+        - SearBar
+            - Add getIcon function for button
+            - Add get url of page in searchbar
+            - Activate Reload Button
+            - Add DisplayValue variable exemple: https://www.google.com/search?q=test -> www.google.com/search
+        - TabBar
+            - Add favicon in TabBar of the current page
+            - Change title of the tab when the page title change
+            - Add sound icon in TabBar when sound is playing
+                - OnClick mute the sound
+                - Change icon when sound is muted
+            - Add loading icon in TabBar when page is loading
+
+
+

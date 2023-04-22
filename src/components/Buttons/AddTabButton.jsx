@@ -8,7 +8,7 @@ export default function AddTabButton() {
 
     const handleAddTab = (e) => {
         e.preventDefault();
-        dispatch(addTab("https://www.google.fr/", true));
+        dispatch(addTab("https://www.google.fr/", true, true));
     }
     return (
         <button className='addTabButton' onClick={handleAddTab}>

@@ -20,7 +20,7 @@ function App() {
           setIsLoaded(true);
         }, 1000);
       } else {
-        dispatch(addTab("https://www.google.fr/", true));
+        dispatch(addTab("https://www.google.fr/", true, true));
       }
     }
   }, [isLoaded, tabs, dispatch])

@@ -7,7 +7,6 @@
   border-bottom: 1px solid var(--color-2);
 
   .tab {
-    height: 100%;
     width: 100%;
 
     display: flex;
@@ -27,8 +26,7 @@
     }
 
     p {
-      overflow: hidden;
-      display: -webkit-box;
+      display: -webkit-inline-box;
       -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
       max-width: 90%;
@@ -49,14 +47,51 @@
 
           fill: var(--svg-color);
         }
-        @keyframes focus {
-          from {
-            display: none;
+      }
+
+      .sound {
+        animation: focus 0.3s ease forwards;
+
+        svg {
+          fill: var(--svg-color);
+
+          path {
+            fill: var(--svg-color);
           }
-          to {
-            display: flex;
-            transform: scale(1.2);
-          }
+        }
+      }
+
+      @keyframes focus {
+        from {
+          display: none;
+        }
+        to {
+          display: flex;
+          transform: scale(1.2);
+        }
+      }
+    }
+
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 10px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background-color: var(--svg-color);
+      animation: loading 1s ease infinite;
+
+      @keyframes loading {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.2);
+        }
+        100% {
+          transform: scale(1);
         }
       }
     }
@@ -74,6 +109,17 @@
 
       &:hover {
         background-color: var(--color-2);
+        animation: close-spin 0.5s ease forwards;
+
+        @keyframes close-spin {
+          from {
+            rotate: 0deg;
+          }
+          to {
+            transform: scale(1.2);
+            rotate: 180deg;
+          }
+        }
       }
 
       svg {
@@ -91,6 +137,35 @@
       border: 1px solid var(--color-2);
       border-bottom: none;
       box-shadow: -1px 2px 15px 2px var(--shadow-color-4) inset;
+    }
+
+    &.minimize {
+      p {
+        display: none;
+      }
+
+      .close {
+        display: none;
+      }
+
+      .sound {
+        display: none;
+      }
+
+      &:hover {
+        .close {
+          display: flex;
+          margin-left: 0px;
+        }
+
+        .sound {
+          display: flex;
+        }
+
+        img {
+          display: none;
+        }
+      }
     }
   }
 }

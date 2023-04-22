@@ -1,0 +1,34 @@
+.bookmarksMenu {
+  display: flex;
+  flex-direction: column;
+
+  width: 46px;
+  height: 100%;
+  z-index: 999;
+
+  background-color: var(--color-1);
+  color: var(--text-color);
+
+  transition: all ease-in .5s;
+
+  .bookmark {
+    cursor: pointer;
+    // transition: all 0.2s ease-in-out;
+
+    height: 46px;
+    width: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: var(--utility-btn-hover-color);
+    }
+
+    img {
+      width: 23px;
+      height: 23px;
+    }
+  }
+}

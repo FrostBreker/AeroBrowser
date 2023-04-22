@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import TabBar from './TabBar';
 import TopBar from './TopBar';
 import RouterManager from '../Routers/RouterManager';
+import TabBars from './TabBars';
 
 export default function TabManager() {
     const [showBookmarksMenu, setShowBookmarksMenu] = useState(false);
@@ -14,7 +14,7 @@ export default function TabManager() {
     return (
         <div>
             <TopBar showBookmarksMenu={showBookmarksMenu} handleShowBookmarksMenu={handleShowBookmarksMenu} />
-            <TabBar />
+            <TabBars />
             <RouterManager showBookmarksMenu={showBookmarksMenu} />
         </div>
     )
