@@ -5,6 +5,7 @@ const url = require('url');
 const path = require('path');
 
 const { channels } = require('./constants');
+const { bookmarks } = require("./storedData");
 
 let mainWindow = null;
 let mainWebContents = null;
@@ -154,10 +155,23 @@ app.whenReady().then(() => {
   createWindow();
   setupLocalFilesNormalizerProxy();
 
-  mainWindow.webContents.openDevTools({ mode: 'detach' });
+  if (isDev) {
+    mainWindow.webContents.openDevTools({ mode: 'detach' });
+  } else {
+
+  }
+
+  ['ipcHandler'].forEach((handler) => {
+    require(`./handlers/${handler}`)(ipcMain, mainWebContents);
+  });
+
+  mainWebContents.on('did-finish-load', () => {
+    mainWebContents.send(channels.GET_BOOKMARKS, bookmarks.get('bookmarks'));
+  });
 });
 
 app.on('will-quit', () => {
+
 })
 
 app.on('window-all-closed', () => {

@@ -30,7 +30,7 @@
         - Setup Sentry for Issues & Performance
         - Setup DSN in env file
 
-## 0.1.3:
+## 0.1.3 (Abandoned):
     - Fix:
         
     - Add:
@@ -75,5 +75,19 @@
                 - Change icon when sound is muted
             - Add loading icon in TabBar when page is loading
 
+## 0.2.1:
+    - Fix:
+        In PR #12
+        - Fix the display of the sound icon in tabBar
+        - Fix spinner for loading icon in tabBar
+    - Add:
+        In PR #12
+        - Add BookmarkHandler with IPC communication
+            - Add Bookmarks
+            <!-- - Remove Bookmarks in context menu (another version) -->
+            - Get Bookmarks
+            <!-- - Update Bookmarks in context menu (another version) -->
+            - Add BookmarkHandler to preload
+        - Add IPC Handler
 
 

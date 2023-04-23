@@ -1,0 +1,21 @@
+.bookmark {
+  cursor: pointer;
+  background-color: transparent;
+  // transition: all 0.2s ease-in-out;
+
+  height: 46px;
+  width: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: var(--utility-btn-hover-color);
+  }
+
+  img {
+    width: 23px;
+    height: 23px;
+  }
+}
