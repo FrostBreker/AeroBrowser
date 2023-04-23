@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { CloseIcon, SoundIcon, SoundMuteIcon } from '../UI/Icons';
 import { useDispatch } from 'react-redux';
-import { removeTab, tabClick } from '../../actions/tabs.actions';
+import { removeTab, tabClick, updateFavicon } from '../../actions/tabs.actions';
 import { useEffect } from 'react';
 
 export default function Tab({ tab }) {
@@ -33,13 +33,17 @@ export default function Tab({ tab }) {
                 })
 
                 w.addEventListener('page-favicon-updated', (e) => {
+                    dispatch(updateFavicon(tab.id, e.favicons[0]))
                     setFavicon(e.favicons[0])
                 })
 
                 w.addEventListener('media-started-playing', () => {
-                    if (!w.isCurrentlyAudible()) {
+                    if (w.isCurrentlyAudible()) {
                         setIsPlayingSound(true);
                     }
+                    setTimeout(() => {
+                        if (w.isCurrentlyAudible()) setIsPlayingSound(true);
+                    }, 1000);
                 });
 
                 w.addEventListener('media-paused', () => {
@@ -84,7 +88,11 @@ export default function Tab({ tab }) {
                     isPlayingSound && !isAudioMuted ? <SoundIcon /> : isPlayingSound && isAudioMuted ? <SoundMuteIcon /> : null
                 }
             </button>
-            {isLoading ? <div className="loading"></div> : <img src={favicon} alt='favicon' />}
+            {isLoading ? <div className="spinner">
+                <div className="bounce1"></div>
+                <div className="bounce2"></div>
+                <div className="bounce3"></div>
+            </div> : <img src={favicon} alt='favicon' />}
             <p>{tabTitle}</p>
             <button className="close" onClick={(e) => { e.stopPropagation(); handleDeleteTab(tab.id) }}>
                 <CloseIcon />

@@ -8,58 +8,59 @@ contextBridge.exposeInMainWorld('versions', {
 })
 
 //General API
-contextBridge.exposeInMainWorld('api', {
-    //App Emiters
-    closeApp: (tabs) => ipcRenderer.send(channels.CLOSE_APP, tabs),
-    minimizeApp: () => ipcRenderer.send(channels.MINIMIZE_APP),
-    maximizeApp: () => ipcRenderer.send(channels.MAXIMIZE_APP),
+// contextBridge.exposeInMainWorld('api', {
+//     //App Emiters
+//     closeApp: (tabs) => ipcRenderer.send(channels.CLOSE_APP, tabs),
+//     minimizeApp: () => ipcRenderer.send(channels.MINIMIZE_APP),
+//     maximizeApp: () => ipcRenderer.send(channels.MAXIMIZE_APP),
 
-    //Webview Emiters
-    openURL: (url) => ipcRenderer.send(channels.OPEN_URL, url),
-    openUrlInNewTab: (url) => ipcRenderer.send(channels.OPEN_URL_IN_NEW_TAB, url),
+//     //Webview Emiters
+//     openURL: (url) => ipcRenderer.send(channels.OPEN_URL, url),
+//     openUrlInNewTab: (url) => ipcRenderer.send(channels.OPEN_URL_IN_NEW_TAB, url),
 
-    //Webview Handlers
-    onReloadTab: (callback) => ipcRenderer.on(channels.RELOAD_TAB, callback),
-    onBackInTab: (callback) => ipcRenderer.on(channels.BACK_IN_TAB, callback),
-    onPreviousInTab: (callback) => ipcRenderer.on(channels.PREVIOUS_IN_TAB, callback),
-    onSearchInTab: (callback) => ipcRenderer.on(channels.SEARCH_IN_TAB, callback),
-    onOpenUrlInNewTab: (callback) => ipcRenderer.on(channels.OPEN_URL_IN_NEW_TAB, callback),
-    onOpenURLInRenderer: (callback) => ipcRenderer.on(channels.OPEN_URL_IN_RENDERER, callback),
-    onCloseTab: (callback) => ipcRenderer.on(channels.CLOSE_TAB, callback),
-    onOpenDevtools: (callback) => ipcRenderer.on(channels.OPEN_DEVTOOLS, callback),
+//     //Webview Handlers
+//     onReloadTab: (callback) => ipcRenderer.on(channels.RELOAD_TAB, callback),
+//     onBackInTab: (callback) => ipcRenderer.on(channels.BACK_IN_TAB, callback),
+//     onPreviousInTab: (callback) => ipcRenderer.on(channels.PREVIOUS_IN_TAB, callback),
+//     onSearchInTab: (callback) => ipcRenderer.on(channels.SEARCH_IN_TAB, callback),
+//     onOpenUrlInNewTab: (callback) => ipcRenderer.on(channels.OPEN_URL_IN_NEW_TAB, callback),
+//     onOpenURLInRenderer: (callback) => ipcRenderer.on(channels.OPEN_URL_IN_RENDERER, callback),
+//     onCloseTab: (callback) => ipcRenderer.on(channels.CLOSE_TAB, callback),
+//     onOpenDevtools: (callback) => ipcRenderer.on(channels.OPEN_DEVTOOLS, callback),
 
-    //User Handler
-    onGetUserPreferences: (callback) => ipcRenderer.on(channels.GET_USER_PREFERENCES, callback),
+//     //User Handler
+//     onGetUserPreferences: (callback) => ipcRenderer.on(channels.GET_USER_PREFERENCES, callback),
 
-    //Tabs Handlers
-    onGetTabs: (callback) => ipcRenderer.on(channels.GET_TABS, callback)
-    // we can also expose variables, not just functions
-})
+//     //Tabs Handlers
+//     onGetTabs: (callback) => ipcRenderer.on(channels.GET_TABS, callback)
+//     // we can also expose variables, not just functions
+// })
 
-//Revoke general API
-contextBridge.exposeInMainWorld("revokeApi", {
-    //Handlers
-    onReloadTab: () => ipcRenderer.removeAllListeners(channels.RELOAD_TAB),
-    onBackInTab: () => ipcRenderer.removeAllListeners(channels.BACK_IN_TAB),
-    onPreviousInTab: () => ipcRenderer.removeAllListeners(channels.PREVIOUS_IN_TAB),
-    onSearchInTab: () => ipcRenderer.removeAllListeners(channels.SEARCH_IN_TAB),
-    onOpenUrlInNewTab: () => ipcRenderer.removeAllListeners(channels.OPEN_URL_IN_NEW_TAB),
-    onOpenURLInRenderer: () => ipcRenderer.removeAllListeners(channels.OPEN_URL_IN_RENDERER),
-    onCloseTab: () => ipcRenderer.removeAllListeners(channels.CLOSE_TAB),
-    onOpenDevtools: () => ipcRenderer.removeAllListeners(channels.OPEN_DEVTOOLS),
+// //Revoke general API
+// contextBridge.exposeInMainWorld("revokeApi", {
+//     //Handlers
+//     onReloadTab: () => ipcRenderer.removeAllListeners(channels.RELOAD_TAB),
+//     onBackInTab: () => ipcRenderer.removeAllListeners(channels.BACK_IN_TAB),
+//     onPreviousInTab: () => ipcRenderer.removeAllListeners(channels.PREVIOUS_IN_TAB),
+//     onSearchInTab: () => ipcRenderer.removeAllListeners(channels.SEARCH_IN_TAB),
+//     onOpenUrlInNewTab: () => ipcRenderer.removeAllListeners(channels.OPEN_URL_IN_NEW_TAB),
+//     onOpenURLInRenderer: () => ipcRenderer.removeAllListeners(channels.OPEN_URL_IN_RENDERER),
+//     onCloseTab: () => ipcRenderer.removeAllListeners(channels.CLOSE_TAB),
+//     onOpenDevtools: () => ipcRenderer.removeAllListeners(channels.OPEN_DEVTOOLS),
 
-    //User Handler
-    onGetUserPreferences: () => ipcRenderer.removeAllListeners(channels.GET_USER_PREFERENCES),
+//     //User Handler
+//     onGetUserPreferences: () => ipcRenderer.removeAllListeners(channels.GET_USER_PREFERENCES),
 
-    //Tabs Handlers
-    onGetTabs: () => ipcRenderer.removeAllListeners(channels.GET_TABS),
-})
+//     //Tabs Handlers
+//     onGetTabs: () => ipcRenderer.removeAllListeners(channels.GET_TABS),
+// })
 
 // Bookmarks API
 contextBridge.exposeInMainWorld('bookmarks', {
     //Emiters
     addBookmark: (bookmark) => ipcRenderer.send(channels.ADD_BOOKMARK, bookmark),
     removeBookmark: (bookmark) => ipcRenderer.send(channels.REMOVE_BOOKMARK, bookmark),
+    updateBookmark: (bookmark) => ipcRenderer.send(channels.UPDATE_BOOKMARK, bookmark),
 
     //Handlers
     onGetBookmarks: (callback) => ipcRenderer.on(channels.GET_BOOKMARKS, callback),

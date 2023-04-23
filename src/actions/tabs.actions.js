@@ -6,6 +6,7 @@ export const UPDATE_NEW_TAB_PARAMETER = "UPDATE_NEW_TAB_PARAMETER";
 export const UPDATE_URL = "UPDATE_URL";
 export const TOGGLE_WEBVIEW = "TOGGLE_WEBVIEW";
 export const ADD_WEBVIEW = "ADD_WEBVIEW";
+export const UPDATE_FAVICON = "UPDATE_FAVICON";
 
 const generateId = () => {
     const list = "ABCDEFGHIJKLMNPQRSTUVWXYZ123456789";
@@ -68,4 +69,16 @@ export const addWebview = (tabId, webview) => {
         });
     };
 };
+
+export const updateFavicon = (tabId, favicon) => {
+    return (dispatch) => {
+        dispatch({
+            type: UPDATE_FAVICON,
+            payload: {
+                tabId,
+                favicon,
+            },
+        });
+    };
+}
 
