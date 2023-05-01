@@ -20,7 +20,6 @@ function App() {
     loadTheme(d)
 
     if (!isLoaded) {
-
       if (!isEmpty(tabs) && !isEmpty(bookmarks)) {
         setTimeout(() => {
           setIsLoaded(true);

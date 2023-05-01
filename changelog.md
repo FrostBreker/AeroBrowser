@@ -89,5 +89,10 @@
             <!-- - Update Bookmarks in context menu (another version) -->
             - Add BookmarkHandler to preload
         - Add IPC Handler
+        In PR #13
+        - Webcontent event "attach-webview"
+            - target blank open in new tab
+        - Bookmark open website
+            - add two function in routerManager link to webview and tabReducer pass into bookmarkMenu and bookmarkItem
 
 

@@ -3,7 +3,7 @@ import AddBookmarkButton from '../Buttons/AddBookmarkButton'
 import BookmarkItem from './BookmarkItem';
 import { useSelector } from 'react-redux';
 
-export default function BookmarkMenu({ showBookmarksMenu }) {
+export default function BookmarkMenu({ showBookmarksMenu, handleOpenWebsite, handleOpenNewTabFromBookmark }) {
     const bookmarks = useSelector(state => state.bookmarksReducer);
 
     return (
@@ -11,7 +11,7 @@ export default function BookmarkMenu({ showBookmarksMenu }) {
             <AddBookmarkButton />
             {
                 bookmarks.map((bookmark, index) => {
-                    return (<BookmarkItem key={index} book={bookmark} />)
+                    return (<BookmarkItem key={index} book={bookmark} handleOpenWebsite={handleOpenWebsite} handleOpenNewTabFromBookmark={handleOpenNewTabFromBookmark} />)
                 })
             }
         </div>

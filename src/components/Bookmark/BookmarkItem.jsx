@@ -10,13 +10,15 @@ export default class BookmarkItem extends Component {
             url: this.props.book.url,
         }
         this.buttonRef = createRef();
+        this.handleOpenWebsite = this.props.handleOpenWebsite.bind(this);
+        this.handleOpenNewTabFromBookmark = this.props.handleOpenNewTabFromBookmark.bind(this);
     }
 
     componentDidMount() {
         const openWebsiteInNewTab = (e) => {
             if (e.button === 1) {
                 e.preventDefault();
-                window.open(this.state.url, '_blank');
+                this.handleOpenNewTabFromBookmark(this.state.url)
             }
         }
         this.buttonRef.current.addEventListener("mousedown", openWebsiteInNewTab);
@@ -26,15 +28,15 @@ export default class BookmarkItem extends Component {
         this.buttonRef.current.removeEventListener('click', (e) => { })
     }
 
-    handleOpenWebsite = (e) => {
+    handleOpen = (e) => {
         e.preventDefault();
-        window.open(this.state.url, '_parent');
+        this.handleOpenWebsite(this.state.url)
     };
 
     render() {
 
         return (
-            <button className="bookmark" onClick={this.handleOpenWebsite} ref={this.buttonRef}>
+            <button className="bookmark" onClick={this.handleOpen} ref={this.buttonRef}>
                 <img src={this.state.favicon} alt="bookmark-favicon" />
             </button>
         )

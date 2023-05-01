@@ -8,3 +8,4 @@
 - FolderIcon: https://icons8.com/icon/71186/folder
 - BookmarkIcon: https://icons8.com/icon/25157/bookmark
 - BookmarkFilledIcon: https://icons8.com/icon/26083/bookmark
+- App logo made by galex_co: (https://www.instagram.com/galex_co/) (https://galexweb.wixsite.com/galex-co)

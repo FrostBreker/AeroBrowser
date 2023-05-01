@@ -168,6 +168,16 @@ app.whenReady().then(() => {
   mainWebContents.on('did-finish-load', () => {
     mainWebContents.send(channels.GET_BOOKMARKS, bookmarks.get('bookmarks'));
   });
+
+  mainWindow.webContents.on("did-attach-webview", (_, contents) => {
+    contents.setWindowOpenHandler((details) => {
+      mainWebContents.send(channels.OPEN_URL_IN_NEW_TAB, {
+        url: details.url,
+        active: details.disposition === 'foreground-tab' ? true : false
+      });
+      return { action: 'deny' }
+    })
+  })
 });
 
 app.on('will-quit', () => {

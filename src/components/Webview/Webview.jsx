@@ -11,7 +11,7 @@ const WebView = ({ tabId, defaultURL }) => {
             dispatch(addWebview(tabId, webviewRef.current));
             dispatch(toggleWebview(tabId, true));
         }, { once: true });
-    }, [dispatch, tabId]);
+    }, [dispatch, tabId, defaultURL]);
 
     return (
         <webview
