@@ -28,7 +28,7 @@ export default function Router({ tabId, isActive, tab }) {
     return (
         <div className='router' style={{ display: isActive ? "block" : "none" }}>
             <div style={{ display: type === "webview" ? "block" : "none" }}>
-                <WebView tabId={tabId} defaultURL={"https://www.google.fr"} />
+                <WebView tabId={tabId} defaultURL={tab.defaultUrl} />
             </div>
             <div style={{ display: type === "aero" ? "block" : "none" }}>
                 <AeroRouter url={url} />

@@ -19,7 +19,7 @@ const generateId = () => {
 };
 
 export const addTab = (url, isActive, isWebview) => {
-    const newTab = { id: generateId(), isActive: isActive, title: "New Tab", favicon: "./favicon.ico", defaultUrl: url, isNewTab: true, isWebview, webview: null };
+    const newTab = { id: generateId(), isActive, title: "New Tab", favicon: "./favicon.ico", defaultUrl: url, isNewTab: true, isWebview, webview: null };
     return (dispatch) => {
         dispatch({
             type: ADD_TAB,

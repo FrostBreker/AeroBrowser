@@ -56,6 +56,28 @@ contextBridge.exposeInMainWorld('versions', {
 // })
 
 // Bookmarks API
+
+
+contextBridge.exposeInMainWorld('tab', {
+    onReloadTab: (callback) => ipcRenderer.on(channels.RELOAD_TAB, callback),
+    onBackInTab: (callback) => ipcRenderer.on(channels.BACK_IN_TAB, callback),
+    onPreviousInTab: (callback) => ipcRenderer.on(channels.PREVIOUS_IN_TAB, callback),
+    onSearchInTab: (callback) => ipcRenderer.on(channels.SEARCH_IN_TAB, callback),
+    onOpenUrlInNewTab: (callback) => ipcRenderer.on(channels.OPEN_URL_IN_NEW_TAB, callback),
+    // onCloseTab: (callback) => ipcRenderer.on(channels.CLOSE_TAB, callback),
+    onOpenDevtools: (callback) => ipcRenderer.on(channels.OPEN_DEVTOOLS, callback),
+})
+
+contextBridge.exposeInMainWorld('revokedTab', {
+    onReloadTab: () => ipcRenderer.removeAllListeners(channels.RELOAD_TAB),
+    onBackInTab: () => ipcRenderer.removeAllListeners(channels.BACK_IN_TAB),
+    onPreviousInTab: () => ipcRenderer.removeAllListeners(channels.PREVIOUS_IN_TAB),
+    onSearchInTab: () => ipcRenderer.removeAllListeners(channels.SEARCH_IN_TAB),
+    onOpenUrlInNewTab: () => ipcRenderer.removeAllListeners(channels.OPEN_URL_IN_NEW_TAB),
+    // onCloseTab: () => ipcRenderer.removeAllListeners(channels.CLOSE_TAB),
+    onOpenDevtools: () => ipcRenderer.removeAllListeners(channels.OPEN_DEVTOOLS),
+})
+
 contextBridge.exposeInMainWorld('bookmarks', {
     //Emiters
     addBookmark: (bookmark) => ipcRenderer.send(channels.ADD_BOOKMARK, bookmark),
