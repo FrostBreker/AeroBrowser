@@ -9,7 +9,7 @@ export default function bookmarksReducer(state = initialState, action) {
     case ADD_BOOKMARK:
       return [...state, action.payload];
     case REMOVE_BOOKMARK:
-      const removed = state.filter((tab) => tab.name !== action.payload)
+      const removed = state.filter((tab) => tab.id !== action.payload)
       return [...removed];
     case UPDATE_BOOKMARK:
       const updated = state.map((tab) => {

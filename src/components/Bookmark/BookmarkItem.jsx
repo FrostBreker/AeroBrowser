@@ -1,4 +1,6 @@
-import React, { Component, createRef } from 'react'
+import React, { Component, createRef } from 'react';
+import { ContextMenuTrigger } from "react-contextmenu";
+import ContextMenuBookmarkItem from '../ContextMenu/ContextMenuBookmarkItem';
 
 export default class BookmarkItem extends Component {
     constructor(props) {
@@ -8,6 +10,7 @@ export default class BookmarkItem extends Component {
             favicon: this.props.book.favicon,
             folder: this.props.book.folder,
             url: this.props.book.url,
+            id: this.props.book.id
         }
         this.buttonRef = createRef();
         this.handleOpenWebsite = this.props.handleOpenWebsite.bind(this);
@@ -34,11 +37,15 @@ export default class BookmarkItem extends Component {
     };
 
     render() {
-
         return (
-            <button className="bookmark" onClick={this.handleOpen} ref={this.buttonRef}>
-                <img src={this.state.favicon} alt="bookmark-favicon" />
-            </button>
+            <div>
+                <ContextMenuTrigger id={"bookmarkItem-" + this.state.id}>
+                    <button className="bookmark" onClick={this.handleOpen} ref={this.buttonRef}>
+                        <img src={this.state.favicon} alt="bookmark-favicon" />
+                    </button>
+                </ContextMenuTrigger>
+                <ContextMenuBookmarkItem uniqueIdentifier={"bookmarkItem-" + this.state.id} handleOpenWebsite={this.handleOpenWebsite} handleOpenNewTabFromBookmark={this.handleOpenNewTabFromBookmark} />
+            </div>
         )
     }
 }

@@ -73,7 +73,7 @@ export default function Tab({ tab }) {
                 }
             }
         }
-    }, [tab, tab.webview, isPlayingSound])
+    }, [tab, tab.webview, isPlayingSound, dispatch])
 
     const handleMutedSound = (e) => {
         e.stopPropagation();

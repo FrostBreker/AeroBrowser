@@ -16,23 +16,20 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const d = defaultTheme.default;
-    loadTheme(d)
+    loadTheme(defaultTheme)
+
+    window.bookmarks.onGetBookmarks((_event, value) => {
+      dispatch(getBookmarks(value));
+    });
 
     if (!isLoaded) {
-      if (!isEmpty(tabs) && !isEmpty(bookmarks)) {
+      if (!isEmpty(tabs)) {
         setTimeout(() => {
           setIsLoaded(true);
         }, 1000);
       } else {
         if (isEmpty(tabs)) {
           dispatch(addTab("https://www.google.fr/", true, true));
-        }
-
-        if (isEmpty(bookmarks)) {
-          window.bookmarks.onGetBookmarks((_event, value) => {
-            dispatch(getBookmarks(value));
-          });
         }
       }
     }

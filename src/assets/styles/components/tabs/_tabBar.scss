@@ -149,9 +149,11 @@
 
     &.inactive {
       cursor: pointer;
-      border: 1px solid var(--color-2);
+      border: 1px solid #2f2c3a;
       border-bottom: none;
-      box-shadow: -1px 2px 15px 2px var(--shadow-color-4) inset;
+      box-shadow: -1px 2px 15px 2px rgba(255, 255, 255, 0.1) inset,
+        0px -2px 5px rgba(0, 0, 0, 0.2);
+      // transform: translateY(2px);
     }
 
     &.minimize {

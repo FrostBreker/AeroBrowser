@@ -1,3 +1,5 @@
+import { generateId } from "../components/utils";
+
 export const GET_TABS = "GET_TABS";
 export const ADD_TAB = "ADD_TAB";
 export const TAB_CLICK = "TAB_CLICK";
@@ -8,15 +10,7 @@ export const TOGGLE_WEBVIEW = "TOGGLE_WEBVIEW";
 export const ADD_WEBVIEW = "ADD_WEBVIEW";
 export const UPDATE_FAVICON = "UPDATE_FAVICON";
 
-const generateId = () => {
-    const list = "ABCDEFGHIJKLMNPQRSTUVWXYZ123456789";
-    var res = "";
-    for (var i = 0; i < 12; i++) {
-        var rnd = Math.floor(Math.random() * list.length);
-        res = res + list.charAt(rnd);
-    }
-    return res;
-};
+
 
 export const addTab = (url, isActive, isWebview) => {
     const newTab = { id: generateId(), isActive, title: "New Tab", favicon: "./favicon.ico", defaultUrl: url, isNewTab: true, isWebview, webview: null };

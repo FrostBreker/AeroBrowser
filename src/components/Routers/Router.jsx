@@ -22,7 +22,6 @@ export default function Router({ tabId, isActive, tab }) {
         } else if (type === "webview" && !tab.isWebview) {
             dispatch(toggleWebview(tabId, true))
         }
-        console.log(tab.isWebview);
     }, [type, dispatch, tabId, tab.isWebview])
 
     return (

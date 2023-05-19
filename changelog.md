@@ -94,5 +94,10 @@
             - target blank open in new tab
         - Bookmark open website
             - add two function in routerManager link to webview and tabReducer pass into bookmarkMenu and bookmarkItem
+        In PR #14
+        - Bookmark JSON - add unique ID
+        - Bookmark context menu
+            - Add Remove Bookmark
+            <!-- - Add Update Bookmark -->
 
 
