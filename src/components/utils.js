@@ -1,5 +1,5 @@
 export const dateParser = (num) => {
-    let options = {
+    return new Date(num ? Date.parse(num) : Date.now()).toLocaleDateString("fr-FR", {
         hour: "2-digit",
         minute: "2-digit",
         second: "2-digit",
@@ -7,29 +7,21 @@ export const dateParser = (num) => {
         year: "numeric",
         month: "short",
         day: "numeric",
-    };
+    }).toString();
+};
 
-    let timestamp = Date.parse(num);
-
-    let date = new Date(timestamp).toLocaleDateString("fr-FR", options);
-
-    return date.toString();
+export const generateId = () => {
+    const list = "ABCDEFGHIJKLMNPQRSTUVWXYZ123456789";
+    var res = "";
+    for (var i = 0; i < 12; i++) {
+        var rnd = Math.floor(Math.random() * list.length);
+        res = res + list.charAt(rnd);
+    }
+    return res;
 };
 
 export const timestampParser = (num) => {
-    let options = {
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        weekday: "long",
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-    };
 
-    let date = new Date(num).toLocaleDateString("fr-FR", options);
-
-    return date.toString();
 };
 
 export const isEmpty = (value) => {
@@ -43,7 +35,8 @@ export const isEmpty = (value) => {
 
 export const loadTheme = (d) => {
     const root_theme = document.querySelector(":root");
-    for (let i = 0; i < d.length; i++) {
-        root_theme.style.setProperty(d[i].name, d[i].value);
-    }
+    Object.keys(d).forEach((key) => {
+        if (key !== "name" && key !== "displayName" && key !== "description" && key !== "author")
+            root_theme.style.setProperty(key, d[key]);
+    });
 }

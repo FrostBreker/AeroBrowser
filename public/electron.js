@@ -161,9 +161,7 @@ app.whenReady().then(() => {
 
   }
 
-  ['ipcHandler'].forEach((handler) => {
-    require(`./handlers/${handler}`)(ipcMain, mainWebContents);
-  });
+  require(`./handlers/ipcHandler`)(ipcMain, mainWebContents);
 
   mainWebContents.on('did-finish-load', () => {
     mainWebContents.send(channels.GET_BOOKMARKS, bookmarks.get('bookmarks'));

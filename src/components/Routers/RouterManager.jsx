@@ -35,7 +35,6 @@ export default function RouterManager({ showBookmarksMenu }) {
 
     const handleOpenWebsite = (url) => {
         const activeTab = tabs.find(tab => tab.isActive);
-        console.log(activeTab);
         if (activeTab.webview !== null) {
             activeTab.webview.loadURL(url);
         }

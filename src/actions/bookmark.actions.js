@@ -22,3 +22,13 @@ export const addBookmark = data => {
         window.bookmarks.addBookmark(data);
     };
 }
+
+export const removeBookmark = id => {
+    return (dispatch) => {
+        dispatch({
+            type: REMOVE_BOOKMARK,
+            payload: id,
+        });
+        window.bookmarks.removeBookmark(id);
+    };
+}
