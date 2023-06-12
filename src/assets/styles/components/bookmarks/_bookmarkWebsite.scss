@@ -1,6 +1,6 @@
 .bookmark {
   cursor: pointer;
-  background-color: transparent;
+  background-color: var(--bookmarkWebsiteBackgroundColor);
   // transition: all 0.2s ease-in-out;
 
   height: 46px;
@@ -11,7 +11,7 @@
   justify-content: center;
 
   &:hover {
-    background-color: var(--utility-btn-hover-color);
+    background-color: var(--bookmarkWebsiteHoverBackgroundColor);
   }
 
   img {

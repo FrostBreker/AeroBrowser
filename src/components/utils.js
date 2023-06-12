@@ -35,8 +35,9 @@ export const isEmpty = (value) => {
 
 export const loadTheme = (d) => {
     const root_theme = document.querySelector(":root");
-    Object.keys(d).forEach((key) => {
-        if (key !== "name" && key !== "displayName" && key !== "description" && key !== "author")
-            root_theme.style.setProperty(key, d[key]);
+    Object.keys(d.items).forEach((key) => {
+        Object.keys(d.items[key]).forEach((k) => {
+            root_theme.style.setProperty(`--${k}`, d.items[key][k]);
+        });
     });
 }

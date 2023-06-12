@@ -98,6 +98,11 @@
         - Bookmark JSON - add unique ID
         - Bookmark context menu
             - Add Remove Bookmark
+            - Add Open Bookmark in new tab
+            - Add Open Bookmark in tab
+            <!-- - Add Open Bookmark in new window -->
             <!-- - Add Update Bookmark -->
-
+        - Theme
+            - Customisation of the theme
+            
 

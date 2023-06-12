@@ -11,27 +11,26 @@
     .forwardArrow {
       height: 39px;
       width: 46px;
-      background-color: transparent;
+      background-color: var(--buttonsForwardBackwardBackgroundColor);
 
       &:disabled {
         svg {
           opacity: 0.5;
         }
         &:hover {
-          background-color: transparent;
+          background-color: var(
+            --buttonsForwardBackwardDisabledHoverBackgroundColor
+          );
         }
       }
-
       &:hover {
-        background-color: var(--utility-btn-hover-color);
+        background-color: var(--buttonsForwardBackwardHoverBackgroundColor);
       }
-
       svg {
         width: 25px;
         height: 25px;
         justify-content: center;
         align-items: center;
-
         polyline {
           stroke: var(--svg-color);
         }
@@ -39,56 +38,46 @@
     }
   }
 }
-
 .downloadButton {
   -webkit-app-region: no-drag;
   height: 39px;
   width: 46px;
-  background-color: transparent;
-
+  background-color: var(--buttonsDownloadBackgroundColor);
   &:hover {
-    background-color: var(--utility-btn-hover-color);
+    background-color: var(--buttonsDownloadHoverBackgroundColor);
   }
-
   svg {
     width: 25px;
     height: 25px;
     justify-content: center;
     align-items: center;
-
     path {
-      stroke: var(--svg-color);
+      stroke: var(--buttonsDownloadSVGPathStroke);
     }
-
     polyline {
-      stroke: var(--svg-color);
+      stroke: var(--buttonsDownloadSVGPolylineStroke);
     }
-
     line {
-      stroke: var(--svg-color);
+      stroke: var(--buttonsDownloadSVGLineStroke);
     }
   }
 }
-
 .addBookmarkButton,
 .addTabButton {
   -webkit-app-region: no-drag;
   height: 39px;
   width: 46px;
-  background-color: transparent;
-
+  background-color: var(--buttonsAddBookmarkTabBackgroundColor);
   &:hover {
-    background-color: var(--utility-btn-hover-color);
+    background-color: var(--buttonsAddBookmarkTabHoverBackgroundColor);
   }
-
   svg {
     width: 25px;
     height: 25px;
     justify-content: center;
     align-items: center;
-
     line {
-      stroke: var(--svg-color);
+      stroke: var(--buttonsAddBookmarkTabSVGLineStroke);
     }
   }
 }
@@ -96,50 +85,41 @@
   height: 46px;
   cursor: pointer;
 }
-
 .refreshButton,
 .sslProtocol {
   width: 20px;
   height: 20px;
   border-radius: 4px;
-  background-color: transparent;
+  background-color: var(--buttonsRefreshSSLBackgroundColor);
   cursor: pointer;
   transition: .2s;
   &:hover {
-    background-color: var(--utility-btn-hover-color);
+    background-color: var(--buttonsRefreshSSLHoverBackgroundColor);
   }
-
   p {
-    color: var(--text-color);
+    color: var(--buttonsRefreshSSLTextColor);
   }
-
   svg {
     margin-top: 2px;
     width: 15px;
     height: 15px;
-
-    fill: var(--svg-color);
-
+    fill: var(--buttonsRefreshSSLSVGFill);
     line {
-      stroke: var(--svg-color);
+      stroke: var(--buttonsRefreshSSLSVGLineStroke);
     }
-
     circle {
-      stroke: var(--svg-color);
+      stroke: var(--buttonsRefreshSSLSVGCircleStroke);
     }
-
     path {
-      fill: var(--svg-color);
+      fill: var(--buttonsRefreshSSLSVGPathFill);
     }
   }
 }
-
 .refreshButton {
   &:hover {
     svg {
       animation: close-spin 0.5s ease forwards;
     }
-
     @keyframes close-spin {
       from {
         rotate: 0deg;
@@ -152,29 +132,23 @@
     }
   }
 }
-
 .sound {
-  // width: 20px;
-  // height: 20px;
+  // width: 20px; // height: 20px;
   border-radius: 4px;
-  background-color: transparent;
+  background-color: var(--buttonsSoundBackgroundColor);
   cursor: pointer;
   transition: .2s;
   margin-right: 10px;
-
   svg {
     margin-top: 2px;
     width: 15px;
     height: 15px;
-
-    fill: transparent;
-
+    fill: var(--buttonsSoundSVGFill);
     display: flex;
     align-items: center;
     justify-content: center;
-
     path {
-      fill: transparent;
+      fill: var(--buttonsSoundSVGPathFill);
     }
   }
 }

@@ -3,8 +3,8 @@
   margin-top: 39px;
   height: 31px;
   user-select: none;
-  color: var(--text-color);
-  border-bottom: 1px solid var(--color-2);
+  color: var(--tabBarTextColor);
+  border-bottom: 1px solid var(--tabBarBorderColor);
 
   .tab {
     width: 100%;
@@ -13,7 +13,7 @@
     align-items: center;
     justify-content: center;
 
-    color: var(--tab-color);
+    color: var(--tabBarTabTextColor);
     padding: 10px;
 
     transition: .2s;
@@ -36,16 +36,16 @@
       .close {
         animation: focus 0.3s ease forwards;
         &:hover {
-          background-color: var(--color-2);
+          background-color: var(--tabBarTabHoverCloseButtonBackgroundColor);
         }
 
         svg {
           width: 15px;
           height: 15px;
 
-          background-color: transparent;
+          background-color: var(--tabBarTabHoverCloseButtonSVGBackgroundColor);
 
-          fill: var(--svg-color);
+          fill: var(--tabBarTabHoverCloseButtonSVGFillColor);
         }
       }
 
@@ -53,10 +53,10 @@
         animation: focus 0.3s ease forwards;
 
         svg {
-          fill: var(--svg-color);
+          fill: var(--tabBarTabHoverSoundButtonSVGFill);
 
           path {
-            fill: var(--svg-color);
+            fill: var(--tabBarTabHoverSoundButtonSVGPathFill);
           }
         }
       }
@@ -72,49 +72,10 @@
       }
     }
 
-    .spinner {
-      margin-right: 5px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 20px;
-      text-align: center;
-
-      .bounce1,
-      .bounce2,
-      .bounce3 {
-        width: 5px;
-        height: 5px;
-        background-color: var(--text-color);
-        border-radius: 100%;
-        display: inline-block;
-        animation: bouncedelay 1.4s infinite ease-in-out both;
-      }
-
-      .bounce1 {
-        animation-delay: -0.32s;
-      }
-
-      .bounce2 {
-        animation-delay: -0.16s;
-      }
-
-      @keyframes bouncedelay {
-        0%,
-        80%,
-        100% {
-          transform: scale(0);
-        }
-        40% {
-          transform: scale(1.0);
-        }
-      }
-    }
-
     .close {
       display: flex;
       cursor: pointer;
-      background-color: transparent;
+      background-color: var(--tabBarTabCloseButtonBackgroundColor);
       margin-left: 10px;
       align-items: center;
       justify-content: center;
@@ -123,7 +84,7 @@
       transition: .2s;
 
       &:hover {
-        background-color: var(--color-2);
+        background-color: var(--tabBarTabCloseButtonHoverBackgroundColor);
         animation: close-spin 0.5s ease forwards;
 
         @keyframes close-spin {
@@ -141,18 +102,17 @@
         width: 15px;
         height: 15px;
 
-        background-color: transparent;
+        background-color: var(--tabBarTabCloseButtonSVGBackgroundColor);
 
-        fill: transparent;
+        fill: var(--tabBarTabCloseButtonSVGFill);
       }
     }
 
     &.inactive {
       cursor: pointer;
-      border: 1px solid #2f2c3a;
+      border: var(--tabBarTabInactiveBorder);
       border-bottom: none;
-      box-shadow: -1px 2px 15px 2px rgba(255, 255, 255, 0.1) inset,
-        0px -2px 5px rgba(0, 0, 0, 0.2);
+      box-shadow: var(--tabBarTabInactiveBoxShadow);
       // transform: translateY(2px);
     }
 

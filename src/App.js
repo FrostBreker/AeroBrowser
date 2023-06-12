@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TabManager from './components/Tab/TabManager';
 import LoadingPage from './components/Utils/LoadingPage';
-import defaultTheme from "./assets/themes/default.json"
+import theme from "./assets/themes/dark-theme.json"
 import { isEmpty, loadTheme } from './components/utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { addTab } from './actions/tabs.actions';
@@ -16,7 +16,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    loadTheme(defaultTheme)
+    loadTheme(theme)
 
     window.bookmarks.onGetBookmarks((_event, value) => {
       dispatch(getBookmarks(value));
