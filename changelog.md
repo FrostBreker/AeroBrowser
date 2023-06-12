@@ -102,5 +102,7 @@
             - Add Open Bookmark in tab
             <!-- - Add Open Bookmark in new window -->
             <!-- - Add Update Bookmark -->
-
+        - Theme
+            - Customisation of the theme
+            
 
