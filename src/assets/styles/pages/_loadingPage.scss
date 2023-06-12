@@ -1,6 +1,6 @@
 .loading-page {
-  background-color: var(--color-1);
-  color: var(--text-color);
+  background-color: var(--loadingPageBackgroundColor);
+  color: var(--loadingPageTextColor);
   position: fixed;
   top: 0;
   left: 0;
@@ -23,7 +23,7 @@
     .bounce3 {
       width: 40px;
       height: 40px;
-      background-color: var(--text-color);
+      background-color: var(--spinnerBounceBackgroundColor);
       border-radius: 100%;
       display: inline-block;
       animation: bouncedelay 1.4s infinite ease-in-out both;

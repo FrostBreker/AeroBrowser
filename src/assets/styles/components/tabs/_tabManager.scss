@@ -7,14 +7,14 @@
   left: 0;
   width: 100%;
   z-index: 999;
-  background-color: var(--color-1);
+  background-color: var(--topBarBackgroundColor);
   display: flex;
 
   .top-bar-left {
     display: flex;
     align-items: center;
     width: 30%;
-    color: var(--svg-color);
+    color: var(--topBarLeftTextColor);
 
     .utilsBTN {
       width: 100%;
@@ -27,7 +27,7 @@
     align-items: center;
     justify-content: center;
     width: 40%;
-    color: var(--svg-color);
+    color: var(--topBarCenterTextColor);
   }
 
   .top-bar-right {
@@ -35,12 +35,12 @@
     align-items: center;
     margin-right: 136px;
     margin-left: auto;
-    color: var(--svg-color);
+    color: var(--topBarRightTextColor);
 
     .showBookmarksBTN {
       background: none;
       border: none;
-      color: var(--svg-color);
+      color: var(--topBarRightBookmarkButtonTextColor);
       outline: none;
       -webkit-app-region: no-drag;
       justify-content: center;
@@ -55,19 +55,19 @@
         align-items: center;
 
         path {
-          fill: var(--svg-color);
+          fill: var(--topBarRightBookmarkButtonSVGPathFill);
         }
       }
 
       &:hover {
-        background-color: var(--utility-btn-hover-color);
+        background-color: var(--topBarRightBookmarkButtonHoverBackgroundColor);
       }
     }
 
     .showInfoBTN {
       background: none;
       border: none;
-      color: var(--svg-color);
+      color: var(--topBarRightInfosButtonTextColor);
       outline: none;
       -webkit-app-region: no-drag;
       justify-content: center;
@@ -82,12 +82,12 @@
         align-items: center;
 
         path {
-          fill: var(--svg-color);
+          fill: var(--topBarRightInfosButtonSVGPathFill);
         }
       }
 
       &:hover {
-        background-color: var(--utility-btn-hover-color);
+        background-color: var(--topBarRightInfosButtonHoverBackgroundColor);
       }
     }
   }

@@ -6,8 +6,8 @@
   height: 100%;
   z-index: 999;
 
-  background-color: var(--color-1);
-  color: var(--text-color);
+  background-color: var(--bookmarkMenuBackgroundColor);
+  color: var(--bookmarkMenuTextColor);
 
   transition: all ease-in .5s;
 }

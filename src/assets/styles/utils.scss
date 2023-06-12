@@ -1,0 +1,94 @@
+.react-contextmenu {
+  backdrop-filter: blur(10px);
+  background-color: var(--contextMenuBackgroundColor);
+  border-radius: 12px;
+  box-shadow: var(--contextMenuBoxShadow);
+  padding: 10px;
+  z-index: 1100;
+}
+
+.react-contextmenu-item {
+  color: var(--contextMenuItemTextColor);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 10px 20px;
+
+  &:hover {
+    background-color: var(--contextMenuItemHoverBackgroundColor);
+    border-radius: 12px;
+    color: var(--contextMenuItemHoverTextColor);
+    transition: all .2s ease-in-out;
+  }
+}
+
+.react-contextmenu-item--divider {
+  border-bottom: none;
+  height: auto;
+  margin: .5em auto;
+
+  &:after {
+    content: "";
+    display: block;
+    height: .5em;
+    width: calc(100% + .5em);
+    margin-left: -.25em;
+    border-radius: .25em;
+    box-shadow: var(--contextMenuItemDividerAfterBoxShadow);
+  }
+  &:hover {
+    background-color: transparent;
+    color: var(--contextMenuItemDividerHoverTextColor);
+    cursor: default;
+    box-shadow: none;
+  }
+}
+
+.react-contextmenu-item--disabled {
+  color: var(--contextMenuItemDisabledTextColor);
+
+  &:hover {
+    background-color: transparent;
+    color: var(--contextMenuItemDisabledHoverTextColor);
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+}
+
+.spinner {
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  text-align: center;
+
+  .bounce1,
+  .bounce2,
+  .bounce3 {
+    width: 5px;
+    height: 5px;
+    background-color: var(--spinnerBounceBackgroundColor);
+    border-radius: 100%;
+    display: inline-block;
+    animation: bouncedelay 1.4s infinite ease-in-out both;
+  }
+
+  .bounce1 {
+    animation-delay: -0.32s;
+  }
+
+  .bounce2 {
+    animation-delay: -0.16s;
+  }
+
+  @keyframes bouncedelay {
+    0%,
+    80%,
+    100% {
+      transform: scale(0);
+    }
+    40% {
+      transform: scale(1.0);
+    }
+  }
+}
