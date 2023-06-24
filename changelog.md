@@ -102,7 +102,10 @@
             - Add Open Bookmark in tab
             <!-- - Add Open Bookmark in new window -->
             <!-- - Add Update Bookmark -->
+        In PR #15
         - Theme
             - Customisation of the theme
+        In issue #16
+        - Fix win build
             
 
