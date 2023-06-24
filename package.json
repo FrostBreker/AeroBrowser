@@ -4,7 +4,11 @@
   "private": true,
   "main": "public/electron.js",
   "homepage": "./",
-  "author": "FrostBreker",
+  "author": {
+    "name": "FrostBreker",
+    "url": "https://github.com/FrostBreker/Aero",
+    "email": "frostbreker@github.com"
+  },
   "description": "Aero is a simple and lightweight web browser for Windows, Mac and Linux. It is built with Electron, React and Redux.",
   "dependencies": {
     "@sentry/electron": "^4.3.0",
@@ -52,9 +56,17 @@
     "win": {
       "target": "nsis"
     },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true
+    },
     "linux": {
       "target": "deb"
-    }
+    },
+    "deb": {},
+    "artifactName": "Aero_${version}_Setup.${ext}",
+    "forceCodeSigning": false
   },
   "eslintConfig": {
     "extends": [
