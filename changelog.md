@@ -106,6 +106,6 @@
         - Theme
             - Customisation of the theme
         In issue #16
-        - Fix linux build
+        - Fix win build
             
 
