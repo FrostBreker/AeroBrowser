@@ -107,7 +107,7 @@
             - Customisation of the theme
         In issue #16
         - Fix win build
-        In PR #21
+        In PR #22
         - Modals
         - Bookmark
             - Update Bookmark with Modal
