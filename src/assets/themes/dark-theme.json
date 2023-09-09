@@ -100,6 +100,15 @@
             "spinnerBounceBackgroundColor": "var(--text-color)",
             "loadingPageBackgroundColor": "var(--color-1)",
             "loadingPageTextColor": "var(--text-color)"
+        },
+        "modals": {
+            "modalBackgroundColor": "var(--color-1)",
+            "modalOverlayBackgroundColor": "rgba(0,0,0,0.5)",
+            "modalContentBoxShadow": "0 0 10px rgba(0, 0, 0, 0.3)",
+            "modalHeaderTextColor": "var(--text-color)",
+            "modalBodyTextColor": "var(--text-color)",
+            "modalBoxShadow": "0px 8px 16px 0px rgba(55, 56, 65, 0.5)",
+            "modalCloseButtonBackgroundColor": "transparent"
         }
     }
 }
