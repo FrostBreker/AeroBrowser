@@ -3,7 +3,7 @@ import { ContextMenu, MenuItem, connectMenu } from "react-contextmenu";
 import { useSelector, useDispatch } from 'react-redux';
 import { removeBookmark } from '../../actions/bookmark.actions';
 
-const DynamicMenu = ({ uniqueIdentifier, handleOpenNewTabFromBookmark, handleOpenWebsite }) => {
+const DynamicMenu = ({ uniqueIdentifier, handleOpenNewTabFromBookmark, handleOpenWebsite, handleShowModals }) => {
     const bookmarks = useSelector(state => state.bookmarksReducer);
     const dispatch = useDispatch();
     function handleClick(e, data) {
@@ -18,7 +18,10 @@ const DynamicMenu = ({ uniqueIdentifier, handleOpenNewTabFromBookmark, handleOpe
                 handleOpenNewTabFromBookmark(book.url);
                 break;
             case 'update':
-                console.log('Update');
+                handleShowModals({
+                    type: 'updateBookmark',
+                    data: book
+                })
                 break;
             case 'delete':
                 dispatch(removeBookmark(bookmarkId));
@@ -47,10 +50,10 @@ const DynamicMenu = ({ uniqueIdentifier, handleOpenNewTabFromBookmark, handleOpe
     )
 }
 
-export default function ContextMenuBookmarkItem({ uniqueIdentifier, handleOpenNewTabFromBookmark, handleOpenWebsite }) {
+export default function ContextMenuBookmarkItem({ uniqueIdentifier, handleOpenNewTabFromBookmark, handleOpenWebsite, handleShowModals }) {
     const ConnectedMenu = connectMenu("DYNAMIC")(DynamicMenu);
 
     return (
-        <ConnectedMenu uniqueIdentifier={uniqueIdentifier} handleOpenNewTabFromBookmark={handleOpenNewTabFromBookmark} handleOpenWebsite={handleOpenWebsite} />
+        <ConnectedMenu uniqueIdentifier={uniqueIdentifier} handleOpenNewTabFromBookmark={handleOpenNewTabFromBookmark} handleOpenWebsite={handleOpenWebsite} handleShowModals={handleShowModals} />
     )
 }

@@ -32,3 +32,13 @@ export const removeBookmark = id => {
         window.bookmarks.removeBookmark(id);
     };
 }
+
+export const updateBookmark = data => {
+    return (dispatch) => {
+        dispatch({
+            type: UPDATE_BOOKMARK,
+            payload: data,
+        });
+        window.bookmarks.updateBookmark(data);
+    };
+}
