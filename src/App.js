@@ -22,6 +22,8 @@ function App() {
       dispatch(getBookmarks(value));
     });
 
+    // window.extensions.installExtension("gighmmpiobklfepjocnamgkkbiglidom");
+
     if (!isLoaded) {
       if (!isEmpty(tabs)) {
         setTimeout(() => {

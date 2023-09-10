@@ -10,31 +10,12 @@
     "email": "frostbreker@github.com"
   },
   "description": "Aero is a simple and lightweight web browser for Windows, Mac and Linux. It is built with Electron, React and Redux.",
-  "dependencies": {
-    "@sentry/electron": "^4.3.0",
-    "@sentry/tracing": "^7.44.2",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "dotenv": "^16.0.3",
-    "electron-is-dev": "^2.0.0",
-    "react": "^16.13.1",
-    "react-contextmenu": "^2.14.0",
-    "react-dom": "^16.13.1",
-    "react-redux": "^8.0.5",
-    "react-scripts": "^5.0.1",
-    "redux": "^4.2.1",
-    "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.4.2",
-    "sass": "^1.58.3",
-    "update-electron-app": "^2.0.1"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "electron": "electron .",
+    "electron": "electron --experimental-modules public/electron.js",
     "electron:package:mac": "npm run build && electron-builder -m -c.extraMetadata.main=build/electron.js",
     "electron:package:win": "npm run build && electron-builder -w -c.extraMetadata.main=build/electron.js",
     "electron:package:linux": "npm run build && electron-builder -l -c.extraMetadata.main=build/electron.js"
@@ -83,7 +64,39 @@
     ]
   },
   "devDependencies": {
-    "electron": "^23.1.4",
-    "electron-builder": "^24.2.1"
-  }
+    "@sentry/electron": "^4.3.0",
+    "@sentry/tracing": "^7.44.2",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "adm-zip": "^0.5.10",
+    "axios": "^1.5.0",
+    "crx": "^5.0.1",
+    "dotenv": "^16.0.3",
+    "electron": "^24.8.2",
+    "electron-builder": "^24.2.1",
+    "electron-is-dev": "^2.0.0",
+    "node-fetch": "^3.3.2",
+    "react": "^16.13.1",
+    "react-contextmenu": "^2.14.0",
+    "react-dom": "^16.13.1",
+    "react-redux": "^8.0.5",
+    "react-scripts": "^5.0.1",
+    "redux": "^4.2.1",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.2",
+    "sass": "^1.58.3",
+    "unzipper": "^0.10.14",
+    "update-electron-app": "^2.0.1",
+    "yauzl": "^2.10.0"
+  },
+  "fileAssociations": [
+    {
+      "name": "Document",
+      "description": "Aero",
+      "role": "Viewer",
+      "ext": "html"
+    }
+  ],
+  "dependencies": {}
 }

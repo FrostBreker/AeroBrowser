@@ -1,3 +1,6 @@
+const path = require('path');
+const os = require('os');
+
 module.exports = {
     channels: {
         //Tabs
@@ -12,5 +15,12 @@ module.exports = {
         REMOVE_BOOKMARK: 'REMOVE_BOOKMARK',
         UPDATE_BOOKMARK: 'UPDATE_BOOKMARK',
         GET_BOOKMARKS: 'GET_BOOKMARKS',
+        //Extensions
+        INSTALL_EXTENSION: 'INSTALL_EXTENSION',
+        UNINSTALL_EXTENSION: 'UNINSTALL_EXTENSION',
+        GET_EXTENSIONS: 'GET_EXTENSIONS',
     },
+    folders: {
+        extensionsFolder: path.join(os.homedir(), '.aero', 'extensions')
+    }
 };

@@ -94,6 +94,16 @@ contextBridge.exposeInMainWorld('revokedBookmarks', {
     onGetBookmarks: () => ipcRenderer.removeAllListeners(channels.GET_BOOKMARKS),
 })
 
+// Extensions API
+contextBridge.exposeInMainWorld('extensions', {
+    //Emiters
+    installExtension: (extId) => ipcRenderer.send(channels.INSTALL_EXTENSION, extId),
+    uninstallExtension: (extension) => ipcRenderer.send(channels.UNINSTALL_EXTENSION, extension),
+
+    //Handlers
+    onGetExtensions: (callback) => ipcRenderer.on(channels.GET_EXTENSIONS, callback),
+})
+
 // History API
 // contextBridge.exposeInMainWorld('history', {
 //     getHistory: () => ipcRenderer.invoke(channels.GET_HISTORY),

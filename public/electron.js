@@ -3,8 +3,9 @@ const { app, BrowserWindow, ipcMain, Menu, protocol } = require('electron');
 const isDev = require('electron-is-dev');
 const url = require('url');
 const path = require('path');
+const fs = require('fs');
 
-const { channels } = require('./constants');
+const { channels, folders } = require('./constants');
 const { bookmarks } = require("./storedData");
 
 let mainWindow = null;
@@ -154,12 +155,12 @@ function setupLocalFilesNormalizerProxy() {
 app.whenReady().then(() => {
   createWindow();
   setupLocalFilesNormalizerProxy();
-
   if (isDev) {
     mainWindow.webContents.openDevTools({ mode: 'detach' });
   } else {
 
   }
+
 
   require(`./handlers/ipcHandler`)(ipcMain, mainWebContents);
 
@@ -176,12 +177,25 @@ app.whenReady().then(() => {
       return { action: 'deny' }
     })
   })
+
+  const extensionsFolder = folders.extensionsFolder;
+  if (!fs.existsSync(extensionsFolder)) {
+    fs.mkdirSync(extensionsFolder, { recursive: true });
+    console.log(`[✅] Extensions folder has been created: (${extensionsFolder})`);
+  }
+
+  const extensions = fs.readdirSync(extensionsFolder);
+  extensions.forEach((extension) => {
+    const extensionFolder = path.join(extensionsFolder, extension);
+    mainWebContents.session.loadExtension(extensionFolder, {
+      allowFileAccess: true,
+    });
+  });
 });
 
 app.on('will-quit', () => {
 
 })
-
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
