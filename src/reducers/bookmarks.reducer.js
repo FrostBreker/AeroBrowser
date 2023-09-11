@@ -12,8 +12,9 @@ export default function bookmarksReducer(state = initialState, action) {
       const removed = state.filter((tab) => tab.id !== action.payload)
       return [...removed];
     case UPDATE_BOOKMARK:
-      //Replace the old bookmark with the new one
-      return [...state.filter((book) => book.id !== action.payload.id), action.payload];
+      state.find((book) => book.id === action.payload.id).url = action.payload.url;
+      state.find((book) => book.id === action.payload.id).name = action.payload.name
+      return [...state];
     default:
       return state;
   }

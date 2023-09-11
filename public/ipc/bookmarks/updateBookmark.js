@@ -6,21 +6,19 @@ module.exports = {
     once: false,
     async execute(webContents, _, data) {
         const { id, url, name } = data;
-        const bookmark = bookmarks.get('bookmarks').find(b => b.id === id);
-
+        const bookmarksData = bookmarks.get('bookmarks')
+        const bookmark = bookmarksData.find(b => b.id === id);
         if (bookmark) {
             if (name) {
-                bookmark.name = name;
+                bookmarks.set('bookmarks', [...bookmarksData.find(b => b.id === id).name = name]);
                 console.log(`[✅] Bookmark (${id}) name has been updated: (${bookmark.name})`);
             }
             if (url) {
-                bookmark.url = url;
+                bookmarks.set('bookmarks', [...bookmarksData.find(b => b.id === id).url = url]);
                 console.log(`[✅] Bookmark (${id}) url has been updated: (${bookmark.url})`);
             }
         } else {
             console.log(`[❌] Bookmark (${id}) not found`);
         }
-        //Replace the old bookmark with the new one
-        bookmarks.set('bookmarks', [...bookmarks.get('bookmarks').filter(b => b.id !== id), bookmark]);
     }
 }

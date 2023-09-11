@@ -10,10 +10,8 @@ export const TOGGLE_WEBVIEW = "TOGGLE_WEBVIEW";
 export const ADD_WEBVIEW = "ADD_WEBVIEW";
 export const UPDATE_FAVICON = "UPDATE_FAVICON";
 
-
-
 export const addTab = (url, isActive, isWebview) => {
-    const newTab = { id: generateId(), isActive, title: "New Tab", favicon: "./favicon.ico", defaultUrl: url, isNewTab: true, isWebview, webview: null };
+    const newTab = { id: generateId(), isActive, title: "New Tab", favicon: "./favicon.ico", defaultUrl: url, isNewTab: true, isWebview, webview: null, url: "" };
     return (dispatch) => {
         dispatch({
             type: ADD_TAB,
@@ -36,6 +34,18 @@ export const removeTab = (tabId) => {
         dispatch({
             type: REMOVE_TAB,
             payload: tabId,
+        });
+    };
+};
+
+export const updateURL = (tabId, newUrl) => {
+    return (dispatch) => {
+        dispatch({
+            type: UPDATE_URL,
+            payload: {
+                tabId,
+                url: newUrl,
+            },
         });
     };
 };

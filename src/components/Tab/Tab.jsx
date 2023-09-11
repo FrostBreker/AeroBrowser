@@ -27,14 +27,20 @@ export default function Tab({ tab }) {
         if (tab) {
             if (tab.webview !== null) {
                 const w = tab.webview;
-                setTabTitle(w.getTitle())
+                dispatch(updateFavicon(tab.id, tab.url === "" ? tab.favicon : "./favicon.ico"))
+                setFavicon(tab.url === "" ? tab.favicon : "./favicon.ico")
+                setTabTitle(tab.url === "" ? w.getTitle() : tab.url)
                 w.addEventListener('page-title-updated', (e) => {
                     setTabTitle(e.title)
                 })
 
                 w.addEventListener('page-favicon-updated', (e) => {
-                    dispatch(updateFavicon(tab.id, e.favicons[0]))
-                    setFavicon(e.favicons[0])
+                    if (e.favicons.length === 0) {
+                        setFavicon("./favicon.ico")
+                    } else {
+                        setFavicon(e.favicons[0])
+                        dispatch(updateFavicon(tab.id, e.favicons[0]))
+                    }
                 })
 
                 w.addEventListener('media-started-playing', () => {
@@ -73,7 +79,7 @@ export default function Tab({ tab }) {
                 }
             }
         }
-    }, [tab, tab.webview, isPlayingSound, dispatch])
+    }, [tab, tab.webview, tab.url, isPlayingSound, dispatch])
 
     const handleMutedSound = (e) => {
         e.stopPropagation();

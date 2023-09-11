@@ -3,12 +3,13 @@ const { app, BrowserWindow, ipcMain, Menu, protocol } = require('electron');
 const isDev = require('electron-is-dev');
 const url = require('url');
 const path = require('path');
-
+const utils = require('./utils/utils');
 const { channels } = require('./constants');
 const { bookmarks } = require("./storedData");
 
 let mainWindow = null;
 let mainWebContents = null;
+utils.init(mainWindow, mainWebContents);
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -162,7 +163,6 @@ app.whenReady().then(() => {
   }
 
   require(`./handlers/ipcHandler`)(ipcMain, mainWebContents);
-
   mainWebContents.on('did-finish-load', () => {
     mainWebContents.send(channels.GET_BOOKMARKS, bookmarks.get('bookmarks'));
   });
@@ -193,3 +193,39 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+// app.on("session-created", (session) => {
+//   session.on("will-download", async (event, item, webContents) => {
+//     event.preventDefault();
+
+//     // Log download information
+//     console.log(
+//       'Received Bytes: ', item.getReceivedBytes(),
+//       'Total Bytes: ', item.getTotalBytes(),
+//       'Filename: ', item.getFilename(),
+//       'MIME Type: ', item.getMimeType(),
+//       'URL: ', item.getURL(),
+//       'State: ', item.getState(),
+//       'Save Path: ', item.getSavePath(),
+//       'Start Time: ', item.getStartTime(),
+//       'URL Chain: ', item.getURLChain()
+//     );
+
+//     // Start the download with electron-dl
+//     electronDl.download(BrowserWindow.getFocusedWindow(), item.getURL(), {
+//       directory: app.getPath('downloads'), // Specify the download directory
+//       onProgress: (progress) => {
+//         // You can use this callback to track download progress
+//         console.log('Download progress:', progress);
+//       },
+//       // Other options as needed
+//     })
+//       .then((dl) => {
+//         // The download has started
+//         console.log('Download started:', dl);
+//       })
+//       .catch((error) => {
+//         console.error('Download error:', error);
+//       });
+//   });
+// });
