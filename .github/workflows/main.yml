@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Run GCloc
-        run: docker run -t -v $PWD:/gcloc joaodanielrufino/gcloc /gcloc --report-formats=prompt,json -o /gcloc
+        run: docker run -t -v $PWD:/gcloc joaodanielrufino/gcloc /gcloc --report-formats=prompt,json -e=package-lock,node_modules -o /gcloc
       - name: Archive gcloc result
         uses: actions/upload-artifact@v3
         with:
