@@ -22,7 +22,16 @@ export default function Router({ tabId, isActive, tab }) {
         } else if (type === "webview" && !tab.isWebview) {
             dispatch(toggleWebview(tabId, true))
         }
-    }, [type, dispatch, tabId, tab.isWebview])
+
+        if (tab.url.startsWith("aero://")) {
+            console.log(tab.url);
+            setUrl(tab.url)
+            setType("aero")
+        } else {
+            setUrl(tab.url)
+            setType("webview")
+        }
+    }, [type, dispatch, tabId, tab.isWebview, tab.url])
 
     return (
         <div className='router' style={{ display: isActive ? "block" : "none" }}>

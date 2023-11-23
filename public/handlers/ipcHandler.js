@@ -14,10 +14,12 @@ module.exports = async (ipc, webContents) => {
 
         if (event.once) {
             ipc.once(event.name, (...args) => event.execute(webContents, ...args));
-        } else {
+        } else if (event.handler) {
+            ipc.handle(event.name, (...args) => event.execute(webContents, ...args));
+        } else if (event.once === false) {
             ipc.on(event.name, (...args) => event.execute(webContents, ...args));
         }
 
-        console.log(`events Charge [✅] : ${event.name}`);
+        console.log(`[EVENTS] --> Load [✅] : ${event.name}`);
     })
 }

@@ -80,6 +80,8 @@
         In PR #12
         - Fix the display of the sound icon in tabBar
         - Fix spinner for loading icon in tabBar
+        In PR #23
+        - Fix Bookmark order when update
     - Add:
         In PR #12
         - Add BookmarkHandler with IPC communication
@@ -100,8 +102,8 @@
             - Add Remove Bookmark
             - Add Open Bookmark in new tab
             - Add Open Bookmark in tab
-            <!-- - Add Open Bookmark in new window -->
-            <!-- - Add Update Bookmark -->
+            <!-- - Add Open Bookmark in new window (another version)-->
+            <!-- - Add Update Bookmark (another version: PR#22) -->
         In PR #15
         - Theme
             - Customisation of the theme
@@ -111,3 +113,11 @@
         - Modals
         - Bookmark
             - Update Bookmark with Modal
+        In PR #23
+        - Download Manager 
+            - NPM: Electron-dl
+            - Add Download Manager folder
+                - Add Download Page Component
+            - Change Searchbar components to handle multiple url to <Router /> With redux
+            - Add Download Button in TopBar
+            - Add LoadURL event in IPC

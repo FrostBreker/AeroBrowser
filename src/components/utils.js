@@ -33,6 +33,33 @@ export const isEmpty = (value) => {
     );
 };
 
+export const convertBytesToHumanReadable = (bytes) => {
+    const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
+    if (bytes === 0) {
+        return "0 Bytes";
+    }
+    const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+    return {
+        size: Math.round(bytes / Math.pow(1024, i)),
+        unit: sizes[i]
+    }
+}
+
+export const getDateByDonwloadDate = (timestamp) => {
+    const now = new Date();
+    const downloadDate = new Date(timestamp);
+    if (now.getFullYear() === downloadDate.getFullYear()) {
+        if (now.getMonth() === downloadDate.getMonth()) {
+            if (now.getDate() === downloadDate.getDate()) {
+                return 0;
+            }
+            return 1;
+        }
+        return 2;
+    }
+    return 3;
+}
+
 export const loadTheme = (d) => {
     const root_theme = document.querySelector(":root");
     Object.keys(d.items).forEach((key) => {

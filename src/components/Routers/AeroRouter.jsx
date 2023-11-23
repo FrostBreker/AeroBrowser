@@ -1,4 +1,5 @@
 import React from 'react'
+import DownloadPage from '../DownloadManager/DownloadPage'
 
 export default function AeroRouter({ url }) {
     switch (url) {
@@ -19,6 +20,10 @@ export default function AeroRouter({ url }) {
                 <div className="about">
                     <h1>About</h1>
                 </div>
+            )
+        case "aero://downloads":
+            return (
+                <DownloadPage />
             )
         default:
             return (

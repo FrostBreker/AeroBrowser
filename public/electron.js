@@ -3,12 +3,14 @@ const { app, BrowserWindow, ipcMain, Menu, protocol } = require('electron');
 const isDev = require('electron-is-dev');
 const url = require('url');
 const path = require('path');
-
+const Utils = require('./utils/utils');
 const { channels } = require('./constants');
-const { bookmarks } = require("./storedData");
+const { bookmarks, downloads } = require("./storedData");
 
 let mainWindow = null;
 let mainWebContents = null;
+const utils = new Utils();
+utils.init();
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -44,6 +46,7 @@ function createWindow() {
     : "http://127.0.0.1:3000";
 
   mainWindow.loadURL(appURL);
+
 
   // const template = [
   //   {
@@ -154,17 +157,16 @@ function setupLocalFilesNormalizerProxy() {
 app.whenReady().then(() => {
   createWindow();
   setupLocalFilesNormalizerProxy();
-
+  utils.setMainWindow(mainWindow);
   if (isDev) {
     mainWindow.webContents.openDevTools({ mode: 'detach' });
   } else {
 
   }
-
   require(`./handlers/ipcHandler`)(ipcMain, mainWebContents);
-
   mainWebContents.on('did-finish-load', () => {
     mainWebContents.send(channels.GET_BOOKMARKS, bookmarks.get('bookmarks'));
+    mainWebContents.send(channels.GET_DOWNLOADS, downloads.get('downloads'));
   });
 
   mainWindow.webContents.on("did-attach-webview", (_, contents) => {
@@ -193,3 +195,39 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+// app.on("session-created", (session) => {
+//   session.on("will-download", async (event, item, webContents) => {
+//     event.preventDefault();
+
+//     // Log download information
+//     console.log(
+//       'Received Bytes: ', item.getReceivedBytes(),
+//       'Total Bytes: ', item.getTotalBytes(),
+//       'Filename: ', item.getFilename(),
+//       'MIME Type: ', item.getMimeType(),
+//       'URL: ', item.getURL(),
+//       'State: ', item.getState(),
+//       'Save Path: ', item.getSavePath(),
+//       'Start Time: ', item.getStartTime(),
+//       'URL Chain: ', item.getURLChain()
+//     );
+
+//     // Start the download with electron-dl
+//     electronDl.download(BrowserWindow.getFocusedWindow(), item.getURL(), {
+//       directory: app.getPath('downloads'), // Specify the download directory
+//       onProgress: (progress) => {
+//         // You can use this callback to track download progress
+//         console.log('Download progress:', progress);
+//       },
+//       // Other options as needed
+//     })
+//       .then((dl) => {
+//         // The download has started
+//         console.log('Download started:', dl);
+//       })
+//       .catch((error) => {
+//         console.error('Download error:', error);
+//       });
+//   });
+// });

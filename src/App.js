@@ -6,6 +6,7 @@ import { isEmpty, loadTheme } from './components/utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { addTab } from './actions/tabs.actions';
 import { getBookmarks } from './actions/bookmark.actions';
+import { addDownload, updateDownload } from './actions/downloads.actions';
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -20,6 +21,12 @@ function App() {
 
     window.bookmarks.onGetBookmarks((_event, value) => {
       dispatch(getBookmarks(value));
+    });
+    window.downloads.onAddDownload((_event, value) => {
+      dispatch(addDownload(value));
+    });
+    window.downloads.onUpdateDownload((_event, value) => {
+      dispatch(updateDownload(value));
     });
 
     if (!isLoaded) {
@@ -36,6 +43,8 @@ function App() {
 
     return () => {
       window.revokedBookmarks.onGetBookmarks();
+      window.revokedDownloads.onAddDownload();
+      window.revokedDownloads.onUpdateDownload();
     }
   }, [isLoaded, tabs, dispatch, bookmarks]);
 
