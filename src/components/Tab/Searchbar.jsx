@@ -9,22 +9,6 @@ export default function Searchbar({ tab }) {
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        if (tab !== null) {
-            if (tab.webview !== null) {
-                const w = tab.webview;
-                setValue(tab.url === "" ? w.getURL() : tab.url)
-                w.addEventListener('did-navigate-in-page', (e) => {
-                    setValue(e.url)
-                })
-
-                w.addEventListener('did-navigate', (e) => {
-                    setValue(e.url)
-                })
-            }
-        }
-    }, [tab]);
-
 
     const handleChange = e => {
         setValue(e.target.value);
@@ -106,6 +90,47 @@ export default function Searchbar({ tab }) {
             return <AlertIcon />
         };
     };
+
+    useEffect(() => {
+        const handleGoToURL = (url) => {
+            const parsedUrl = parseURL(url);
+            if (parsedUrl.type === "aero") {
+                dispatch(toggleWebview(tab.id, false));
+                dispatch(updateURL(tab.id, parsedUrl.url));
+                setValue(parsedUrl.url);
+            } else {
+                dispatch(toggleWebview(tab.id, true));
+                dispatch(updateURL(tab.id, parsedUrl.url));
+                setValue(parsedUrl.url);
+                if (tab !== null) {
+                    if (tab.webview !== null) {
+                        tab.webview.loadURL(parsedUrl.url);
+                    };
+                };
+            };
+        };
+
+        if (tab !== null) {
+            if (tab.webview !== null) {
+                const w = tab.webview;
+                setValue(tab.url === "" ? w.getURL() : tab.url)
+                w.addEventListener('did-navigate-in-page', (e) => {
+                    setValue(e.url)
+                })
+
+                w.addEventListener('did-navigate', (e) => {
+                    setValue(e.url)
+                })
+
+                window.tab.onLoadURL((_event, value) => {
+                    handleGoToURL(value);
+                });
+            }
+        }
+        return () => {
+            window.revokedTab.onLoadURL();
+        }
+    }, [tab, dispatch]);
 
     const displayValue = isFocusing ? value : value.replace(/(^\w+:|^)\/\//, '').split('?')[0];
 

@@ -6,5 +6,11 @@ module.exports = {
         defaults: {
             bookmarks: []
         },
-    })
+    }),
+    downloads: new Store({
+        configName: 'downloads',
+        defaults: {
+            downloads: []
+        },
+    }),
 };

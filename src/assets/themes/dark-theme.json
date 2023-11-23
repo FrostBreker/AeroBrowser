@@ -36,7 +36,7 @@
             "buttonsForwardBackwardDisabledHoverBackgroundColor": "transparent",
             "buttonsForwardBackwardSVGPolylineStroke": "var(--svg-color)",
             "buttonsDownloadBackgroundColor": "transparent",
-            "buttonsDownloadHoverBackgroundColor": "transparent",
+            "buttonsDownloadHoverBackgroundColor": "var(--color-2)",
             "buttonsDownloadSVGPathStroke": "var(--svg-color)",
             "buttonsDownloadSVGPolylineStroke": "var(--svg-color)",
             "buttonsDownloadSVGLineStroke": "var(--svg-color)",

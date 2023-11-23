@@ -1,0 +1,278 @@
+{
+            "id": "_ebn7bds04",
+            "startTime": 1700742296.260252,
+            "state": "progressing",
+            "data": {
+                "savePath": "",
+                "urlChain": [
+                    "https://download2262.mediafire.com/6dy06i7g43hgQvEwRG5yXMb1NI7Y_wW89pypxfn1MBVeyXmB29xgdUERl90tNEBt8hl1ufK1z6smQr2Dfzz_Zs-aeYHDudaGmylBEPivaRNXR18cpGT9W8Uw09Ia7z48r7BLjmVq_4TFet1TpSNgVjvunOoNVRo1WlQ44ZjDdqAT/tcl40sur2zgj002/egg-subnautica.json"
+                ],
+                "url": "https://download2262.mediafire.com/6dy06i7g43hgQvEwRG5yXMb1NI7Y_wW89pypxfn1MBVeyXmB29xgdUERl90tNEBt8hl1ufK1z6smQr2Dfzz_Zs-aeYHDudaGmylBEPivaRNXR18cpGT9W8Uw09Ia7z48r7BLjmVq_4TFet1TpSNgVjvunOoNVRo1WlQ44ZjDdqAT/tcl40sur2zgj002/egg-subnautica.json",
+                "filename": "egg-subnautica.json",
+                "mimeType": "application/json"
+            },
+            "dlData": {
+                "downloadedBytes": 13388,
+                "totalBytes": 13388,
+                "isPaused": false,
+                "isDone": true,
+                "isInterrupted": false
+            }
+        },
+
+const data = {
+                        id: this.generateId(),
+                        startTime: item.getStartTime(),
+                        state: item.getState(),
+                        data: {
+                            savePath: item.getSavePath(),
+                            urlChain: item.getURLChain(),
+                            url: item.getURL(),
+                            filename: item.getFilename(),
+                            mimeType: item.getMimeType(),
+                        },
+                        dlData: {
+                            downloadedBytes: item.getReceivedBytes(),
+                            totalBytes: item.getTotalBytes(),
+                            isPaused: item.isPaused(),
+                            isDone: false,
+                            isInterrupted: false,
+                        }
+                    };
+
+DownloadItem {
+  pause: [Function: pause],
+  isPaused: [Function: isPaused],
+  resume: [Function: resume],
+  canResume: [Function: canResume],
+  cancel: [Function: cancel],
+  getReceivedBytes: [Function: getReceivedBytes],
+  getTotalBytes: [Function: getTotalBytes],
+  getMimeType: [Function: getMimeType],
+  hasUserGesture: [Function: hasUserGesture],
+  getFilename: [Function: getFilename],
+  getContentDisposition: [Function: getContentDisposition],
+  getURL: [Function: getURL],
+  getURLChain: [Function: getURLChain],
+  getState: [Function: getState],
+  isDone: [Function: isDone],
+  setSavePath: [Function: setSavePath],
+  getSavePath: [Function: getSavePath],
+  savePath: [Getter/Setter],
+  setSaveDialogOptions: [Function: setSaveDialogOptions],
+  getSaveDialogOptions: [Function: getSaveDialogOptions],
+  getLastModifiedTime: [Function: getLastModifiedTime],
+  getETag: [Function: getETag],
+  getStartTime: [Function: getStartTime]
+}
+{
+  preventDefault: [Function: preventDefault],
+  sender: DownloadItem {
+    pause: [Function: pause],
+    isPaused: [Function: isPaused],
+    resume: [Function: resume],
+    canResume: [Function: canResume],
+    cancel: [Function: cancel],
+    getReceivedBytes: [Function: getReceivedBytes],
+    getTotalBytes: [Function: getTotalBytes],
+    getMimeType: [Function: getMimeType],
+    hasUserGesture: [Function: hasUserGesture],
+    getFilename: [Function: getFilename],
+    getContentDisposition: [Function: getContentDisposition],
+    getURL: [Function: getURL],
+    getURLChain: [Function: getURLChain],
+    getState: [Function: getState],
+    isDone: [Function: isDone],
+    setSavePath: [Function: setSavePath],
+    getSavePath: [Function: getSavePath],
+    savePath: [Getter/Setter],
+    setSaveDialogOptions: [Function: setSaveDialogOptions],
+    getSaveDialogOptions: [Function: getSaveDialogOptions],
+    getLastModifiedTime: [Function: getLastModifiedTime],
+    getETag: [Function: getETag],
+    getStartTime: [Function: getStartTime],
+    _events: [Object: null prototype] { updated: [Array], done: [Array] },
+    _eventsCount: 2
+  }
+} progressing
+Received bytes: 0
+Total bytes: 13388
+Progress: 0%
+{ size: NaN, unit: undefined }
+0
+Downloaded: undefined/13 KB - NaNundefined/s
+{
+  preventDefault: [Function: preventDefault],
+  sender: DownloadItem {
+    pause: [Function: pause],
+    isPaused: [Function: isPaused],
+    resume: [Function: resume],
+    canResume: [Function: canResume],
+    cancel: [Function: cancel],
+    getReceivedBytes: [Function: getReceivedBytes],
+    getTotalBytes: [Function: getTotalBytes],
+    getMimeType: [Function: getMimeType],
+    hasUserGesture: [Function: hasUserGesture],
+    getFilename: [Function: getFilename],
+    getContentDisposition: [Function: getContentDisposition],
+    getURL: [Function: getURL],
+    getURLChain: [Function: getURLChain],
+    getState: [Function: getState],
+    isDone: [Function: isDone],
+    setSavePath: [Function: setSavePath],
+    getSavePath: [Function: getSavePath],
+    savePath: [Getter/Setter],
+    setSaveDialogOptions: [Function: setSaveDialogOptions],
+    getSaveDialogOptions: [Function: getSaveDialogOptions],
+    getLastModifiedTime: [Function: getLastModifiedTime],
+    getETag: [Function: getETag],
+    getStartTime: [Function: getStartTime],
+    _events: [Object: null prototype] { updated: [Array], done: [Array] },
+    _eventsCount: 2
+  }
+} progressing
+Received bytes: 13388
+Total bytes: 13388
+Progress: 100%
+{ size: 121, unit: 'MB' }
+7.879749347026658e-9
+Downloaded: 13/13 KB - 121MB/s
+{
+  preventDefault: [Function: preventDefault],
+  sender: DownloadItem {
+    pause: [Function: pause],
+    isPaused: [Function: isPaused],
+    resume: [Function: resume],
+    canResume: [Function: canResume],
+    cancel: [Function: cancel],
+    getReceivedBytes: [Function: getReceivedBytes],
+    getTotalBytes: [Function: getTotalBytes],
+    getMimeType: [Function: getMimeType],
+    hasUserGesture: [Function: hasUserGesture],
+    getFilename: [Function: getFilename],
+    getContentDisposition: [Function: getContentDisposition],
+    getURL: [Function: getURL],
+    getURLChain: [Function: getURLChain],
+    getState: [Function: getState],
+    isDone: [Function: isDone],
+    setSavePath: [Function: setSavePath],
+    getSavePath: [Function: getSavePath],
+    savePath: [Getter/Setter],
+    setSaveDialogOptions: [Function: setSaveDialogOptions],
+    getSaveDialogOptions: [Function: getSaveDialogOptions],
+    getLastModifiedTime: [Function: getLastModifiedTime],
+    getETag: [Function: getETag],
+    getStartTime: [Function: getStartTime],
+    _events: [Object: null prototype] { updated: [Array], done: [Array] },
+    _eventsCount: 2
+  }
+} progressing
+Received bytes: 13388
+Total bytes: 13388
+Progress: 100%
+{ size: 121, unit: 'MB' }
+7.879749347017384e-9
+Downloaded: 13/13 KB - 121MB/s
+{
+  preventDefault: [Function: preventDefault],
+  sender: DownloadItem {
+    pause: [Function: pause],
+    isPaused: [Function: isPaused],
+    resume: [Function: resume],
+    canResume: [Function: canResume],
+    cancel: [Function: cancel],
+    getReceivedBytes: [Function: getReceivedBytes],
+    getTotalBytes: [Function: getTotalBytes],
+    getMimeType: [Function: getMimeType],
+    hasUserGesture: [Function: hasUserGesture],
+    getFilename: [Function: getFilename],
+    getContentDisposition: [Function: getContentDisposition],
+    getURL: [Function: getURL],
+    getURLChain: [Function: getURLChain],
+    getState: [Function: getState],
+    isDone: [Function: isDone],
+    setSavePath: [Function: setSavePath],
+    getSavePath: [Function: getSavePath],
+    savePath: [Getter/Setter],
+    setSaveDialogOptions: [Function: setSaveDialogOptions],
+    getSaveDialogOptions: [Function: getSaveDialogOptions],
+    getLastModifiedTime: [Function: getLastModifiedTime],
+    getETag: [Function: getETag],
+    getStartTime: [Function: getStartTime],
+    _events: [Object: null prototype] { updated: [Array], done: [Array] },
+    _eventsCount: 2
+  }
+} progressing
+Received bytes: 13388
+Total bytes: 13388
+Progress: 100%
+{ size: 121, unit: 'MB' }
+7.879749347008108e-9
+Downloaded: 13/13 KB - 121MB/s
+{
+  preventDefault: [Function: preventDefault],
+  sender: DownloadItem {
+    pause: [Function: pause],
+    isPaused: [Function: isPaused],
+    resume: [Function: resume],
+    canResume: [Function: canResume],
+    cancel: [Function: cancel],
+    getReceivedBytes: [Function: getReceivedBytes],
+    getTotalBytes: [Function: getTotalBytes],
+    getMimeType: [Function: getMimeType],
+    hasUserGesture: [Function: hasUserGesture],
+    getFilename: [Function: getFilename],
+    getContentDisposition: [Function: getContentDisposition],
+    getURL: [Function: getURL],
+    getURLChain: [Function: getURLChain],
+    getState: [Function: getState],
+    isDone: [Function: isDone],
+    setSavePath: [Function: setSavePath],
+    getSavePath: [Function: getSavePath],
+    savePath: [Getter/Setter],
+    setSaveDialogOptions: [Function: setSaveDialogOptions],
+    getSaveDialogOptions: [Function: getSaveDialogOptions],
+    getLastModifiedTime: [Function: getLastModifiedTime],
+    getETag: [Function: getETag],
+    getStartTime: [Function: getStartTime],
+    _events: [Object: null prototype] { updated: [Array], done: [Array] },
+    _eventsCount: 2
+  }
+} progressing
+Received bytes: 13388
+Total bytes: 13388
+Progress: 100%
+{ size: 121, unit: 'MB' }
+7.87974934070538e-9
+Downloaded: 13/13 KB - 121MB/s
+{
+  preventDefault: [Function: preventDefault],
+  sender: DownloadItem {
+    pause: [Function: pause],
+    isPaused: [Function: isPaused],
+    resume: [Function: resume],
+    canResume: [Function: canResume],
+    cancel: [Function: cancel],
+    getReceivedBytes: [Function: getReceivedBytes],
+    getTotalBytes: [Function: getTotalBytes],
+    getMimeType: [Function: getMimeType],
+    hasUserGesture: [Function: hasUserGesture],
+    getFilename: [Function: getFilename],
+    getContentDisposition: [Function: getContentDisposition],
+    getURL: [Function: getURL],
+    getURLChain: [Function: getURLChain],
+    getState: [Function: getState],
+    isDone: [Function: isDone],
+    setSavePath: [Function: setSavePath],
+    getSavePath: [Function: getSavePath],
+    savePath: [Getter/Setter],
+    setSaveDialogOptions: [Function: setSaveDialogOptions],
+    getSaveDialogOptions: [Function: getSaveDialogOptions],
+    getLastModifiedTime: [Function: getLastModifiedTime],
+    getETag: [Function: getETag],
+    getStartTime: [Function: getStartTime],
+    _events: [Object: null prototype] { updated: [Array], done: [Array] },
+    _eventsCount: 2
+  }
+} completed
+Download su

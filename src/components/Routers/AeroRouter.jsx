@@ -21,7 +21,7 @@ export default function AeroRouter({ url }) {
                     <h1>About</h1>
                 </div>
             )
-        case "downloads":
+        case "aero://downloads":
             return (
                 <DownloadPage />
             )

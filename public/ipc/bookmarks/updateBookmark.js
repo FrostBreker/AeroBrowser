@@ -4,6 +4,7 @@ const { bookmarks } = require("../../storedData");
 module.exports = {
     name: channels.UPDATE_BOOKMARK,
     once: false,
+    handler: false,
     async execute(webContents, _, data) {
         const { id, url, name } = data;
         const bookmarksData = bookmarks.get('bookmarks')

@@ -3,13 +3,14 @@ const { app, BrowserWindow, ipcMain, Menu, protocol } = require('electron');
 const isDev = require('electron-is-dev');
 const url = require('url');
 const path = require('path');
-const utils = require('./utils/utils');
+const Utils = require('./utils/utils');
 const { channels } = require('./constants');
-const { bookmarks } = require("./storedData");
+const { bookmarks, downloads } = require("./storedData");
 
 let mainWindow = null;
 let mainWebContents = null;
-utils.init(mainWindow, mainWebContents);
+const utils = new Utils();
+utils.init();
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -45,6 +46,7 @@ function createWindow() {
     : "http://127.0.0.1:3000";
 
   mainWindow.loadURL(appURL);
+
 
   // const template = [
   //   {
@@ -155,16 +157,16 @@ function setupLocalFilesNormalizerProxy() {
 app.whenReady().then(() => {
   createWindow();
   setupLocalFilesNormalizerProxy();
-
+  utils.setMainWindow(mainWindow);
   if (isDev) {
     mainWindow.webContents.openDevTools({ mode: 'detach' });
   } else {
 
   }
-
   require(`./handlers/ipcHandler`)(ipcMain, mainWebContents);
   mainWebContents.on('did-finish-load', () => {
     mainWebContents.send(channels.GET_BOOKMARKS, bookmarks.get('bookmarks'));
+    mainWebContents.send(channels.GET_DOWNLOADS, downloads.get('downloads'));
   });
 
   mainWindow.webContents.on("did-attach-webview", (_, contents) => {

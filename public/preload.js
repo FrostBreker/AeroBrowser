@@ -7,57 +7,6 @@ contextBridge.exposeInMainWorld('versions', {
     electron: () => process.versions.electron
 })
 
-//General API
-// contextBridge.exposeInMainWorld('api', {
-//     //App Emiters
-//     closeApp: (tabs) => ipcRenderer.send(channels.CLOSE_APP, tabs),
-//     minimizeApp: () => ipcRenderer.send(channels.MINIMIZE_APP),
-//     maximizeApp: () => ipcRenderer.send(channels.MAXIMIZE_APP),
-
-//     //Webview Emiters
-//     openURL: (url) => ipcRenderer.send(channels.OPEN_URL, url),
-//     openUrlInNewTab: (url) => ipcRenderer.send(channels.OPEN_URL_IN_NEW_TAB, url),
-
-//     //Webview Handlers
-//     onReloadTab: (callback) => ipcRenderer.on(channels.RELOAD_TAB, callback),
-//     onBackInTab: (callback) => ipcRenderer.on(channels.BACK_IN_TAB, callback),
-//     onPreviousInTab: (callback) => ipcRenderer.on(channels.PREVIOUS_IN_TAB, callback),
-//     onSearchInTab: (callback) => ipcRenderer.on(channels.SEARCH_IN_TAB, callback),
-//     onOpenUrlInNewTab: (callback) => ipcRenderer.on(channels.OPEN_URL_IN_NEW_TAB, callback),
-//     onOpenURLInRenderer: (callback) => ipcRenderer.on(channels.OPEN_URL_IN_RENDERER, callback),
-//     onCloseTab: (callback) => ipcRenderer.on(channels.CLOSE_TAB, callback),
-//     onOpenDevtools: (callback) => ipcRenderer.on(channels.OPEN_DEVTOOLS, callback),
-
-//     //User Handler
-//     onGetUserPreferences: (callback) => ipcRenderer.on(channels.GET_USER_PREFERENCES, callback),
-
-//     //Tabs Handlers
-//     onGetTabs: (callback) => ipcRenderer.on(channels.GET_TABS, callback)
-//     // we can also expose variables, not just functions
-// })
-
-// //Revoke general API
-// contextBridge.exposeInMainWorld("revokeApi", {
-//     //Handlers
-//     onReloadTab: () => ipcRenderer.removeAllListeners(channels.RELOAD_TAB),
-//     onBackInTab: () => ipcRenderer.removeAllListeners(channels.BACK_IN_TAB),
-//     onPreviousInTab: () => ipcRenderer.removeAllListeners(channels.PREVIOUS_IN_TAB),
-//     onSearchInTab: () => ipcRenderer.removeAllListeners(channels.SEARCH_IN_TAB),
-//     onOpenUrlInNewTab: () => ipcRenderer.removeAllListeners(channels.OPEN_URL_IN_NEW_TAB),
-//     onOpenURLInRenderer: () => ipcRenderer.removeAllListeners(channels.OPEN_URL_IN_RENDERER),
-//     onCloseTab: () => ipcRenderer.removeAllListeners(channels.CLOSE_TAB),
-//     onOpenDevtools: () => ipcRenderer.removeAllListeners(channels.OPEN_DEVTOOLS),
-
-//     //User Handler
-//     onGetUserPreferences: () => ipcRenderer.removeAllListeners(channels.GET_USER_PREFERENCES),
-
-//     //Tabs Handlers
-//     onGetTabs: () => ipcRenderer.removeAllListeners(channels.GET_TABS),
-// })
-
-// Bookmarks API
-
-
 contextBridge.exposeInMainWorld('tab', {
     onReloadTab: (callback) => ipcRenderer.on(channels.RELOAD_TAB, callback),
     onBackInTab: (callback) => ipcRenderer.on(channels.BACK_IN_TAB, callback),
@@ -66,6 +15,8 @@ contextBridge.exposeInMainWorld('tab', {
     onOpenUrlInNewTab: (callback) => ipcRenderer.on(channels.OPEN_URL_IN_NEW_TAB, callback),
     // onCloseTab: (callback) => ipcRenderer.on(channels.CLOSE_TAB, callback),
     onOpenDevtools: (callback) => ipcRenderer.on(channels.OPEN_DEVTOOLS, callback),
+    loadURL: (url) => ipcRenderer.send(channels.LOAD_URL, url),
+    onLoadURL: (callback) => ipcRenderer.on(channels.LOAD_URL, callback),
 })
 
 contextBridge.exposeInMainWorld('revokedTab', {
@@ -76,6 +27,7 @@ contextBridge.exposeInMainWorld('revokedTab', {
     onOpenUrlInNewTab: () => ipcRenderer.removeAllListeners(channels.OPEN_URL_IN_NEW_TAB),
     // onCloseTab: () => ipcRenderer.removeAllListeners(channels.CLOSE_TAB),
     onOpenDevtools: () => ipcRenderer.removeAllListeners(channels.OPEN_DEVTOOLS),
+    onLoadURL: () => ipcRenderer.removeAllListeners(channels.LOAD_URL),
 })
 
 contextBridge.exposeInMainWorld('bookmarks', {
@@ -94,6 +46,22 @@ contextBridge.exposeInMainWorld('revokedBookmarks', {
     onGetBookmarks: () => ipcRenderer.removeAllListeners(channels.GET_BOOKMARKS),
 })
 
+// Downloads API
+contextBridge.exposeInMainWorld('downloads', {
+    getDownloads: async (count) => { const data = await ipcRenderer.invoke(channels.GET_DOWNLOADS, count); return data },
+    // onGetDownloads: (callback) => ipcRenderer.on(channels.GET_DOWNLOADS, callback),
+    onAddDownload: (callback) => ipcRenderer.on(channels.ADD_DOWNLOAD, callback),
+    onUpdateDownload: (callback) => ipcRenderer.on(channels.UPDATE_DOWNLOAD, callback),
+    removeDownload: (download) => ipcRenderer.send(channels.REMOVE_DOWNLOAD, download),
+})
+
+// Revoke Downloads API
+contextBridge.exposeInMainWorld('revokedDownloads', {
+    // onGetDownloads: () => ipcRenderer.removeAllListeners(channels.GET_DOWNLOADS),
+    onAddDownload: () => ipcRenderer.removeAllListeners(channels.ADD_DOWNLOAD),
+    onUpdateDownload: () => ipcRenderer.removeAllListeners(channels.UPDATE_DOWNLOAD),
+})
+
 // History API
 // contextBridge.exposeInMainWorld('history', {
 //     getHistory: () => ipcRenderer.invoke(channels.GET_HISTORY),
@@ -102,13 +70,7 @@ contextBridge.exposeInMainWorld('revokedBookmarks', {
 //     updateHistory: (history) => ipcRenderer.invoke(channels.UPDATE_HISTORY, history),
 // })
 
-// Downloads API
-// contextBridge.exposeInMainWorld('downloads', {
-//     getDownloads: () => ipcRenderer.invoke(channels.GET_DOWNLOADS),
-//     addDownload: (download) => ipcRenderer.invoke(channels.ADD_DOWNLOAD, download),
-//     removeDownload: (download) => ipcRenderer.invoke(channels.REMOVE_DOWNLOAD, download),
-//     updateDownload: (download) => ipcRenderer.invoke(channels.UPDATE_DOWNLOAD, download),
-// })
+
 
 // Tabs API
 // contextBridge.exposeInMainWorld('tabs', {

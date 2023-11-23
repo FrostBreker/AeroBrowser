@@ -119,3 +119,5 @@
             - Add Download Manager folder
                 - Add Download Page Component
             - Change Searchbar components to handle multiple url to <Router /> With redux
+            - Add Download Button in TopBar
+            - Add LoadURL event in IPC
