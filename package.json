@@ -72,16 +72,11 @@
     }
   ],
   "devDependencies": {
-    "@sentry/electron": "^4.3.0",
-    "@sentry/tracing": "^7.44.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "dotenv": "^16.0.3",
     "electron": "^23.1.4",
     "electron-builder": "^24.2.1",
-    "electron-dl": "^3.5.0",
-    "electron-is-dev": "^2.0.0",
     "react": "^16.13.1",
     "react-contextmenu": "^2.14.0",
     "react-dom": "^16.13.1",
@@ -90,7 +85,14 @@
     "redux": "^4.2.1",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.2",
-    "sass": "^1.58.3",
+    "sass": "^1.58.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "@sentry/electron": "^4.3.0",
+    "@sentry/tracing": "^7.44.2",
+    "electron-dl": "^3.5.0",
+    "electron-is-dev": "^2.0.0",
     "update-electron-app": "^2.0.1"
   }
 }
