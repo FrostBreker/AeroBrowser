@@ -113,7 +113,7 @@
         - Modals
         - Bookmark
             - Update Bookmark with Modal
-        In PR #23
+        In PR #25
         - Download Manager 
             - NPM: Electron-dl
             - Add Download Manager folder
