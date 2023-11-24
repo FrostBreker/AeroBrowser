@@ -1,3 +1,6 @@
+const path = require('path');
+const os = require('os');
+
 module.exports = {
   channels: {
     // Tabs
@@ -18,5 +21,8 @@ module.exports = {
     ADD_DOWNLOAD: 'ADD_DOWNLOAD',
     REMOVE_DOWNLOAD: 'REMOVE_DOWNLOAD',
     UPDATE_DOWNLOAD: 'UPDATE_DOWNLOAD'
+  },
+  folders: {
+    logsFolder: path.join(os.homedir(), '.aero', 'logs')
   }
 }

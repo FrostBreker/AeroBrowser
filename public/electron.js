@@ -1,18 +1,21 @@
 require('dotenv').config({ path: __dirname + '/.env' })
-const { app, BrowserWindow, ipcMain, Menu, protocol } = require('electron')
+const { app, BrowserWindow, ipcMain, protocol } = require('electron')
 const isDev = require('electron-is-dev')
 const url = require('url')
 const path = require('path')
 const Utils = require('./utils/utils')
 const { channels } = require('./constants')
 const { bookmarks, downloads } = require('./storedData')
+const CustomConsole = require('./classes/CustomConsole')
+
+const customConsole = new CustomConsole();
 
 let mainWindow = null
 let mainWebContents = null
 const utils = new Utils()
 utils.init()
 
-function createWindow () {
+function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1024,
     height: 728,
@@ -46,101 +49,9 @@ function createWindow () {
     : 'http://127.0.0.1:3000'
 
   mainWindow.loadURL(appURL)
-
-  // const template = [
-  //   {
-  //     label: 'My App',
-  //     submenu: [
-  //       {
-  //         label: 'Open DevTools CommandOrControl+Shift+J',
-  //         accelerator: 'CommandOrControl+Shift+I',
-  //         click: () => {
-  //           mainWebContents.send(channels.OPEN_DEVTOOLS);
-  //         },
-  //       },
-  //       {
-  //         label: 'Open DevTools F12',
-  //         accelerator: 'F12',
-  //         click: () => {
-  //           mainWebContents.send(channels.OPEN_DEVTOOLS);
-  //         },
-  //       },
-  //       {
-  //         label: 'Open DevTools CommandOrControl+Shift+I',
-  //         accelerator: 'CommandOrControl+Shift+I',
-  //         click: () => {
-  //           mainWebContents.send(channels.OPEN_DEVTOOLS);
-  //         },
-  //       },
-  //       {
-  //         label: 'Reload F5',
-  //         accelerator: 'F5',
-  //         click: () => {
-  //           mainWebContents.send(channels.RELOAD_TAB);
-  //         },
-  //       },
-  //       {
-  //         label: 'Back Alt+Left',
-  //         accelerator: 'Alt+Left',
-  //         click: () => {
-  //           mainWebContents.send(channels.BACK_IN_TAB);
-  //         },
-  //       },
-  //       {
-  //         label: 'Previous Alt+Right',
-  //         accelerator: 'Alt+Right',
-  //         click: () => {
-  //           mainWebContents.send(channels.PREVIOUS_IN_TAB);
-  //         },
-  //       },
-  //       {
-  //         label: 'Search CommandOrControl+F',
-  //         accelerator: 'CommandOrControl+F',
-  //         click: () => {
-  //           mainWebContents.send(channels.SEARCH_IN_TAB);
-  //         },
-  //       },
-  //       {
-  //         label: 'Open URL in New Tab CommandOrControl+T',
-  //         accelerator: 'CommandOrControl+T',
-  //         click: () => {
-  //           mainWebContents.send(channels.OPEN_URL_IN_NEW_TAB, {
-  //             url: undefined,
-  //             active: true
-  //           });
-  //         },
-  //       },
-  //       {
-  //         label: 'Close Tab CommandOrControl+W',
-  //         accelerator: 'CommandOrControl+W',
-  //         click: () => {
-  //           mainWebContents.send(channels.CLOSE_TAB);
-  //         },
-  //       },
-  //       // {
-  //       //   label: 'Reopen Tab CommandOrControl+Shift+T',
-  //       //   accelerator: 'CommandOrControl+Shift+T',
-  //       //   click: () => {
-  //       //     mainWebContents.send("reopen-tab");
-  //       //   },
-  //       // },
-  //       // {
-  //       //   label: 'Next Tab CommandOrControl+Tab',
-  //       //   accelerator: 'CommandOrControl+Tab',
-  //       //   click: () => {
-  //       //     mainWebContents.send("next-tab");
-  //       //   },
-  //       // },
-
-  //     ],
-  //   },
-  // ];
-
-  // const menu = Menu.buildFromTemplate(template);
-  // Menu.setApplicationMenu(menu);
 }
 
-function setupLocalFilesNormalizerProxy () {
+function setupLocalFilesNormalizerProxy() {
   protocol.registerHttpProtocol(
     'file',
     (request, callback) => {
@@ -153,6 +64,22 @@ function setupLocalFilesNormalizerProxy () {
   )
 }
 
+function loadEvents() {
+  //BOOKMARKS
+  console.log(`[EVENTS] --> Load [✅] : ${channels.ADD_BOOKMARK}`);
+  ipcMain.on(channels.ADD_BOOKMARK, (...args) => require("./ipc/bookmarks/addBookmark").execute(mainWebContents, ...args))
+  console.log(`[EVENTS] --> Load [✅] : ${channels.REMOVE_BOOKMARK}`);
+  ipcMain.on(channels.REMOVE_BOOKMARK, (...args) => require("./ipc/bookmarks/removeBookmark").execute(mainWebContents, ...args))
+  console.log(`[EVENTS] --> Load [✅] : ${channels.UPDATE_BOOKMARK}`);
+  ipcMain.on(channels.UPDATE_BOOKMARK, (...args) => require("./ipc/bookmarks/updateBookmark").execute(mainWebContents, ...args))
+  //DOWNLOADS
+  console.log(`[EVENTS] --> Load [✅] : ${channels.GET_DOWNLOADS}`);
+  ipcMain.handle(channels.GET_DOWNLOADS, (...args) => require("./ipc/downloads/getDownloads").execute(mainWebContents, ...args))
+  //TABS
+  console.log(`[EVENTS] --> Load [✅] : ${channels.LOAD_URL}`);
+  ipcMain.on(channels.LOAD_URL, (...args) => require("./ipc/tabs/loadURL").execute(mainWebContents, ...args))
+}
+
 app.whenReady().then(() => {
   createWindow()
   setupLocalFilesNormalizerProxy()
@@ -162,7 +89,7 @@ app.whenReady().then(() => {
   } else {
 
   }
-  require('./handlers/ipcHandler')(ipcMain, mainWebContents)
+  loadEvents()
   mainWebContents.on('did-finish-load', () => {
     mainWebContents.send(channels.GET_BOOKMARKS, bookmarks.get('bookmarks'))
     mainWebContents.send(channels.GET_DOWNLOADS, downloads.get('downloads'))
@@ -193,40 +120,4 @@ app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow()
   }
-})
-
-// app.on("session-created", (session) => {
-//   session.on("will-download", async (event, item, webContents) => {
-//     event.preventDefault();
-
-//     // Log download information
-//     console.log(
-//       'Received Bytes: ', item.getReceivedBytes(),
-//       'Total Bytes: ', item.getTotalBytes(),
-//       'Filename: ', item.getFilename(),
-//       'MIME Type: ', item.getMimeType(),
-//       'URL: ', item.getURL(),
-//       'State: ', item.getState(),
-//       'Save Path: ', item.getSavePath(),
-//       'Start Time: ', item.getStartTime(),
-//       'URL Chain: ', item.getURLChain()
-//     );
-
-//     // Start the download with electron-dl
-//     electronDl.download(BrowserWindow.getFocusedWindow(), item.getURL(), {
-//       directory: app.getPath('downloads'), // Specify the download directory
-//       onProgress: (progress) => {
-//         // You can use this callback to track download progress
-//         console.log('Download progress:', progress);
-//       },
-//       // Other options as needed
-//     })
-//       .then((dl) => {
-//         // The download has started
-//         console.log('Download started:', dl);
-//       })
-//       .catch((error) => {
-//         console.error('Download error:', error);
-//       });
-//   });
-// });
+});

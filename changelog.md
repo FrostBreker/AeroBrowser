@@ -121,3 +121,13 @@
             - Change Searchbar components to handle multiple url to <Router /> With redux
             - Add Download Button in TopBar
             - Add LoadURL event in IPC
+
+## 0.2.2:
+    - Fix:
+        Flash FIX:
+            - Fix the IPC loader
+    - Add:
+        - Add Deepsource
+        - Add Folder in constants
+        - Add --> Start implementing LogsManager
+

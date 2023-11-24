@@ -6,7 +6,7 @@
   "homepage": "./",
   "author": {
     "name": "FrostBreker",
-    "url": "https://github.com/FrostBreker/Aero",
+    "url": "https://github.com/FrostBreker/AeroBrowser",
     "email": "frostbreker@github.com"
   },
   "description": "Aero is a simple and lightweight web browser for Windows, Mac and Linux. It is built with Electron, React and Redux.",
@@ -26,7 +26,9 @@
     "files": [
       "build/**/*",
       "node_modules/**/*",
-      "package.json"
+      "package.json",
+      "ipc/**/*",
+      "classes/**/*"
     ],
     "directories": {
       "buildResources": "public"
