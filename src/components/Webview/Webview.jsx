@@ -1,28 +1,28 @@
-import React, { useRef, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { addWebview, toggleWebview } from '../../actions/tabs.actions';
+import React, { useRef, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { addWebview, toggleWebview } from '../../actions/tabs.actions'
 
 const WebView = ({ tabId, defaultURL }) => {
-    const webviewRef = useRef(null);
-    const dispatch = useDispatch();
+  const webviewRef = useRef(null)
+  const dispatch = useDispatch()
 
-    useEffect(() => {
-        webviewRef.current.addEventListener('dom-ready', () => {
-            dispatch(addWebview(tabId, webviewRef.current));
-            dispatch(toggleWebview(tabId, true));
-        }, { once: true });
-    }, [dispatch, tabId, defaultURL]);
+  useEffect(() => {
+    webviewRef.current.addEventListener('dom-ready', () => {
+      dispatch(addWebview(tabId, webviewRef.current))
+      dispatch(toggleWebview(tabId, true))
+    }, { once: true })
+  }, [dispatch, tabId, defaultURL])
 
-    return (
-        <webview
-            ref={webviewRef}
-            src={defaultURL}
-            className='webview'
-            plugins="true"
-            allowpopups="true"
-            key={tabId}
-        ></webview>
-    );
-};
+  return (
+    <webview
+      ref={webviewRef}
+      src={defaultURL}
+      className='webview'
+      plugins='true'
+      allowpopups='true'
+      key={tabId}
+    />
+  )
+}
 
-export default WebView;
+export default WebView

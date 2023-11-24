@@ -1,18 +1,18 @@
-require("dotenv").config({ path: __dirname + '/.env' });
-const { app, BrowserWindow, ipcMain, Menu, protocol } = require('electron');
-const isDev = require('electron-is-dev');
-const url = require('url');
-const path = require('path');
-const Utils = require('./utils/utils');
-const { channels } = require('./constants');
-const { bookmarks, downloads } = require("./storedData");
+require('dotenv').config({ path: __dirname + '/.env' })
+const { app, BrowserWindow, ipcMain, Menu, protocol } = require('electron')
+const isDev = require('electron-is-dev')
+const url = require('url')
+const path = require('path')
+const Utils = require('./utils/utils')
+const { channels } = require('./constants')
+const { bookmarks, downloads } = require('./storedData')
 
-let mainWindow = null;
-let mainWebContents = null;
-const utils = new Utils();
-utils.init();
+let mainWindow = null
+let mainWebContents = null
+const utils = new Utils()
+utils.init()
 
-function createWindow() {
+function createWindow () {
   mainWindow = new BrowserWindow({
     width: 1024,
     height: 728,
@@ -31,22 +31,21 @@ function createWindow() {
       symbolColor: 'white',
       height: 39
     },
-    titleBarStyle: 'hidden',
-  });
-  mainWebContents = mainWindow.webContents;
+    titleBarStyle: 'hidden'
+  })
+  mainWebContents = mainWindow.webContents
 
-  mainWindow.removeMenu();
+  mainWindow.removeMenu()
 
   const appURL = app.isPackaged
     ? url.format({
-      pathname: path.join(__dirname, "index.html"),
-      protocol: "file:",
-      slashes: true,
+      pathname: path.join(__dirname, 'index.html'),
+      protocol: 'file:',
+      slashes: true
     })
-    : "http://127.0.0.1:3000";
+    : 'http://127.0.0.1:3000'
 
-  mainWindow.loadURL(appURL);
-
+  mainWindow.loadURL(appURL)
 
   // const template = [
   //   {
@@ -141,44 +140,44 @@ function createWindow() {
   // Menu.setApplicationMenu(menu);
 }
 
-function setupLocalFilesNormalizerProxy() {
+function setupLocalFilesNormalizerProxy () {
   protocol.registerHttpProtocol(
-    "file",
+    'file',
     (request, callback) => {
-      const url = request.url.substr(8);
-      callback({ path: path.normalize(`${__dirname}/${url}`) });
+      const url = request.url.substr(8)
+      callback({ path: path.normalize(`${__dirname}/${url}`) })
     },
     (error) => {
-      if (error) console.error("Failed to register protocol");
+      if (error) console.error('Failed to register protocol')
     }
-  );
+  )
 }
 
 app.whenReady().then(() => {
-  createWindow();
-  setupLocalFilesNormalizerProxy();
-  utils.setMainWindow(mainWindow);
+  createWindow()
+  setupLocalFilesNormalizerProxy()
+  utils.setMainWindow(mainWindow)
   if (isDev) {
-    mainWindow.webContents.openDevTools({ mode: 'detach' });
+    mainWindow.webContents.openDevTools({ mode: 'detach' })
   } else {
 
   }
-  require(`./handlers/ipcHandler`)(ipcMain, mainWebContents);
+  require('./handlers/ipcHandler')(ipcMain, mainWebContents)
   mainWebContents.on('did-finish-load', () => {
-    mainWebContents.send(channels.GET_BOOKMARKS, bookmarks.get('bookmarks'));
-    mainWebContents.send(channels.GET_DOWNLOADS, downloads.get('downloads'));
-  });
+    mainWebContents.send(channels.GET_BOOKMARKS, bookmarks.get('bookmarks'))
+    mainWebContents.send(channels.GET_DOWNLOADS, downloads.get('downloads'))
+  })
 
-  mainWindow.webContents.on("did-attach-webview", (_, contents) => {
+  mainWindow.webContents.on('did-attach-webview', (_, contents) => {
     contents.setWindowOpenHandler((details) => {
       mainWebContents.send(channels.OPEN_URL_IN_NEW_TAB, {
         url: details.url,
-        active: details.disposition === 'foreground-tab' ? true : false
-      });
+        active: details.disposition === 'foreground-tab'
+      })
       return { action: 'deny' }
     })
   })
-});
+})
 
 app.on('will-quit', () => {
 
@@ -186,15 +185,15 @@ app.on('will-quit', () => {
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    app.quit();
+    app.quit()
   }
-});
+})
 
 app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow();
+    createWindow()
   }
-});
+})
 
 // app.on("session-created", (session) => {
 //   session.on("will-download", async (event, item, webContents) => {
