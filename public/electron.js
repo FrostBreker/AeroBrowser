@@ -8,14 +8,14 @@ const { channels } = require('./constants')
 const { bookmarks, downloads } = require('./storedData')
 const CustomConsole = require('./classes/CustomConsole')
 
-const customConsole = new CustomConsole();
+const customConsole = new CustomConsole()
 
 let mainWindow = null
 let mainWebContents = null
 const utils = new Utils()
 utils.init()
 
-function createWindow() {
+function createWindow () {
   mainWindow = new BrowserWindow({
     width: 1024,
     height: 728,
@@ -51,7 +51,7 @@ function createWindow() {
   mainWindow.loadURL(appURL)
 }
 
-function setupLocalFilesNormalizerProxy() {
+function setupLocalFilesNormalizerProxy () {
   protocol.registerHttpProtocol(
     'file',
     (request, callback) => {
@@ -64,20 +64,20 @@ function setupLocalFilesNormalizerProxy() {
   )
 }
 
-function loadEvents() {
-  //BOOKMARKS
-  console.log(`[EVENTS] --> Load [✅] : ${channels.ADD_BOOKMARK}`);
-  ipcMain.on(channels.ADD_BOOKMARK, (...args) => require("./ipc/bookmarks/addBookmark").execute(mainWebContents, ...args))
-  console.log(`[EVENTS] --> Load [✅] : ${channels.REMOVE_BOOKMARK}`);
-  ipcMain.on(channels.REMOVE_BOOKMARK, (...args) => require("./ipc/bookmarks/removeBookmark").execute(mainWebContents, ...args))
-  console.log(`[EVENTS] --> Load [✅] : ${channels.UPDATE_BOOKMARK}`);
-  ipcMain.on(channels.UPDATE_BOOKMARK, (...args) => require("./ipc/bookmarks/updateBookmark").execute(mainWebContents, ...args))
-  //DOWNLOADS
-  console.log(`[EVENTS] --> Load [✅] : ${channels.GET_DOWNLOADS}`);
-  ipcMain.handle(channels.GET_DOWNLOADS, (...args) => require("./ipc/downloads/getDownloads").execute(mainWebContents, ...args))
-  //TABS
-  console.log(`[EVENTS] --> Load [✅] : ${channels.LOAD_URL}`);
-  ipcMain.on(channels.LOAD_URL, (...args) => require("./ipc/tabs/loadURL").execute(mainWebContents, ...args))
+function loadEvents () {
+  // BOOKMARKS
+  console.log(`[EVENTS] --> Load [✅] : ${channels.ADD_BOOKMARK}`)
+  ipcMain.on(channels.ADD_BOOKMARK, (...args) => require('./ipc/bookmarks/addBookmark').execute(mainWebContents, ...args))
+  console.log(`[EVENTS] --> Load [✅] : ${channels.REMOVE_BOOKMARK}`)
+  ipcMain.on(channels.REMOVE_BOOKMARK, (...args) => require('./ipc/bookmarks/removeBookmark').execute(mainWebContents, ...args))
+  console.log(`[EVENTS] --> Load [✅] : ${channels.UPDATE_BOOKMARK}`)
+  ipcMain.on(channels.UPDATE_BOOKMARK, (...args) => require('./ipc/bookmarks/updateBookmark').execute(mainWebContents, ...args))
+  // DOWNLOADS
+  console.log(`[EVENTS] --> Load [✅] : ${channels.GET_DOWNLOADS}`)
+  ipcMain.handle(channels.GET_DOWNLOADS, (...args) => require('./ipc/downloads/getDownloads').execute(mainWebContents, ...args))
+  // TABS
+  console.log(`[EVENTS] --> Load [✅] : ${channels.LOAD_URL}`)
+  ipcMain.on(channels.LOAD_URL, (...args) => require('./ipc/tabs/loadURL').execute(mainWebContents, ...args))
 }
 
 app.whenReady().then(() => {
@@ -120,4 +120,4 @@ app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow()
   }
-});
+})
