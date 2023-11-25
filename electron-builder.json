@@ -7,7 +7,8 @@
         "node_modules/**/*",
         "package.json",
         "ipc/**/*",
-        "classes/**/*"
+        "classes/*",
+        "icons/*",
     ],
     "directories": {
         "buildResources": "public"
@@ -40,13 +41,22 @@
     "linux": {
         "maintainer": "FrostBreker",
         "vendor": "FrostBreker",
-        "synopsis": "Aero is a simple and lightweight web browser for Windows, Mac and Linux. It is built with Electron, React and Redux.",
+        "synopsis": "AeroBrowser",
         "description": "Aero is a simple and lightweight web browser for Windows, Mac and Linux. It is built with Electron, React and Redux.",
         "category": "Network",
-        "icon": "public/icon.png",
+        "icon": "public/icons/",
         "mimeTypes": [
             "text/html"
         ],
+        "executableName": "aero",
+        "desktop": {
+            "Name": "Aero",
+            "Comment": "AeroBrowser",
+            "Icon": "fr.frostbreker.aero",
+            "Keywords":["browser", "web", "internet"],
+            "StartupNotify": true,
+            "Terminal": false
+        },
         "target": [
             {
                 "target": "AppImage",
@@ -90,23 +100,18 @@
     },
     "deb": {
         "artifactName": "Aero_${version}_${arch}.${ext}",
-        "icon": "public/icon.png",
-        "maintainer": "FrostBreker",
-        "vendor": "FrostBreker",
-        "synopsis": "Aero is a simple and lightweight web browser for Windows, Mac and Linux. It is built with Electron, React and Redux.",
-        "description": "Aero is a simple and lightweight web browser for Windows, Mac and Linux. It is built with Electron, React and Redux.",
         "category": "Network",
         "mimeTypes": [
             "text/html"
-        ]
+        ],
+        "depends": ["gconf2", "gconf-service", "libnotify4", "libappindicator1", "libxtst6", "libnss3"],
+        "packageCategory": "network",
+        "packageName": "Aero",
+        "vendor": "FrostBreker",
+        "maintainer": "FrostBreker",
     },
     "rpm": {
         "artifactName": "Aero_${version}_${arch}.${ext}",
-        "icon": "public/icon.png",
-        "maintainer": "FrostBreker",
-        "vendor": "FrostBreker",
-        "synopsis": "Aero is a simple and lightweight web browser for Windows, Mac and Linux. It is built with Electron, React and Redux.",
-        "description": "Aero is a simple and lightweight web browser for Windows, Mac and Linux. It is built with Electron, React and Redux.",
         "category": "Network",
         "mimeTypes": [
             "text/html"

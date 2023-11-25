@@ -1,9 +1,19 @@
 {
   "name": "aero",
+  "displayName": "Aero",
+  "icon": "public/icon.png",
+  "maintainers": [
+    {
+      "name": "FrostBreker",
+      "url": "https://github.com/FrostBreker/AeroBrowser",
+      "email": "frostbreker@github.com"
+    }
+  ],
+  "license": "MIT",
   "version": "0.2.2-alpha",
   "private": true,
   "main": "public/electron.js",
-  "homepage": "./",
+  "homepage": "https://github.com/FrostBreker/AeroBrowser",
   "author": {
     "name": "FrostBreker",
     "url": "https://github.com/FrostBreker/AeroBrowser",
