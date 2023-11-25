@@ -5,10 +5,11 @@ import BookmarkMenu from '../Bookmark/BookmarkMenu'
 import { addTab } from '../../actions/tabs.actions'
 import ModalIndex from '../Modals/ModalsIndex'
 
-export default function RouterManager ({ showBookmarksMenu }) {
+export default function RouterManager({ showBookmarksMenu }) {
   const tabs = useSelector(state => state.tabsReducer)
   const dispatch = useDispatch()
-  const [activeTab, setActiveTab] = useState(null)
+  // eslint-disable-next-line 
+  const [activeTabGetter, setActiveTab] = useState(null)
 
   const [showModals, setShowModals] = useState(false)
   const [modalConfig, setModalConfig] = useState({})
@@ -61,10 +62,10 @@ export default function RouterManager ({ showBookmarksMenu }) {
       <BookmarkMenu showBookmarksMenu={showBookmarksMenu} handleOpenWebsite={handleOpenWebsite} handleOpenNewTabFromBookmark={handleOpenNewTabFromBookmark} handleShowModals={handleShowModals} />
       <ModalIndex showModals={showModals} handleShowModals={handleShowModals} type={modalConfig.type} data={modalConfig.data} />
       {
-                tabs.map(tab => (
-                  <Router tabId={tab.id} isActive={tab.isActive} key={tab.id} tab={tab} />
-                ))
-            }
+        tabs.map(tab => (
+          <Router tabId={tab.id} isActive={tab.isActive} key={tab.id} tab={tab} />
+        ))
+      }
     </div>
   )
 }

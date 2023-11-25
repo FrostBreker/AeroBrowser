@@ -20,37 +20,6 @@
     "electron:package:win": "npm run build && electron-builder -w -c.extraMetadata.main=build/electron.js",
     "electron:package:linux": "npm run build && electron-builder -l -c.extraMetadata.main=build/electron.js"
   },
-  "build": {
-    "appId": "fr.frostbreker.aero",
-    "productName": "Aero",
-    "files": [
-      "build/**/*",
-      "node_modules/**/*",
-      "package.json",
-      "ipc/**/*",
-      "classes/**/*"
-    ],
-    "directories": {
-      "buildResources": "public"
-    },
-    "mac": {
-      "target": "dmg"
-    },
-    "win": {
-      "target": "nsis"
-    },
-    "nsis": {
-      "oneClick": false,
-      "perMachine": false,
-      "allowToChangeInstallationDirectory": true
-    },
-    "linux": {
-      "target": "deb"
-    },
-    "deb": {},
-    "artifactName": "Aero_${version}_Setup.${ext}",
-    "forceCodeSigning": false
-  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -90,9 +59,9 @@
     "sass": "^1.58.3"
   },
   "dependencies": {
-    "dotenv": "^16.3.1",
     "@sentry/electron": "^4.3.0",
     "@sentry/tracing": "^7.44.2",
+    "dotenv": "^16.3.1",
     "electron-dl": "^3.5.0",
     "electron-is-dev": "^2.0.0",
     "update-electron-app": "^2.0.1"

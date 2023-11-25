@@ -1,0 +1,79 @@
+{
+    "appId": "fr.frostbreker.aero",
+    "productName": "Aero",
+    "copyright": "Copyright (c) 2023 FrostBreker",
+    "files": [
+        "build/**/*",
+        "node_modules/**/*",
+        "package.json",
+        "ipc/**/*",
+        "classes/**/*"
+    ],
+    "directories": {
+        "buildResources": "public"
+    },
+    "win": {
+        "target": [
+            {
+                "target": "nsis",
+                "arch": [
+                    "x64",
+                    "ia32"
+                ]
+            }
+        ],
+        "icon": "public/icon.ico"
+    },
+    "mac": {
+        "target": [
+            {
+                "target": "dmg",
+                "arch": [
+                    "x64",
+                    "arm64"
+                ]
+            }
+        ],
+        "category": "public.build.network",
+        "icon": "public/icon.icns"
+    },
+    "linux": {
+        "maintainer": "FrostBreker",
+        "vendor": "FrostBreker",
+        "synopsis": "Aero is a simple and lightweight web browser for Windows, Mac and Linux. It is built with Electron, React and Redux.",
+        "description": "Aero is a simple and lightweight web browser for Windows, Mac and Linux. It is built with Electron, React and Redux.",
+        "category": "Network",
+        "icon": "public/icon.png",
+        "mimeTypes": [
+            "text/html"
+        ],
+        "target": [
+            {
+                "target": "AppImage",
+                "arch": [
+                    "x64",
+                    "armv7l"
+                ]
+            }
+        ]
+    },
+    "nsis": {
+        "oneClick": false,
+        "perMachine": false,
+        "allowToChangeInstallationDirectory": true,
+        "installerIcon": "public/icon.ico",
+        "uninstallerIcon": "public/icon.ico"
+    },
+    "portable": {
+        "artifactName": "Aero_${version}_${os}.${ext}"
+    },
+    "appx": {
+        "applicationId": "fr.frostbreker.aero",
+        "backgroundColor": "#000000",
+        "identityName": "frostbreker.aero",
+        "publisherDisplayName": "FrostBreker",
+        "artifactName": "Aero_${version}_${os}.${ext}"
+    },
+    "artifactName": "Aero_${version}_${os}.${ext}",
+    "forceCodeSigning": false
+}

@@ -3,7 +3,7 @@ import { CloseIcon, SoundIcon, SoundMuteIcon } from '../UI/Icons'
 import { useDispatch } from 'react-redux'
 import { removeTab, tabClick, updateFavicon } from '../../actions/tabs.actions'
 
-export default function Tab ({ tab }) {
+export default function Tab({ tab }) {
   const dispatch = useDispatch()
 
   const [isLoading, setIsLoading] = useState(false)
@@ -26,8 +26,8 @@ export default function Tab ({ tab }) {
     if (tab) {
       if (tab.webview !== null) {
         const w = tab.webview
-        dispatch(updateFavicon(tab.id, tab.url === '' ? tab.favicon : './favicon.ico'))
-        setFavicon(tab.url === '' ? tab.favicon : './favicon.ico')
+        dispatch(updateFavicon(tab.id, tab.url === '' ? tab.favicon : './icon.ico'))
+        setFavicon(tab.url === '' ? tab.favicon : './icon.ico')
         setTabTitle(tab.url === '' ? w.getTitle() : tab.url)
         w.addEventListener('page-title-updated', (e) => {
           setTabTitle(e.title)
@@ -35,7 +35,7 @@ export default function Tab ({ tab }) {
 
         w.addEventListener('page-favicon-updated', (e) => {
           if (e.favicons.length === 0) {
-            setFavicon('./favicon.ico')
+            setFavicon('./icon.ico')
           } else {
             setFavicon(e.favicons[0])
             dispatch(updateFavicon(tab.id, e.favicons[0]))
@@ -90,8 +90,8 @@ export default function Tab ({ tab }) {
     <div className={`tab ${tab.isActive ? '' : 'inactive'}`} onClick={() => handleTabClick(tab.id)} key={tab.id} id='tab'>
       <button className='sound' onClick={handleMutedSound}>
         {
-                    isPlayingSound && !isAudioMuted ? <SoundIcon /> : isPlayingSound && isAudioMuted ? <SoundMuteIcon /> : null
-                }
+          isPlayingSound && !isAudioMuted ? <SoundIcon /> : isPlayingSound && isAudioMuted ? <SoundMuteIcon /> : null
+        }
       </button>
       {isLoading
         ? <div className='spinner'>
