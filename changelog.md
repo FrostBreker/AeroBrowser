@@ -130,4 +130,6 @@
         - Add Deepsource
         - Add Folder in constants
         - Add --> Start implementing LogsManager
+        In PR #32:
+            - Add electron-builder automatic build
 
