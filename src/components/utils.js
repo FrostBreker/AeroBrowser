@@ -27,9 +27,9 @@ export const timestampParser = (num) => {
 export const isEmpty = (value) => {
   return (
     value === undefined ||
-        value === null ||
-        (typeof value === 'object' && Object.keys(value).length === 0) ||
-        (typeof value === 'string' && value.trim().length === 0)
+    value === null ||
+    (typeof value === 'object' && Object.keys(value).length === 0) ||
+    (typeof value === 'string' && value.trim().length === 0)
   )
 }
 
@@ -67,4 +67,27 @@ export const loadTheme = (d) => {
       root_theme.style.setProperty(`--${k}`, d.items[key][k])
     })
   })
+}
+
+export const parseURL = (url) => {
+  if (/^[^/]+\.[^/]+$/.test(url)) {
+    url = 'https://' + url
+  }
+
+  // If the input looks like a valid URL, navigate to that URL.
+  if (/^(ftp|http|https|file|aero):\/\/[^ "]+$/.test(url)) {
+    const type = url.split(':')[0]
+    return {
+      url,
+      type
+    }
+  } else {
+    // Otherwise, perform a search with the default search engine.
+    const searchQuery = encodeURIComponent(url)
+    const searchUrl = `https://www.google.com/search?q=${searchQuery}`
+    return {
+      url: searchUrl,
+      type: 'webview'
+    }
+  };
 }

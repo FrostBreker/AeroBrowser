@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { RefreshIcon, AlertIcon, LockIcon, SearchIcon } from '../UI/Icons'
 import { useDispatch } from 'react-redux'
 import { toggleWebview, updateURL } from '../../actions/tabs.actions'
-export default function Searchbar ({ tab }) {
+export default function Searchbar({ tab }) {
   const [value, setValue] = useState('')
   const [tabType, setTabType] = useState('webview')
   const [isFocusing, setIsFocusing] = useState(false)
@@ -112,7 +112,8 @@ export default function Searchbar ({ tab }) {
     if (tab !== null) {
       if (tab.webview !== null) {
         const w = tab.webview
-        setValue(tab.url === '' ? w.getURL() : tab.url)
+        console.log(tab);
+        setValue(tab.isWebview ? w.getURL() : tab.url)
         w.addEventListener('did-navigate-in-page', (e) => {
           setValue(e.url)
         })

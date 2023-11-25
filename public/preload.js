@@ -16,7 +16,9 @@ contextBridge.exposeInMainWorld('tab', {
   // onCloseTab: (callback) => ipcRenderer.on(channels.CLOSE_TAB, callback),
   onOpenDevtools: (callback) => ipcRenderer.on(channels.OPEN_DEVTOOLS, callback),
   loadURL: (url) => ipcRenderer.send(channels.LOAD_URL, url),
-  onLoadURL: (callback) => ipcRenderer.on(channels.LOAD_URL, callback)
+  loadURLNewTab: (url) => ipcRenderer.send(channels.LOAD_URL_IN_NEW_TAB, url),
+  onLoadURL: (callback) => ipcRenderer.on(channels.LOAD_URL, callback),
+  onLoadURLInNewTab: (callback) => ipcRenderer.on(channels.LOAD_URL_IN_NEW_TAB, callback)
 })
 
 contextBridge.exposeInMainWorld('revokedTab', {
@@ -27,7 +29,8 @@ contextBridge.exposeInMainWorld('revokedTab', {
   onOpenUrlInNewTab: () => ipcRenderer.removeAllListeners(channels.OPEN_URL_IN_NEW_TAB),
   // onCloseTab: () => ipcRenderer.removeAllListeners(channels.CLOSE_TAB),
   onOpenDevtools: () => ipcRenderer.removeAllListeners(channels.OPEN_DEVTOOLS),
-  onLoadURL: () => ipcRenderer.removeAllListeners(channels.LOAD_URL)
+  onLoadURL: () => ipcRenderer.removeAllListeners(channels.LOAD_URL),
+  onLoadURLInNewTab: () => ipcRenderer.removeAllListeners(channels.LOAD_URL_IN_NEW_TAB)
 })
 
 contextBridge.exposeInMainWorld('bookmarks', {

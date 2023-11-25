@@ -4,8 +4,9 @@ import Router from './Router'
 import BookmarkMenu from '../Bookmark/BookmarkMenu'
 import { addTab } from '../../actions/tabs.actions'
 import ModalIndex from '../Modals/ModalsIndex'
+import { parseURL } from '../utils'
 
-export default function RouterManager ({ showBookmarksMenu }) {
+export default function RouterManager({ showBookmarksMenu }) {
   const tabs = useSelector(state => state.tabsReducer)
   const dispatch = useDispatch()
   // eslint-disable-next-line
@@ -15,9 +16,16 @@ export default function RouterManager ({ showBookmarksMenu }) {
   const [modalConfig, setModalConfig] = useState({})
 
   useEffect(() => {
+    console.log(tabs);
     const activeTab = tabs.find(tab => tab.isActive)
-    if (activeTab.webview !== null) {
+    const { tabType } = parseURL(activeTab.url)
+    if (tabType !== 'webview') {
+      console.log('aero');
       setActiveTab(activeTab)
+    } else {
+      if (activeTab.webview !== null) {
+        setActiveTab(activeTab)
+      }
     }
   }, [tabs])
 

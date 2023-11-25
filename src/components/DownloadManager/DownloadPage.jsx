@@ -4,7 +4,7 @@ import { isEmpty } from '../utils'
 import DownloadItem from './DownloadItem'
 import { getDownloads } from '../../actions/downloads.actions'
 
-export default function DownloadPage () {
+export default function DownloadPage() {
   const [loadDownload, setLoadDownload] = useState(true)
   const [count, setCount] = useState(5)
   const downloads = useSelector(state => state.downloadsReducer)
@@ -25,9 +25,7 @@ export default function DownloadPage () {
 
   return (
     <div className='download-page'>
-      {
-                !isEmpty(downloads) ? downloads.sort((a, b) => b.startTime - a.startTime).map((item, index) => <DownloadItem key={index} item={item} />) : <p className='no-download'>No download</p>
-            }
+      {!isEmpty(downloads) ? downloads.sort((a, b) => b.startTime - a.startTime).map((item, index) => <DownloadItem key={index} item={item} />) : <p className='no-download'>No download</p>}
       <button className='load-more' onClick={loadMore}>Load More</button>
     </div>
   )

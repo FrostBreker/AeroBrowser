@@ -23,7 +23,7 @@
                 ]
             }
         ],
-        "icon": "public/icon.ico"
+        "icon": "public/favicon.ico"
     },
     "mac": {
         "target": [
