@@ -3,7 +3,7 @@ import { CloseIcon, SoundIcon, SoundMuteIcon } from '../UI/Icons'
 import { useDispatch } from 'react-redux'
 import { removeTab, tabClick, updateFavicon } from '../../actions/tabs.actions'
 
-export default function Tab({ tab }) {
+export default function Tab ({ tab }) {
   const dispatch = useDispatch()
 
   const [isLoading, setIsLoading] = useState(false)

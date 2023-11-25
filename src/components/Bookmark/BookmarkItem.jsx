@@ -2,7 +2,7 @@ import React, { createRef } from 'react'
 import { ContextMenuTrigger } from 'react-contextmenu'
 import ContextMenuBookmarkItem from '../ContextMenu/ContextMenuBookmarkItem'
 
-export default function BookmarkItem(props) {
+export default function BookmarkItem (props) {
   const { book, handleOpenWebsite, handleOpenNewTabFromBookmark, handleShowModals } = props
   const { favicon, url, id } = book
   const buttonRef = createRef()
