@@ -17,7 +17,8 @@ We welcome contributions from the open source community to improve Aero. If you 
 environment variables (.env setup in public folder)
 
 ```conf
-SENTRY_DSN=
+SENTRY_DSN=""
+SENTRY_AUTH_TOKEN=""
 ```
 
 

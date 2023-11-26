@@ -22,13 +22,14 @@
   "description": "Aero is a simple and lightweight web browser for Windows, Mac and Linux. It is built with Electron, React and Redux.",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && npm run sentry:sourcemaps",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "electron": "electron . --trace-warnings ",
     "electron:package:mac": "npm run build && electron-builder -m -c.extraMetadata.main=build/electron.js",
     "electron:package:win": "npm run build && electron-builder -w -c.extraMetadata.main=build/electron.js",
-    "electron:package:linux": "npm run build && electron-builder -l -c.extraMetadata.main=build/electron.js"
+    "electron:package:linux": "npm run build && electron-builder -l -c.extraMetadata.main=build/electron.js",
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org fb-projects --project aero ./dist && sentry-cli sourcemaps upload --org fb-projects --project aero ./dist"
   },
   "eslintConfig": {
     "extends": [
@@ -69,7 +70,8 @@
     "sass": "^1.58.3"
   },
   "dependencies": {
-    "@sentry/electron": "^4.3.0",
+    "@sentry/cli": "^2.22.2",
+    "@sentry/electron": "^4.14.0",
     "@sentry/tracing": "^7.44.2",
     "dotenv": "^16.3.1",
     "electron-dl": "^3.5.0",

@@ -14,8 +14,9 @@ let mainWindow = null
 let mainWebContents = null
 const utils = new Utils()
 utils.init()
+utils.setSentry()
 
-function createWindow () {
+function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1024,
     height: 728,
@@ -51,7 +52,7 @@ function createWindow () {
   mainWindow.loadURL(appURL)
 }
 
-function setupLocalFilesNormalizerProxy () {
+function setupLocalFilesNormalizerProxy() {
   protocol.registerHttpProtocol(
     'file',
     (request, callback) => {
@@ -64,7 +65,7 @@ function setupLocalFilesNormalizerProxy () {
   )
 }
 
-function loadEvents () {
+function loadEvents() {
   // BOOKMARKS
   console.log(`[EVENTS] --> Load [✅] : ${channels.ADD_BOOKMARK}`)
   ipcMain.on(channels.ADD_BOOKMARK, (...args) => require('./ipc/bookmarks/addBookmark').execute(mainWebContents, ...args))
