@@ -43,6 +43,9 @@ jobs:
           # SENTRY_URL: https://sentry.io/
         with:
           environment: production
+          ignore_missing: true
+          sourcemaps: "./build"
+          version: ${{ github.ref }}
         
 
       - name: see directory
