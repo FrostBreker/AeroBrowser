@@ -2,15 +2,15 @@ const electronDl = require('electron-dl')
 const { ipcMain } = require('electron')
 const { downloads } = require('../storedData')
 const { channels } = require('../constants')
+const Sentry = require('@sentry/electron')
 
 class Utils {
-  constructor () {
+  constructor() {
     this.mainWindow = null
     this.mainWebContents = null
-    console.log('Utils loaded')
   }
 
-  init () {
+  init() {
     electronDl(
       {
         saveAs: true,
@@ -52,7 +52,7 @@ class Utils {
               data.dlData.isInterrupted = true
               this.mainWebContents.send(channels.UPDATE_DOWNLOAD, data)
             } else if (state === 'progressing') {
-              function updateDownloadedBytes (newDownloadedBytes) {
+              function updateDownloadedBytes(newDownloadedBytes) {
                 const currentTime = Date.now()
                 const elapsedTime = (currentTime - previousTime) / 1000 // Convert to seconds
 
@@ -88,16 +88,30 @@ class Utils {
           })
         }
       }
-    )
+    );
   }
 
-  setMainWindow (mainWindow) {
+  setMainWindow(mainWindow) {
     this.mainWindow = mainWindow
     this.mainWebContents = mainWindow.webContents
-    console.log('Utils mainWindow set')
   }
 
-  convertBytesToHumanReadable (bytes) {
+  setSentry() {
+    Sentry.init({
+      dsn: process.env.SENTRY_DSN,
+      // This enables automatic instrumentation (highly recommended), but is not
+      // necessary for purely manual usage.
+      // We recommend adjusting this value in production, or using tracesSampler
+      // for finer control
+      tracesSampleRate: 1.0,
+      // Set `tracePropagationTargets` to control for which URLs distributed tracing should be enabled
+      tracePropagationTargets: ["localhost"],
+      environment: process.env.NODE_ENV,
+      release: process.env.RELEASE_VERSION,
+    });
+  }
+
+  convertBytesToHumanReadable(bytes) {
     const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
     if (bytes === 0) {
       return '0 Bytes'
@@ -109,7 +123,7 @@ class Utils {
     }
   }
 
-  generateId () {
+  generateId() {
     return '_' + Math.random().toString(36).substr(2, 9)
   }
 }

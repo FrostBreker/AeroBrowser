@@ -133,3 +133,9 @@
         In PR #32:
             - Add electron-builder automatic build
 
+## 0.2.3:
+    - Fix:
+    - Add:
+        In PR #34:
+            - Add Sentry to the main process
+
