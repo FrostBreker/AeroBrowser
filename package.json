@@ -26,9 +26,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "electron": "electron . --trace-warnings ",
-    "electron:package:mac": "npm run build && electron-builder -m -c.extraMetadata.main=build/electron.js && npm run sentry:sourcemaps",
-    "electron:package:win": "npm run build && electron-builder -w -c.extraMetadata.main=build/electron.js && npm run sentry:sourcemaps",
-    "electron:package:linux": "npm run build && electron-builder -l -c.extraMetadata.main=build/electron.js && npm run sentry:sourcemaps",
+    "electron:package:mac": "npm run build && electron-builder -m -c.extraMetadata.main=build/electron.js",
+    "electron:package:win": "npm run build && electron-builder -w -c.extraMetadata.main=build/electron.js",
+    "electron:package:linux": "npm run build && electron-builder -l -c.extraMetadata.main=build/electron.js",
     "sentry:sourcemaps": "sentry-cli sourcemaps inject --org fb-projects --project aero ./dist && sentry-cli sourcemaps upload --org fb-projects --project aero ./dist"
   },
   "eslintConfig": {
