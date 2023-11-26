@@ -1,5 +1,5 @@
 {
-    "appId": "fr.frostbreker.aero",
+    "appId": "fr.FrostBreker.Aero",
     "productName": "Aero",
     "copyright": "Copyright (c) 2023 FrostBreker",
     "compression": "maximum",
@@ -12,13 +12,17 @@
         "package.json",
         "ipc/**/*",
         "classes/*",
-        "icons/*",
+        "icons/*"
     ],
     "directories": {
         "buildResources": "public"
     },
     "extraResources": [
-      "./public/icons/*"
+      "./public/icons/*",
+        "./public/icon_256x256.ico",
+        "./public/icon.ico",
+    "./public/icon.png",
+        "./public/favicon.ico"
     ],
     "win": {
         "target": [
@@ -31,19 +35,6 @@
             }
         ],
         "icon": "public/icon_256x256.ico"
-    },
-    "mac": {
-        "target": [
-            {
-                "target": "dmg",
-                "arch": [
-                    "x64",
-                    "arm64"
-                ]
-            }
-        ],
-        "category": "public.build.network",
-        "icon": "public/icon.icns"
     },
     "linux": {
         "maintainer": "FrostBreker",
@@ -92,7 +83,6 @@
         "artifactName": "Aero_${version}_${os}.${ext}"
     },
     "deb": {
-        "artifactName": "Aero_${version}_${arch}.${ext}",
         "category": "Network",
         "mimeTypes": [
             "text/html"
@@ -101,7 +91,7 @@
         "packageCategory": "network",
         "packageName": "aero",
         "vendor": "FrostBreker",
-        "maintainer": "FrostBreker",
+        "maintainer": "FrostBreker"
     },
     "forceCodeSigning": false
 }
