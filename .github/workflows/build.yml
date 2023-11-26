@@ -45,7 +45,7 @@ jobs:
           environment: production
           ignore_missing: true
           sourcemaps: "./build"
-          version: ${{ github.ref }}
+          version: ${{ github.ref_name }}
         
 
       - name: see directory
