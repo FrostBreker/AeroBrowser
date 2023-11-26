@@ -2,9 +2,13 @@
     "appId": "fr.frostbreker.aero",
     "productName": "Aero",
     "copyright": "Copyright (c) 2023 FrostBreker",
+    "compression": "maximum",
+    "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+    "asar": true,
+    "asarUnpack": "**\\*.{node,dll}",
     "files": [
         "build/**/*",
-        "node_modules/**/*",
+        "node_modules",
         "package.json",
         "ipc/**/*",
         "classes/*",
@@ -13,6 +17,9 @@
     "directories": {
         "buildResources": "public"
     },
+    "extraResources": [
+      "./public/icons/*"
+    ],
     "win": {
         "target": [
             {
@@ -23,7 +30,7 @@
                 ]
             }
         ],
-        "icon": "public/icon.ico"
+        "icon": "public/icon_256x256.ico"
     },
     "mac": {
         "target": [
@@ -71,8 +78,8 @@
         "oneClick": false,
         "perMachine": false,
         "allowToChangeInstallationDirectory": true,
-        "installerIcon": "public/icon.ico",
-        "uninstallerIcon": "public/icon.ico"
+        "installerIcon": "public/icon_256x256.ico",
+        "uninstallerIcon": "public/icon_256x256.ico"
     },
     "portable": {
         "artifactName": "Aero_${version}_${os}.${ext}"
@@ -96,6 +103,5 @@
         "vendor": "FrostBreker",
         "maintainer": "FrostBreker",
     },
-    "artifactName": "Aero_${version}_${os}.${ext}",
     "forceCodeSigning": false
 }

@@ -11,7 +11,7 @@ export const ADD_WEBVIEW = 'ADD_WEBVIEW'
 export const UPDATE_FAVICON = 'UPDATE_FAVICON'
 
 export const addTab = (url, isActive, isWebview) => {
-  const newTab = { id: generateId(), isActive, title: 'New Tab', favicon: './icon.ico', defaultUrl: url, isNewTab: true, isWebview, webview: null, url: '' }
+  const newTab = { id: generateId(), isActive, title: 'New Tab', favicon: './favicon.ico', defaultUrl: url, isNewTab: true, isWebview, webview: null, url: '' }
   return (dispatch) => {
     dispatch({
       type: ADD_TAB,
