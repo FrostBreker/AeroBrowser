@@ -5,7 +5,7 @@
         
 ## 0.2.3:
     - Fix:
-        In PR #39:
+        In PR #37:
             - Deepsource Fix
     - Add:
         In PR #34:
