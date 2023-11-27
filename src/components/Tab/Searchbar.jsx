@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { RefreshIcon, AlertIcon, LockIcon, SearchIcon } from '../UI/Icons'
 import { useDispatch } from 'react-redux'
 import { toggleWebview, updateURL } from '../../actions/tabs.actions'
-export default function Searchbar ({ tab }) {
+export default function Searchbar({ tab }) {
   const [value, setValue] = useState('')
   const [tabType, setTabType] = useState('webview')
   const [isFocusing, setIsFocusing] = useState(false)
@@ -30,7 +30,7 @@ export default function Searchbar ({ tab }) {
 
   const parseURL = (url) => {
     if (/^[^/]+\.[^/]+$/.test(url)) {
-      url = 'https://' + url
+      url = `https://${url}`
     }
 
     // If the input looks like a valid URL, navigate to that URL.
@@ -121,8 +121,8 @@ export default function Searchbar ({ tab }) {
           setValue(e.url)
         })
 
-        window.tab.onLoadURL((_event, value) => {
-          handleGoToURL(value)
+        window.tab.onLoadURL((_event, data) => {
+          handleGoToURL(data)
         })
       }
     }

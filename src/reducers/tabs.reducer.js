@@ -2,7 +2,7 @@ import { GET_TABS, ADD_TAB, TAB_CLICK, REMOVE_TAB, UPDATE_NEW_TAB_PARAMETER, UPD
 
 const initialState = []
 
-export default function tabsReducer (state = initialState, action) {
+export default function tabsReducer(state = initialState, action) {
   switch (action.type) {
     case GET_TABS:
       return [...state, action.payload]
@@ -16,7 +16,7 @@ export default function tabsReducer (state = initialState, action) {
       state.find((tab) => tab.id === action.payload).isActive = true
       return [...state]
     case REMOVE_TAB:
-      const data = state.filter((tab) => tab.id !== action.payload)
+      const data = state.filter((tab) => { return tab.id !== action.payload })
       if (data.length > 0) {
         data[data.length - 1].isActive = true
         return [...data]

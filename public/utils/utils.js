@@ -1,5 +1,4 @@
 const electronDl = require('electron-dl')
-const { ipcMain } = require('electron')
 const { downloads } = require('../storedData')
 const { channels } = require('../constants')
 const Sentry = require('@sentry/electron')
@@ -42,7 +41,6 @@ class Utils {
           }
           this.mainWebContents.send(channels.ADD_DOWNLOAD, data)
           console.log(`[DOWNLOAD] --> Download started: ${item.getFilename()}`)
-          const totalBytes = item.getTotalBytes() // Example total bytes to download
           const startTime = Date.now() // Example start time in milliseconds
           let downloadedBytes = item.getReceivedBytes() // Initialize downloaded bytes
           let previousTime = startTime // Initialize previous time for the first calculation
@@ -124,7 +122,7 @@ class Utils {
   }
 
   generateId() {
-    return '_' + Math.random().toString(36).substr(2, 9)
+    return `_${Math.random().toString(36).substr(2, 9)}`
   }
 }
 
