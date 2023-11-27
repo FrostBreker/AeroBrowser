@@ -5,7 +5,7 @@ import BookmarkMenu from '../Bookmark/BookmarkMenu'
 import { addTab } from '../../actions/tabs.actions'
 import ModalIndex from '../Modals/ModalsIndex'
 
-export default function RouterManager ({ showBookmarksMenu }) {
+export default function RouterManager({ showBookmarksMenu }) {
   const tabs = useSelector(state => state.tabsReducer)
   const dispatch = useDispatch()
   // eslint-disable-next-line

@@ -8,7 +8,7 @@ import { addTab } from './actions/tabs.actions'
 import { getBookmarks } from './actions/bookmark.actions'
 import { addDownload, updateDownload } from './actions/downloads.actions'
 
-function App () {
+function App() {
   const [isLoaded, setIsLoaded] = useState(false)
 
   const tabs = useSelector(state => state.tabsReducer)
@@ -54,10 +54,10 @@ function App () {
         isLoaded
           ? (
             <TabManager />
-            )
+          )
           : (
             <LoadingPage />
-            )
+          )
       }
     </>
   )
