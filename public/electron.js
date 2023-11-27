@@ -56,8 +56,8 @@ function setupLocalFilesNormalizerProxy() {
   protocol.registerHttpProtocol(
     'file',
     (request, callback) => {
-      const url = request.url.substr(8)
-      callback({ path: path.normalize(`${__dirname}/${url}`) })
+      const newURL = request.url.substr(8)
+      callback({ path: path.normalize(`${__dirname}/${newURL}`) })
     },
     (error) => {
       if (error) console.error('Failed to register protocol')

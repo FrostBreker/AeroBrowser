@@ -5,7 +5,7 @@ module.exports = {
   name: channels.UPDATE_BOOKMARK,
   once: false,
   handler: false,
-  async execute (webContents, _, data) {
+  execute(webContents, _, data) {
     const { id, url, name } = data
     const bookmarksData = bookmarks.get('bookmarks')
     const bookmark = bookmarksData.find(b => b.id === id)

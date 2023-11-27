@@ -6,14 +6,14 @@ import { useSelector } from 'react-redux'
 import WebviewController from '../Webview/WebviewController'
 import Searchbar from './Searchbar'
 
-export default function TopBar ({ showBookmarksMenu, handleShowBookmarksMenu }) {
+export default function TopBar({ showBookmarksMenu, handleShowBookmarksMenu }) {
   const [activeTab, setActiveTab] = useState(null)
   const tabs = useSelector(state => state.tabsReducer)
 
   useEffect(() => {
-    const activeTab = tabs.find(tab => tab.isActive)
-    if (activeTab.webview !== null) {
-      setActiveTab(activeTab)
+    const currentActiveTab = tabs.find(tab => tab.isActive)
+    if (currentActiveTab.webview !== null) {
+      setActiveTab(currentActiveTab)
     }
   }, [tabs])
 
@@ -36,10 +36,10 @@ export default function TopBar ({ showBookmarksMenu, handleShowBookmarksMenu }) 
         {/* Add modal to display Bookmarks */}
         <button className='showBookmarksBTN' onClick={handleShowBookmarksMenu}>
           {
-                        showBookmarksMenu
-                          ? <BookmarkFilledIcon />
-                          : <BookmarkIcon />
-                    }
+            showBookmarksMenu
+              ? <BookmarkFilledIcon />
+              : <BookmarkIcon />
+          }
         </button>
         {/* Button that diisplay every information and settings */}
         <button className='showInfoBTN'>

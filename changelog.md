@@ -135,6 +135,8 @@
 
 ## 0.2.3:
     - Fix:
+        In PR #39:
+            - Deepsource Fix
     - Add:
         In PR #34:
             - Add Sentry to the main process

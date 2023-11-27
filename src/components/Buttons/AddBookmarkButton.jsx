@@ -4,16 +4,16 @@ import { AddTabIcon } from '../UI/Icons'
 import { addBookmark } from '../../actions/bookmark.actions'
 import { generateId } from '../utils'
 
-export default function AddBookmarkButton () {
+export default function AddBookmarkButton() {
   const [activeTab, setActiveTab] = useState(null)
   const tabs = useSelector(state => state.tabsReducer)
 
   const dispatch = useDispatch()
 
   useEffect(() => {
-    const activeTab = tabs.find(tab => tab.isActive)
-    if (activeTab.webview !== null) {
-      setActiveTab(activeTab)
+    const currentActiveTab = tabs.find(tab => tab.isActive)
+    if (currentActiveTab.webview !== null) {
+      setActiveTab(currentActiveTab)
     }
   }, [tabs])
 
