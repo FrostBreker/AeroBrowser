@@ -10,6 +10,8 @@
     - Add:
         In PR #34:
             - Add Sentry to the main process
+        In PR #41:
+            - Add Ad and Tracker blocker (Start: No control UI)
 
 ## 0.2.2:
     - Fix:
