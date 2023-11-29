@@ -70,6 +70,7 @@
     "sass": "^1.58.3"
   },
   "dependencies": {
+    "@cliqz/adblocker-electron": "^1.26.12",
     "@sentry/cli": "^2.22.2",
     "@sentry/electron": "^4.14.0",
     "@sentry/tracing": "^7.44.2",

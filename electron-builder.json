@@ -25,6 +25,7 @@
         "./public/favicon.ico"
     ],
     "win": {
+        "publisherName": "FrostBreker",
         "target": [
             {
                 "target": "nsis",
@@ -42,7 +43,7 @@
         "synopsis": "AeroBrowser",
         "description": "Aero is a simple and lightweight web browser for Windows, Mac and Linux. It is built with Electron, React and Redux.",
         "category": "Network",
-        "icon": "public/icons/",
+        "icon": "public/icons",
         "mimeTypes": [
             "text/html"
         ],

@@ -2,6 +2,8 @@ const electronDl = require('electron-dl')
 const { downloads } = require('../storedData')
 const { channels } = require('../constants')
 const Sentry = require('@sentry/electron')
+const { ElectronBlocker, fullLists } = require('@cliqz/adblocker-electron');
+const { readFileSync, writeFileSync } = require('fs');
 
 class Utils {
   constructor() {
@@ -107,6 +109,42 @@ class Utils {
       environment: process.env.NODE_ENV,
       release: process.env.RELEASE_VERSION,
     });
+  }
+
+  async setAdAndTrackerBlocker(mainWindow) {
+    const blocker = await ElectronBlocker.fromLists(
+      fetch,
+      fullLists,
+      {
+        enableCompression: true,
+      },
+    );
+
+    blocker.enableBlockingInSession(mainWindow.webContents.session);
+
+    // blocker.on('request-blocked', (request) => {
+    //   console.log('blocked', request.tabId, request.url);
+    // });
+
+    // blocker.on('request-redirected', (request) => {
+    //   console.log('redirected', request.tabId, request.url);
+    // });
+
+    // blocker.on('request-whitelisted', (request) => {
+    //   console.log('whitelisted', request.tabId, request.url);
+    // });
+
+    // blocker.on('csp-injected', (request) => {
+    //   console.log('csp', request.url);
+    // });
+
+    // blocker.on('script-injected', (script, url) => {
+    //   console.log('script', script.length, url);
+    // });
+
+    // blocker.on('style-injected', (style, url) => {
+    //   console.log('style', style.length, url);
+    // });
   }
 
   convertBytesToHumanReadable(bytes) {
