@@ -41,6 +41,9 @@ function createWindow() {
 
   mainWindow.removeMenu()
 
+  utils.setAdAndTrackerBlocker(mainWindow)
+
+
   const appURL = app.isPackaged
     ? url.format({
       pathname: path.join(__dirname, 'index.html'),
@@ -50,6 +53,10 @@ function createWindow() {
     : 'http://127.0.0.1:3000'
 
   mainWindow.loadURL(appURL)
+
+  mainWindow.on('closed', () => {
+    mainWindow = null;
+  });
 }
 
 function setupLocalFilesNormalizerProxy() {
