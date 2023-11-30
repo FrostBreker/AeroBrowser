@@ -5,10 +5,15 @@ const url = require('url')
 const path = require('path')
 const Utils = require('./utils/utils')
 const { channels } = require('./constants')
-const { bookmarks, downloads } = require('./storedData')
 const CustomConsole = require('./classes/CustomConsole')
+const CurrentStoredData = require('./classes/CurrentStoredData')
 
 const customConsole = new CustomConsole()
+const currentStoredData = new CurrentStoredData()
+module.exports = {
+  customConsole,
+  currentStoredData
+}
 
 let mainWindow = null
 let mainWebContents = null
@@ -92,8 +97,8 @@ app.whenReady().then(() => {
   }
   loadEvents()
   mainWebContents.on('did-finish-load', () => {
-    mainWebContents.send(channels.GET_BOOKMARKS, bookmarks.get('bookmarks'))
-    mainWebContents.send(channels.GET_DOWNLOADS, downloads.get('downloads'))
+    mainWebContents.send(channels.GET_BOOKMARKS, currentStoredData.get("bookmarksMap"))
+    mainWebContents.send(channels.GET_DOWNLOADS, currentStoredData.get("downloadsMap"))
   })
 
   mainWindow.webContents.on('did-attach-webview', (_, contents) => {
@@ -107,8 +112,9 @@ app.whenReady().then(() => {
   })
 })
 
-app.on('will-quit', () => {
-
+app.on('will-quit', async () => {
+  console.log('will-quit')
+  await currentStoredData.updateCurrentToJSON()
 })
 
 app.on('window-all-closed', () => {

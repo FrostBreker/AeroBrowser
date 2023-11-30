@@ -10,6 +10,9 @@
     - Add:
         In PR #34:
             - Add Sentry to the main process
+        In PR #:
+            - Remake of the RouterManager
+            - Change data processing in the Main process
 
 ## 0.2.2:
     - Fix:

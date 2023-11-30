@@ -12,5 +12,11 @@ module.exports = {
     defaults: {
       downloads: []
     }
+  }),
+  tabs: new Store({
+    configName: 'tabs',
+    defaults: {
+      tabs: []
+    }
   })
 }

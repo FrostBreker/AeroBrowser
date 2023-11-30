@@ -1,11 +1,11 @@
 const { channels } = require('../../constants')
-const { bookmarks } = require('../../storedData')
+const { currentStoredData } = require("../../electron")
 
 module.exports = {
   name: channels.ADD_BOOKMARK,
   once: false,
   handler: false,
   execute(webContents, _, data) {
-    bookmarks.set('bookmarks', [...bookmarks.get('bookmarks'), data])
+    currentStoredData.add('bookmarksMap', data);
   }
 }
